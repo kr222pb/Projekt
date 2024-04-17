@@ -1,13 +1,24 @@
 body{
     background-color: black;
+    display: flex;          /* Aktiverar flexbox */
+    flex-direction: column; /* Ställer in flexriktningen till vertikal */
+    align-items: center;    /* Centrerar innehåll horisontellt */
+    min-height: 100vh;      /* Full höjd på viewporten */
+    margin: 0; 
     
 }
-
-h1{
+header{         
     color: white;
+    text-align: center;     /* Centrerar texten i headern */
+    padding: 20px;   
     display: flex;
-    justify-content: center;
+    justify-content: center;       /* Lägger till lite utrymme runt texten */
 }
+img{
+    width: 50px;
+    margin: 10px;
+}
+
 
 .container{
     background-color: grey;
@@ -16,11 +27,53 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 50px;
+    border-radius: 20px;
     
 }
 .swipe{
     background-color: white;
     width: 200px;
     height: 200px;
+
+
+}
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-image:linear-gradient(188deg, #fd2e78,#fc7057 )  ;
+    display: flex;
+    
+}
+.funktion1{
+    
+    width: 100px;
+    height: 70px;
+}
+
+.funktion2{
+    
+    width: 100px;
+    height: 70px;
+
+}
+.funktion3{
+    
+    width: 100px;
+    height: 70px;
+
+}
+.funktion4{
+    
+    width: 100px;
+    height: 70px;
+
+}
+.funktion5{
+    
+    width: 100px;
+    height: 70px;
 
 }

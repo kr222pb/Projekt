@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 55.18 36.01">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Namnlös_övertoning_548);
+        stroke-width: 0px;
+      }
+    </style>
+    <linearGradient id="Namnlös_övertoning_548" data-name="Namnlös övertoning 548" x1="27.59" y1="0" x2="27.59" y2="36.01" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fd2e78"/>
+      <stop offset="1" stop-color="#fc7057"/>
+    </linearGradient>
+  </defs>
+  <g id="Lager_1-2" data-name="Lager 1">
+    <path class="cls-1" d="M55.12,15.17l-27.45,20.81c-.05.04-.12.04-.17,0L.05,15.17c-.1-.08-.05-.25.08-.25h7.19V2.68c0-1.48,1.2-2.68,2.67-2.68h35.19c1.48,0,2.67,1.2,2.67,2.68v12.24h7.19c.13,0,.19.17.08.25Z"/>
+  </g>
+</svg>
