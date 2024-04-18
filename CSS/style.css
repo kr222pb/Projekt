@@ -35,33 +35,31 @@ img{
     margin: 5px;
 }
 
-
 .container{
-    background-color: grey;
+    background-color: #1e1f25;
     width: 300px;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     
-    border-radius: 20px;
+    border-radius: 15px;
     
 }
 .swipe{
     width: 200px;
     height: 200px;
-    border: solid;
 }
 
 .options{
-    background-color: grey;
+    background-color: #1e1f25;
     width: 250px;
     height: 50px;
     display: flex;
     justify-content: space-around; 
     align-items: center; 
     margin: 0 auto;
-    border-radius: 5px;
+    border-radius:  0px 0px 15px 15px;
 }
 .options img {
     width: 40px; 
@@ -98,5 +96,7 @@ img{
 h2{
     color: white;
 }
+
+/******** För Styling egentligen ********/
 
 

@@ -1,0 +1,28 @@
+{ 
+    "Kalmar": [
+        {
+            "name": "Trollskogsstigen",
+            "image": {
+                "url": "img/trollskogsstigen.jpg",
+                "caption": "Trollskogsstigen"
+            },
+            "bio": {
+                "längd": "4,5 km",
+                "estimerad tid": "56min",
+                "plats": "?"
+            }
+        },
+        {
+            "name": "Orrefors vandringsled",
+            "image": {
+                "url": "img/orrefors.jpg",
+                "caption": "Orrefors vandringsled"
+            },
+            "bio": {
+                "längd": "14,6 km",
+                "estimerad tid": "4h 5min",
+                "plats": "?"
+            }
+        }
+    ]
+}

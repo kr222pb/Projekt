@@ -1,0 +1,28 @@
+{ 
+    "vaxjo": [
+        {
+            "name": "Hissösslingan",
+            "image": {
+                "url": "img/hissosslingan.jpg",
+                "caption": "hissösslingan"
+            },
+            "bio": {
+                "längd": "7,4 km",
+                "estimerad tid": "1h 54min",
+                "plats": "?"
+            }
+        },
+        {
+            "name": "Helgö Rundslinga",
+            "image": {
+                "url": "img/helgorundslinga.jpg",
+                "caption": "Helgö Rundslinga"
+            },
+            "bio": {
+                "längd": "7,1 km",
+                "estimerad tid": "1h 33min",
+                "plats": "?"
+            }
+        }
+    ]
+}
