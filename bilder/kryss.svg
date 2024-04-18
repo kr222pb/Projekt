@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 43.58 43.58">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-family: Etna-Regular, Etna;
+        font-size: 28.73px;
+      }
+
+      .cls-2 {
+        fill: url(#Namnlös_övertoning_35);
+        stroke-width: 0px;
+      }
+    </style>
+    <linearGradient id="Namnlös_övertoning_35" data-name="Namnlös övertoning 35" x1="0" y1="21.79" x2="43.58" y2="21.79" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ab5297"/>
+      <stop offset=".12" stop-color="#b44583"/>
+      <stop offset=".44" stop-color="#ca2654"/>
+      <stop offset=".68" stop-color="#d71337"/>
+      <stop offset=".82" stop-color="#dd0c2d"/>
+    </linearGradient>
+  </defs>
+  <g id="Lager_1-2" data-name="Lager 1">
+    <g>
+      <circle class="cls-2" cx="21.79" cy="21.79" r="21.79"/>
+      <text class="cls-1" transform="translate(8.05 30.94) scale(1.58 1)"><tspan x="0" y="0">X</tspan></text>
+    </g>
+  </g>
+</svg>

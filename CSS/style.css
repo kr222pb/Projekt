@@ -1,22 +1,38 @@
 body{
     background-color: black;
-    display: flex;          /* Aktiverar flexbox */
-    flex-direction: column; /* Ställer in flexriktningen till vertikal */
-    align-items: center;    /* Centrerar innehåll horisontellt */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
     min-height: 100vh;      /* Full höjd på viewporten */
     margin: 0; 
     
 }
 header{         
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     color: white;
-    text-align: center;     /* Centrerar texten i headern */
-    padding: 20px;   
+   
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Ensure visibility over content */
+    text-align: center;
+    
+    z-index: 1000;      /* Lägger till lite utrymme runt texten */
+}
+.logo{
+    margin-right: auto;
+}
+.header-content {
     display: flex;
-    justify-content: center;       /* Lägger till lite utrymme runt texten */
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; 
 }
 img{
-    width: 50px;
-    margin: 10px;
+    width: 70px;
+    margin: 5px;
 }
 
 
@@ -27,17 +43,32 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    
     border-radius: 20px;
     
 }
 .swipe{
-    background-color: white;
     width: 200px;
     height: 200px;
-
-
+    border: solid;
 }
+
+.options{
+    background-color: grey;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    margin: 0 auto;
+    border-radius: 5px;
+}
+.options img {
+    width: 40px; 
+    height: 40px; 
+    object-fit: cover; 
+}
+
 .footer{
     position: fixed;
     left: 0;
@@ -45,35 +76,27 @@ img{
     width: 100%;
     background-image:linear-gradient(188deg, #fd2e78,#fc7057 )  ;
     display: flex;
+    justify-content: space-around; 
+    padding: 10px 0;
     
 }
-.funktion1{
-    
-    width: 100px;
-    height: 70px;
+.footer a {
+    color: white; 
+    text-decoration: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; 
 }
 
-.funktion2{
-    
-    width: 100px;
-    height: 70px;
-
+.footer a img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
 }
-.funktion3{
-    
-    width: 100px;
-    height: 70px;
 
+h2{
+    color: white;
 }
-.funktion4{
-    
-    width: 100px;
-    height: 70px;
 
-}
-.funktion5{
-    
-    width: 100px;
-    height: 70px;
 
-}
