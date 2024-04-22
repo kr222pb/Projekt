@@ -36,25 +36,37 @@ img{
 }
 
 .container{
-    background-color: #1e1f25;
-    width: 300px;
-    height: 300px;
+    background-color: #7d7f8a;
+    position: relative;
+    width: 80%;
+   margin: auto;
+    height: 300px; /*Biede vEÅR pricent*/
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
+    padding: 15px;
     border-radius: 15px;
     
 }
+.container h2{
+    text-align: center;
+    font-size: 2rem;
+    margin: 5px;
+}
+.container h3{
+    margin: 5px;
+    text-align: center;
+}
 .swipe{
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 70%;
 }
 
 .options{
-    background-color: #1e1f25;
-    width: 250px;
-    height: 50px;
+    background-color: #6c6c6f;
+    position: absolute;
+    bottom: -52px;
+    left: 65px;
     display: flex;
     justify-content: space-around; 
     align-items: center; 
@@ -62,11 +74,16 @@ img{
     border-radius:  0px 0px 15px 15px;
 }
 .options img {
-    width: 40px; 
-    height: 40px; 
-    object-fit: cover; 
+    padding: 5px 15px;
+    width: 2em;
 }
+#pin{
+    height: 40px;
+    position: absolute;
+    bottom: 45px;
+    left: 65px;
 
+}
 .footer{
     position: fixed;
     left: 0;
