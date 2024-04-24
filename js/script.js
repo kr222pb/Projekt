@@ -1,5 +1,16 @@
+//Globala variabler
+let currentindex = 0;
+let selectedActivities = [];
+let obj;
+
 function init() {
     fetchSMAPI()
+    let bock = document.querySelector("#bock")
+    bock.addEventListener("click", nextSlide)
+
+    let kryss = document.querySelector("#kryss")
+    kryss.addEventListener("click", nextSlide)
+
 }
 
 window.addEventListener("load", init)
@@ -33,13 +44,22 @@ function readSMAPI(data) {
     let HTMLCode = ""
     // Iterera över datan och logga namnet på varje objekt
     for (let x = 0; x < data.payload.length; x++) {
-        let obj = data.payload[x]
-        console.log(obj.description)
+        obj = data.payload[currentindex]
 
-        HTMLCode = "<h2>"+obj.name+"</h2>"
-       // HTMLCode += "<h2>"+obj.description+"</h2>"
-          let h2 = document.querySelector(".container h2")
-    h2.innerHTML = HTMLCode
+        HTMLCode = "<h2>" + obj.name + "</h2>"
+        HTMLCode += "<h3>" + obj.description + "</h3>"
+        let h2 = document.querySelector(".container h2")
+        h2.innerHTML = HTMLCode
     }
-  
+
+}
+
+function nextSlide(e) {
+    if (e.target.id == "bock") {
+        let namn = obj.name
+        selectedActivities.push(namn)
+        console.log(selectedActivities)
+    }
+    currentindex++
+    fetchSMAPI()
 }
