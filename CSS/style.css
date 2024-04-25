@@ -13,26 +13,32 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    color: white;
-   
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Ensure visibility over content */
+    display: flex; 
+    align-items: center; 
     text-align: center;
-    
     z-index: 1000;      /* Lägger till lite utrymme runt texten */
 }
 .logo{
     margin-right: auto;
 }
 .header-content {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1; 
+    cursor: pointer;
+}
+.header-content a {
+    color: white;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    text-decoration: none;
 }
 img{
     width: 70px;
-    margin: 5px;
+    margin-right: 10px;
 }
 
 .container{
@@ -113,11 +119,146 @@ img{
 h2{
     color: white;
 }
-
-.inf0{
-   
+.scrollable-tabs-container {
+    max-width: 400px; 
+    margin: 5px auto;
+    border-radius: 4px;
+    overflow: hidden; /*  gömmer  innehållet */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%; /* Positionerar dropdown precis under triggern */
+    display: none; 
+    width: 95%; /* Justerbar bredd för bättre layout */
+    max-height: 0; /* Används för att dölja eller visa med en övergång */
+    transition: all 0.3s ease; /* Ger en mjuk övergång för dropdown-effekten */
+    z-index: 20;
 }
 
-/******** För Styling egentligen ********/
+.scrollable-tabs-container.active {
+    display: block; /* Visas när den är aktiv */
+    max-height: 200px; /* Höjd nog för att visa innehållet */
+    overflow-x: auto; /* Tillåter horisontell scrollning inuti */
+    overflow-y: hidden; /* Förhindrar vertikal scrollning */
+}
+
+.nav-menu {
+    display: flex;
+    gap: 16px;
+    padding: 12px 24px;
+    margin: 0;
+    list-style: none;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    flex-grow: 1;
+    mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent); /* Maskerar kanterna */
+}
+
+.nav-menu::-webkit-scrollbar {
+    display: none; 
+}
 
 
+
+.nav-item a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    background: #fc7057;
+    padding: 4px 24px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+
+.left-arrow, .right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; 
+    height: 20px; 
+    z-index: 20;
+    cursor: pointer;
+}
+
+.left-arrow {
+    left: 0;
+    background: linear-gradient(to right, rgba(251, 137, 92, 0.5), transparent);
+}
+
+.right-arrow {
+    right: 0;
+    background: linear-gradient(to left,  rgba(251, 137, 92, 0.5), transparent);
+}
+
+
+.scrollable-tabs-container .left-arrow,
+.scrollable-tabs-container .right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;  
+    width: 24px;  /* Enhetsstorlek för båda pilarna */
+    height: 24px; /* Enhetsstorlek för båda pilarna */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px; 
+    transition: background-color 0.3s ease;
+}
+
+
+.scrollable-tabs-container .left-arrow {
+    left: 10px; 
+}
+
+
+.scrollable-tabs-container .right-arrow {
+    right: 10px; 
+}
+
+/* Styling när musen hovrar över pilarna */
+.scrollable-tabs-container .left-arrow:hover,
+.scrollable-tabs-container .right-arrow:hover {
+    background-color: rgba(248, 242, 242, 0.7); /* Mörkare vid hover för bättre feedback */
+}
+.nav-item a.active {
+    background-color: #808080; /* Grå färg för markerade alternativ */
+    color: white; /* Säkerställer att texten är läsbar */
+}
+
+
+.timerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#timerDisplay {
+    color: white;
+}
+
+.select-container {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    overflow: hidden;
+}
+
+#timeSelect {
+    font-size: 18px;
+    appearance: none;
+    background: transparent;
+    border: transparent;
+    color: white;
+    width: 74px;
+}
+
+#timeSelect:focus {
+  outline: 0;
+}
+
+#timer {
+    width: 40px;
+}

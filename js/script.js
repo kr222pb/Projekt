@@ -53,13 +53,3 @@ function readSMAPI(data) {
     }
 
 }
-
-function nextSlide(e) {
-    if (e.target.id == "bock") {
-        let namn = obj.name
-        selectedActivities.push(namn)
-        console.log(selectedActivities)
-    }
-    currentindex++
-    fetchSMAPI()
-}

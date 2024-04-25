@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
+    <script src="js/scripttest.js"></script>
     <title>Projekt</title>
 </head>
 <body>
@@ -13,10 +14,57 @@
             <img src="bilder/logo.svg" alt="Logo">
         </div>
         <div class="header-content">
-            <a href="#"><img src="bilder/pil.svg" alt="Pil"></a>
-            <h1>Filtrera</h1>
+            <a href="#" class="filter-trigger">
+                <img src="bilder/pil.svg" alt="Pil">
+                <h1>Filtrera</h1>
+            </a>
+            <div class="scrollable-tabs-container">
+                <div class="left-arrow">
+                    <img src="bilder/vänster.svg">
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Växjö</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Kalmar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Karlskrona</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Värnamo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Alvesta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Oskarshamn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Vimmerby</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Jönköping</a>
+                    </li>
+                </ul>
+                <div class="right-arrow active">
+                    <img src="bilder/höger.svg">
+                </div>
+                <div class="timerWrapper">
+                    <img src="bilder/time.svg" alt="timer" id="timer">
+                   
+                    <select id="timeSelect">
+                        <option value="infinite" selected>∞</option>
+                        <option value="45">45 Sek</option>
+                        <option value="60">1 Min</option>
+                        <option value="90">1,5 Min</option>
+                        <option value="120">2 Min</option>
+                    </select>
+                </div>
+                <p id="timerDisplay"></p>
+            </div>
         </div>
-
     </header>
     <main>
          <div class="container">
@@ -24,11 +72,11 @@
             <img id="pin" src="bilder/plats.svg">
           <h2></h2>
         
-        <div class="options">
-            <img id="bock" src ="bilder/bock.svg" alt="bock">
-            <img id="info" src="bilder/info.svg" alt="info">
-            <img id="kryss" src="bilder/kryss.svg" alt="kryss">
-        </div>
+            <div class="options">
+                <img id="bock" src ="bilder/kryss.svg" alt="kryss">
+                <img id="info" src="bilder/info.svg" alt="info">
+                <img id="kryss" src="bilder/bock.svg" alt="bock" id="bock">
+            </div>
     </div>
 
     </main> 

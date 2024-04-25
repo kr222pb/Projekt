@@ -1,0 +1,34 @@
+{
+    "Växjö": [
+        {
+            "name": "Hissösslingan",
+            "length": "7,4 km",
+            "estimated time": "1h 54min",
+            "lat": "?",
+            "long": "?"
+        },
+        {
+            "name": "Helgö Rundslinga",
+            "length": "7,1 km",
+            "estimated time": "1h 33min",
+            "lat": "?",
+            "long": "?"
+        }
+    ],
+    "Kalmar": [
+        {
+            "name": "Trollskogsstigen",
+            "length": "4,5 km",
+            "estimated time": "56min",
+            "lat": "?",
+            "long": "?"
+        },
+        {
+            "name": "Orrefors vandringsled",
+            "length": "14,6 km",
+            "estimated time": "2h",
+            "lat": "?",
+            "long": "?"
+        }
+    ]
+}
