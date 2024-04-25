@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
+    <script src="js/scripttest.js"></script>
     <title>Projekt</title>
 </head>
 <body>
@@ -50,6 +51,18 @@
                 <div class="right-arrow active">
                     <img src="bilder/höger.svg">
                 </div>
+                <div class="timerWrapper">
+                    <img src="bilder/time.svg" alt="timer" id="timer">
+                   
+                    <select id="timeSelect">
+                        <option value="infinite" selected>∞</option>
+                        <option value="45">45 Sek</option>
+                        <option value="60">1 Min</option>
+                        <option value="90">1,5 Min</option>
+                        <option value="120">2 Min</option>
+                    </select>
+                </div>
+                <p id="timerDisplay"></p>
             </div>
         </div>
     </header>
@@ -59,11 +72,11 @@
             <img id="pin" src="bilder/plats.svg"><h2>Oleary's</h2>
             <h3>test</h3>
         
-        <div class="options">
-            <img src="bilder/bock.svg" alt="bock">
-            <img src="bilder/info.svg" alt="info">
-            <img src="bilder/kryss.svg" alt="kryss">
-        </div>
+            <div class="options">
+                <img src="bilder/kryss.svg" alt="kryss">
+                <img src="bilder/info.svg" alt="info">
+                <img src="bilder/bock.svg" alt="bock" id="bock">
+            </div>
     </div>
 
     </main> 

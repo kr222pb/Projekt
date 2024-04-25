@@ -227,3 +227,38 @@ h2{
     background-color: #808080; /* Grå färg för markerade alternativ */
     color: white; /* Säkerställer att texten är läsbar */
 }
+
+
+.timerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#timerDisplay {
+    color: white;
+}
+
+.select-container {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    overflow: hidden;
+}
+
+#timeSelect {
+    font-size: 18px;
+    appearance: none;
+    background: transparent;
+    border: transparent;
+    color: white;
+    width: 74px;
+}
+
+#timeSelect:focus {
+  outline: 0;
+}
+
+#timer {
+    width: 40px;
+}
