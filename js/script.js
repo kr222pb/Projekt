@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener("click", function(event) {
             event.preventDefault(); // Förhindrar att sidan navigerar
-            this.classList.toggle("active"); // Lägger till/ta bort 'active' klassen för att markera/avmarkera
+            this.classList.toggle("active"); 
         });
     });
 });
