@@ -53,3 +53,15 @@ function readSMAPI(data) {
     }
 
 }
+function nextSlide(e){
+    console.log("Annans")
+    if(e.target.id == "bock"){
+        console.log("Val gjort")
+        let kiwi = obj.name
+        selectedActivities.push(kiwi)
+        console.log(selectedActivities)
+    }
+  
+    currentindex++
+    fetchSMAPI()
+}
