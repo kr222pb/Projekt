@@ -23,7 +23,8 @@ async function fetchSMAPI() {
 
     let attraction = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=attraction&method=getall&descriptions=Museum,Slott,Konstgalleri,Ateljé,Glasbruk,Konsthall,Sevärdhet,Fornlämning,Hembygdspark,Naturreservat"
     // Hämta data från SMAPI
-    let response = await fetch(attraction)
+    //Detta måste bli en funkton som kräver indata
+    let response = await fetch(aktivitet)
 
     // Kontrollera om begäran var framgångsrik
     if (response.ok) {
@@ -48,6 +49,7 @@ function readSMAPI(data) {
 
         HTMLCode = "<h2>" + obj.name + "</h2>"
         HTMLCode += "<h3>" + obj.description + "</h3>"
+        HTMLCode += "<h4>" + obj.abstract + "</h4>"
         let h2 = document.querySelector(".container h2")
         h2.innerHTML = HTMLCode
     }
