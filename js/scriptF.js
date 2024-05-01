@@ -3,6 +3,10 @@ let currentindex = 0;
 let selectedActivities = [];
 let obj;
 let map
+let lat
+let lng
+let allData = []
+let numArrayCopy
 
 function init() {
     fetchSMAPI()
@@ -10,9 +14,11 @@ function init() {
     bock.addEventListener("click", nextSlide)
 
     let kryss = document.querySelector("#kryss")
-    kryss.addEventListener("click", nextSlide)
+    kryss.addEventListener("click", function(e) {
+        nextSlide(e);
+    });
 
-    document.querySelector("#info").addEventListener("click",makeMap)
+    document.querySelector("#info").addEventListener("click", makeMap)
 
 }
 
@@ -20,71 +26,106 @@ window.addEventListener("load", init)
 
 async function fetchSMAPI() {
     //URLer
-    let aktivitet = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=activity&method=getall&descriptions=Temapark,Nöjespark,Älgpark,Djurpark,Simhall,Gokart,Zipline,Nöjescenter,Klippklättring,Paintballcenter, Hälsocenter,Golfbana,Bowlinghall,Nattklubb"
+    /*
+        let aktivitet = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=activity&method=getall&descriptions=Temapark,Nöjespark,Älgpark,Djurpark,Simhall,Gokart,Zipline,Nöjescenter,Klippklättring,Paintballcenter, Hälsocenter,Golfbana,Bowlinghall,Nattklubb";
+        let mat = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getall&descriptions=Restaurang,Pizzeria,Gatukök,Bistro,Cafe";
+        let attraction = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=attraction&method=getall&descriptions=Museum,Slott,Konstgalleri,Ateljé,Glasbruk,Konsthall,Sevärdhet,Fornlämning,Hembygdspark,Naturreservat";
+    */
+    let aktivitet = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=activity&method=getall&descriptions=Temapark";
+    let mat = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getall&descriptions=Cafe";
+    let attraction = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=attraction&method=getall&descriptions=Fornlämning";
 
-    let mat = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getall&descriptions=Restaurang,Pizzeria,Gatukök,Bistro,Cafe"
+    try {
+        // Gör flera API-anrop samtidigt
+        let [response1, response2, response3] = await Promise.all([
+            fetch(aktivitet),
+            fetch(mat),
+            fetch(attraction)
+        ]);
 
-    let attraction = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=attraction&method=getall&descriptions=Museum,Slott,Konstgalleri,Ateljé,Glasbruk,Konsthall,Sevärdhet,Fornlämning,Hembygdspark,Naturreservat"
-    // Hämta data från SMAPI
-    //Detta måste bli en funkton som kräver indata
-    let response = await fetch(aktivitet)
+        // Kontrollera om alla begäranden var framgångsrika
+        if (!response1.ok || !response2.ok || !response3.ok) {
+            throw new Error("Ett eller flera API-anrop misslyckades");
+        }
 
-    // Kontrollera om begäran var framgångsrik
-    if (response.ok) {
-        console.log("Banan")
-        // Konvertera den hämtade JSON-datamängden till ett JavaScript-objekt
-        let data = await response.json()
-        // Skicka den konverterade datan till funktionen readSMAPI
-        readSMAPI(data)
+        // Konvertera svaren till JSON
+        let data = await Promise.all([
+            response1.json(),
+            response2.json(),
+            response3.json()
+        ]);
+
+        readSMAPI(data);
+    } catch (error) {
+        // Hantera fel om något går fel vid något av anropen
+        console.error("Fel vid hämtning:", error);
     }
-    else {
-        // Hantera fel om begäran inte var framgångsrik
-        console.log("Fel vid hämtning:", response.status)
-    }
-
 }
-
-let lat
-let lng
 
 function readSMAPI(data) {
-    let HTMLCode = ""
-    // Iterera över datan och logga namnet på varje objekt
-    for (let x = 0; x < data.payload.length; x++) {
-        obj = data.payload[currentindex]
+    //Iterera över listan med listorna i
+    for (let y = 0; y < data.length; y++) {
 
-        //Skriva koden
-        HTMLCode = "<h2>" + obj.name + "</h2>"
-        HTMLCode += "<h3>" + obj.description + "</h3>"
-        HTMLCode += "<h4>" + obj.abstract + "</h4>"
-        let h2 = document.querySelector(".container h2")
-        h2.innerHTML = HTMLCode
-        lat = obj.lat
-        lng = obj.lng
-        console.log(lat,lng)
-       
+        // Iterera över datan och logga namnet på varje objekt   
+        for (let x = 0; x < data[y].payload.length; x++) {
+            obj = data[y].payload[x]
+            allData.push(obj)
+
+        }
     }
- makeMap(lat,lng)
-}
-
+  //Veta hur många som finns i listan
+    let numList = allData.length
+    //Skapa arrayen
+    let numArray = []
+    for (let y = 0; y < numList; y++) {
+        numArray.push(y)
+    }  
+      numArrayCopy = numArray.slice(0) 
+      nextSlide()
+}   
 
 function nextSlide(e) {
-    console.log("Annans")
+
+    //Generera ett slumpmässigt index baserat på längden av numArrayCopy
+    let randomIndex = Math.floor(Math.random() * numArrayCopy.length);
+    
+    //Ta bort det slumpmässigt valda numret från numArrayCopy
+    let removedNumber = numArrayCopy.splice(randomIndex, 1); 
+    
+    //Ta bort objectet från listan 
+    allData.splice(removedNumber, 1);
+
+    //Hämta det nästa indexet i allData-listan
+    let nextIndex = allData[randomIndex];
+    
+    //Skriva koden
+    let HTMLCode = "<h2>" + nextIndex.name + "</h2>";
+    HTMLCode += "<h3>" + nextIndex.description + "</h3>";
+    HTMLCode += "<h4>" + nextIndex.abstract + "</h4>";
+
+    // Uppdatera HTML-koden
+    let h2 = document.querySelector(".container h2");
+    h2.innerHTML = HTMLCode;
+
+    // Uppdatera lat och lng
+    lat = nextIndex.lat;
+    lng = nextIndex.lng;
+
+    // Uppdatera kartan
+    makeMap(lat, lng);
+
     if (e.target.id == "bock") {
-        console.log("Val gjort")
-        let kiwi = obj.name
-        selectedActivities.push(kiwi)
+        let name = obj.name
+        selectedActivities.push(name)
         console.log(selectedActivities)
-
     }
-
-    currentindex++
-    fetchSMAPI()
 }
+
+
+
 
 
 // Skapa en karta
-
 function makeMap(lat, lng) {
     // Skapa en ikon för markören
     let icon = L.icon({
@@ -104,7 +145,7 @@ function makeMap(lat, lng) {
         }).addTo(map)
 
         // Skapa markören och placera den på kartan
-       marker = L.marker([lat, lng], { icon: icon }).addTo(map)
+        marker = L.marker([lat, lng], { icon: icon }).addTo(map)
     } else {
         // Flytta kartans vy till de nya koordinaterna
         map.setView([lat, lng])
