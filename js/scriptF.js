@@ -14,10 +14,7 @@ function init() {
     bock.addEventListener("click", nextSlide)
 
     let kryss = document.querySelector("#kryss")
-    kryss.addEventListener("click", function(e) {
-        nextSlide(e);
-    });
-
+    kryss.addEventListener("click", nextSlide)
     document.querySelector("#info").addEventListener("click", makeMap)
 
 }
@@ -85,7 +82,7 @@ function readSMAPI(data) {
 }   
 
 function nextSlide(e) {
-
+e = this
     //Generera ett slumpmässigt index baserat på längden av numArrayCopy
     let randomIndex = Math.floor(Math.random() * numArrayCopy.length);
     
@@ -114,16 +111,12 @@ function nextSlide(e) {
     // Uppdatera kartan
     makeMap(lat, lng);
 
-    if (e.target.id == "bock") {
-        let name = obj.name
+    if (e.id != "bock") {
+        let name = nextIndex.name
         selectedActivities.push(name)
         console.log(selectedActivities)
     }
 }
-
-
-
-
 
 // Skapa en karta
 function makeMap(lat, lng) {
