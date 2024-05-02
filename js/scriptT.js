@@ -15,7 +15,7 @@ function startTimer() {
         return;
     }
 
-    let selectedValue = document.getElementById('timeSelect').value;
+    let selectedValue = document.getElementById("timeSelect").value;
 
     if (selectedValue === "infinite") {
         return;

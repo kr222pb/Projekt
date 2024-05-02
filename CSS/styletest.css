@@ -155,5 +155,7 @@ h2{
 }
 
 /* ----------SWIPE--------- */
-
+.swipe {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
 
