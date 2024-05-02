@@ -5,7 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const rightArrow = document.querySelector(".right-arrow");
     const navMenu = document.querySelector(".nav-menu");
     const navLinks = document.querySelectorAll(".nav-menu a");
-
+    
+    navLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // Förhindrar att sidan navigerar
+            const stad = this.getAttribute('data-stad');
+            fetchSMAPIByCity(stad); // Anropa funktionen med vald stad som argument
+        });
+    });
 
     // gömmer vänster pil
     leftArrow.style.display = 'none';
@@ -47,4 +54,23 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle("active"); 
         });
     });
+});
+
+function toggleInfo() {
+    var infoPanel = document.getElementById("infoPanel");
+    if (infoPanel.style.transform === "translateY(0%)") {
+        infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
+    } else {
+        infoPanel.style.transform = "translateY(0%)"; // Visa panelen
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const infoButton = document.getElementById("info");
+    // Initiera dold informationspanel vid laddning
+    const infoPanel = document.getElementById("infoPanel");
+    infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
+
+    // Eventlyssnare för att visa/dölja informationspanelen
+    infoButton.addEventListener('click', toggleInfo);
 });

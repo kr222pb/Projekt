@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/scriptF.js"></script>
     <script src="js/scriptT.js"></script>
     <script src="js/script1.js"></script>
+    <script src="js/scriptS.js"></script>
     <title>Projekt</title>
 </head>
 <body>
@@ -25,28 +25,28 @@
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Växjö</a>
+                        <a href="#" class="nav-link" data-stad="Växjö">Växjö</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Kalmar</a>
+                        <a href="#" class="nav-link" data-stad="Kalmar">Kalmar</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Karlskrona</a>
+                        <a href="#" class="nav-link" data-stad="Karlskrona">Karlskrona</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Värnamo</a>
+                        <a href="#" class="nav-link" data-stad="Värnamo">Värnamo</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Alvesta</a>
+                        <a href="#" class="nav-link" data-stad="Alvesta">Alvesta</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Oskarshamn</a>
+                        <a href="#" class="nav-link" data-stad="Oskarshamn">Oskarshamn</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Vimmerby</a>
+                        <a href="#" class="nav-link" data-stad="Vimmerby">Vimmerby</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Jönköping</a>
+                        <a href="#" class="nav-link" data-stad="Jönköping" >Jönköping</a>
                     </li>
                 </ul>
                 <div class="right-arrow active">
@@ -68,17 +68,36 @@
         </div>
     </header>
     <main>
-         <div class="container">
+        <div class="container">
             <img class="swipe" src="bilder/bowling.jpg">
             <img id="pin" src="bilder/plats.svg">
-          <h2></h2>
-        
-            <div class="options">
-                <img id="bock" src ="bilder/kryss.svg" alt="kryss">
-                <img id="info" src="bilder/info.svg" alt="info">
-                <img id="kryss" src="bilder/bock.svg" alt="bock">
+            <h2></h2>
+            <div class="item__overlay" id="infoPanel">
+                <div class="info-details">
+                    <div class="info-block" id="map-container">
+                        <h4>Karta</h4>
+                    </div>
+                    <div class="info-block" id="weather-container">
+                        <h4>Väder</h4>
+                        <!-- Anta att väderinformation visas här -->
+                        <p>18°C, Mestadels Soligt</p>
+                    </div>
+                    <div class="info-block" id="opening-hours-container">
+                        <h4>Öppettider</h4>
+                        <p>Mån-Fre: 10:00 - 22:00</p>
+                    </div>
+                </div>
+                <h3>Information om Bowlinghallen</h3>
+                <div class="item__body">
+                    <p>Här kan du njuta av bowling med vänner och familj. Öppet dagligen från 10 till 22.</p>
+                </div>
             </div>
-    </div>
+        </div>
+        <div class="options">
+            <img id="bock" src="bilder/kryss.svg" alt="kryss">
+            <img id="info" src="bilder/info.svg" alt="info" >
+            <img id="kryss" src="bilder/bock.svg" alt="bock">
+        </div>
 
     </main> 
     <div class="footer">

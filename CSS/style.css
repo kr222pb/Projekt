@@ -45,13 +45,14 @@ img{
     background-color: #7d7f8a;
     position: relative;
     width: 80%;
-   margin: auto;
+    margin: auto;
     height: 300px; /*Biede vEÅR pricent*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 15px;
     border-radius: 15px;
+    overflow: hidden; 
     
 }
 .container h2{
@@ -66,23 +67,64 @@ img{
 .swipe{
     width: 100%;
     height: 70%;
+    object-fit: cover;
+}
+.item__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(158, 165, 165, 0.9);
+    color: white;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(100%);
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+    
+}
+.info-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px; 
+    gap: 10px;
 }
 
+.info-block {
+    flex: 1;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.8); /* Lätt transparens */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center; 
+}
+
+.info-block h4 {
+    margin:5px 0;
+    color: #333;
+}
+.info-block p{
+    color: #333;
+}
+
+.item__body {
+    margin-top: 20px;
+}
 .options{
     background-color: #6c6c6f;
-    position: absolute;
-    bottom: -52px;
-    left: 65px;
     display: flex;
-    justify-content: space-around; 
-    align-items: center; 
-    margin: 0 auto;
-    border-radius:  0px 0px 15px 15px;
+    justify-content: space-around;
+    width: 60%; 
+    margin: 0 auto 20px auto; /* Centrerar options och ger utrymme nedanför */
+    padding: 10px 0;
+    background-color: #7d7f8a; 
+    border-radius: 15px; 
 }
 .options img {
     padding: 5px 15px;
     width: 2em;
 }
+
 #pin{
     height: 40px;
     position: absolute;
@@ -112,7 +154,7 @@ img{
 
 .footer a img {
     width: 50px;
-    height: 50px;
+    height: 45px;
     object-fit: contain;
 }
 
@@ -262,3 +304,4 @@ h2{
 #timer {
     width: 40px;
 }
+
