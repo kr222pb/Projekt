@@ -1,6 +1,7 @@
 // Swipe funktionen inte helt färdig.
 // Globala variabler
 let startX, moved = false;
+const minSwipe = 124;
 
 function init() {
     let swipeImage = document.querySelector(".swipe");
@@ -27,6 +28,12 @@ function handleTouchEnd(e) {
     let endX = touch.pageX;
     let diffX = endX - startX;
 
+    if (Math.abs(diffX) < minSwipe) {
+        console.log(diffX);
+        resetImagePosition();
+        return;
+    }
+
     if (diffX > 0) {
         console.log("Swiped right");
         swipeRight();  // Utför funktionen för swipe åt höger
@@ -52,13 +59,13 @@ function handleTouchMove(e) {
     let opacity = 1 - Math.min(Math.abs(diffX) / maxSwipeDistance, 1);
     swipeImage.style.opacity = opacity;
     
-    e.preventDefault(); // Förhindra skrollning på touch-enheter
+    e.preventDefault(); // Förhindra skrollning vertikalt
 }
 
 function resetImagePosition() {
     let swipeImage = document.querySelector(".swipe");
     swipeImage.style.transform = 'translateX(0px)';
-    swipeImage.style.opacity = '1';  // Återställer opaciteten till fullt synlig
+    swipeImage.style.opacity = '1';  // Återställer opacityn till fullt synlig
 }
 
 function swipeRight() {
