@@ -41,7 +41,7 @@ function updateUI(obj) {
 }
 
 function nextSlide(e) {
-    if (e.target.id === "bock") {
+    if (e.target.id === "kryss") {
         selectedActivities.push(data.payload[currentindex].name);
         console.log(selectedActivities);
     }

@@ -305,3 +305,13 @@ h2{
     width: 40px;
 }
 
+.container img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.added{
+    background-color: #fd2e78 !important; 
+}
