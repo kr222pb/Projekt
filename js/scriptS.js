@@ -45,7 +45,7 @@ function showRandomSuggestion() {
 
 function updateUI(obj) {
     const container = document.querySelector(".container h2");
-    container.innerHTML = `<h2>${obj.name}</h2>`+`<h3>${obj.setting}</h3>` ;
+    container.innerHTML = `<h2>${obj.name}</h2>`+`<h3>${obj.description}</h3>` ;
     lat = obj.lat;
     lng = obj.lng;
     console.log(`Lat: ${lat}, Lng: ${lng}`);

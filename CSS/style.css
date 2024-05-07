@@ -325,3 +325,7 @@ h2{
 .added{
     background-color: #fd2e78 !important; 
 }
+#weather-icon {
+    height: 44px;
+    width: 44px;
+}
