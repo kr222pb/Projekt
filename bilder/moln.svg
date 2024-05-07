@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.74 138.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        fill: #1d1d1b;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Lager_1-2" data-name="Lager 1">
+    <g>
+      <ellipse class="cls-3" cx="83.56" cy="92.5" rx="82.06" ry="40.55"/>
+      <ellipse class="cls-3" cx="131.78" cy="61.53" rx="66.42" ry="60.03"/>
+      <ellipse class="cls-3" cx="165.62" cy="95.93" rx="55.24" ry="41.51"/>
+      <path class="cls-3" d="M198.36,51.58c50.07,8.83,87.18,27.83,84.92,44.43-2.11,15.52-37.94,23.86-83.96,20.9"/>
+      <path class="cls-1" d="M197.32,51.77c.57,3.18.87,6.44.87,9.76"/>
+      <path class="cls-1" d="M65.36,51.95C68.96,28.07,95.1,1.5,131.78,1.5c33,0,60.38,21.76,65.54,50.27"/>
+      <polyline class="cls-2" points="66.38 51.62 65.85 53.32 64.15 52.8 64.68 51.1 66.38 51.62"/>
+      <path class="cls-1" d="M199.29,52.73c49.53,8.91,86.09,27.76,83.85,44.24-2.01,14.78-34.62,23.05-77.48,21.24"/>
+      <rect class="cls-2" x="197.68" y="51.56" width="1.97" height="1.97" transform="translate(387.85 132.77) rotate(-171.84)"/>
+      <path class="cls-1" d="M211.43,119.14c-9.93,11.04-26.74,18.3-45.81,18.3-20,0-37.52-7.99-47.21-19.95"/>
+      <rect class="cls-2" x="208.74" y="119.06" width="3.94" height="1.8" transform="translate(446.7 64.32) rotate(137.08)"/>
+      <path class="cls-1" d="M129.82,126c-13.17,4.45-29.1,7.05-46.26,7.05C38.24,133.05,1.5,114.9,1.5,92.5c0-20.02,29.36-36.65,67.96-39.96"/>
+      <circle class="cls-3" cx="137.49" cy="114.56" r="14.36"/>
+    </g>
+  </g>
+</svg>

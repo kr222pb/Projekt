@@ -149,4 +149,6 @@ function makeMap(lat, lng) {
         // Skapa en ny markör och placera den på den nya positionen med din ikon
         marker = L.marker([lat, lng], { icon: icon }).addTo(map)
     }
+
+    console.log("Aktuella koordinater:", lat, lng);
 }

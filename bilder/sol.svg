@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205.48 211.67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffcc03;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Lager_1-2" data-name="Lager 1">
+    <g>
+      <polygon class="cls-1" points="105.83 0 14.18 158.75 197.49 158.75 105.83 0"/>
+      <polygon class="cls-1" points="197.49 52.92 14.18 52.92 105.83 211.67 197.49 52.92"/>
+      <polygon class="cls-1" points="158.75 14.82 0 106.47 158.75 198.13 158.75 14.82"/>
+      <polygon class="cls-1" points="205.48 106.47 46.73 14.82 46.73 198.13 205.48 106.47"/>
+    </g>
+  </g>
+</svg>
