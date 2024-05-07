@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214.53 214.53">
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207.7 233.59">
   <defs>
     <style>
       .cls-1 {
+        stroke-width: 3px;
+      }
+
+      .cls-1, .cls-2 {
         fill: #fff;
-        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
       }
 
       .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
         fill: none;
-        stroke: #fff;
-        stroke-miterlimit: 10;
         stroke-width: 15px;
       }
     </style>
   </defs>
   <g id="Lager_1-2" data-name="Lager 1">
-    <circle class="cls-2" cx="107.26" cy="107.26" r="99.76"/>
-    <rect class="cls-1" x="97.24" y="49.86" width="9.42" height="73.79" rx="4.15" ry="4.15"/>
-    <rect class="cls-1" x="129.43" y="82.05" width="9.42" height="73.79" rx="4.15" ry="4.15" transform="translate(253.08 -15.2) rotate(90)"/>
+    <circle class="cls-3" cx="103.85" cy="129.74" r="96.35"/>
+    <rect class="cls-1" x="97.97" y="79.03" width="9.09" height="56.85" rx="4.15" ry="4.15"/>
+    <rect class="cls-1" x="77.35" y="117.93" width="9.09" height="62.84" rx="4.15" ry="4.15" transform="translate(21.9 308.77) rotate(-130.64)"/>
+    <rect class="cls-2" x="95.19" y="13.41" width="16.74" height="19.88"/>
+    <rect class="cls-2" x="89.04" width="29.04" height="15.41"/>
+    <rect class="cls-2" x="162.98" y="33.4" width="16.74" height="19.88" transform="translate(66.98 -99.3) rotate(39.61)"/>
+    <rect class="cls-2" x="161.16" y="33.29" width="33.72" height="3.98" transform="translate(63.37 -105.4) rotate(39.61)"/>
   </g>
 </svg>
