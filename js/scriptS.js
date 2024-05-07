@@ -1,6 +1,8 @@
 let currentindex = 0;
 let selectedActivities = [];
 let data; // Global variabel för att hålla data
+let lat;
+let lng;
 
 function init() {
     fetchSMAPI("attraction");  // Ladda initial data
@@ -31,7 +33,11 @@ async function fetchSMAPI(type) {
 
 function updateUI(obj) {
     const container = document.querySelector(".container h2");
-    container.innerHTML = `<h2>${obj.name}</h2><h3>${obj.description}</h3>`;
+    container.innerHTML = `<h2>${obj.name}</h2>`,`<h3>${obj.description}</h3>` ;
+    lat = obj.lat;
+    lng = obj.lng;
+    console.log(`Lat: ${lat}, Lng: ${lng}`);
+
 }
 
 function nextSlide(e) {
