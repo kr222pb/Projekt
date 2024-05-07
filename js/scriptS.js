@@ -112,7 +112,6 @@ function nextSlide(e) {
         savedSuggestions.push(filteredData[currentIndex]);
         localStorage.setItem("savedActivity", JSON.stringify(savedSuggestions));
         
-        console.log(`Accepted: ${filteredData[currentIndex].name}`);
     }
 
     currentIndex++;
