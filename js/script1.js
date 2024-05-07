@@ -68,6 +68,7 @@ function toggleInfo() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const infoButton = document.getElementById("info");
+    console.log(selectedActivities)
     // Initiera dold informationspanel vid laddning
     const infoPanel = document.getElementById("infoPanel");
     infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
