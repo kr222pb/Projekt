@@ -329,3 +329,13 @@ h2{
     height: 44px;
     width: 44px;
 }
+
+/*Profil-sidan*/
+#bigbox{
+    background-image:linear-gradient(188deg, #fd2e78,#fc7057 )  ;
+
+    text-align: center;
+    color: #fff;
+
+    padding: 50px;
+}
