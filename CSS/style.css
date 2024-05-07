@@ -2,11 +2,8 @@
     font-family: Main;
     src: url(../bilder/font/Hedvig.otf);
 }
-
-body {
-    background-color: #a9a4a4;
 body{
-    background-color: #000;
+    background-color: #a9a4a4;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centrerar innehållet vertikalt */
