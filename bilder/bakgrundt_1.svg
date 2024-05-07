@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 969.38 1134.7">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f7ab0c;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Lager_1-2" data-name="Lager 1">
+    <rect class="cls-1" width="969.38" height="949.37"/>
+    <ellipse class="cls-1" cx="119.14" cy="908.85" rx="166.69" ry="113.65" transform="translate(-784.85 757.18) rotate(-73.01)"/>
+    <ellipse class="cls-1" cx="268.04" cy="834.8" rx="209.77" ry="87.31" transform="translate(-571.87 1086.36) rotate(-88.87)"/>
+    <ellipse class="cls-1" cx="477.5" cy="912.69" rx="209.77" ry="177.21" transform="translate(-444.41 1372.13) rotate(-88.87)"/>
+    <ellipse class="cls-1" cx="398.3" cy="1048.6" rx="86.12" ry="30.11" transform="translate(-657.94 1426.17) rotate(-88.87)"/>
+    <ellipse class="cls-1" cx="708.89" cy="854.81" rx="209.77" ry="109.42" transform="translate(-159.71 1546.73) rotate(-88.87)"/>
+    <ellipse class="cls-1" cx="856.34" cy="920.62" rx="86.12" ry="30.11" transform="translate(-80.96 1758.67) rotate(-88.87)"/>
+    <ellipse class="cls-1" cx="842.11" cy="892.01" rx="113.65" ry="166.69" transform="translate(-320.26 499.91) rotate(-28.01)"/>
+    <ellipse class="cls-1" cx="819.04" cy="982.12" rx="86.12" ry="30.11" transform="translate(-179.01 1781.66) rotate(-88.87)"/>
+  </g>
+</svg>

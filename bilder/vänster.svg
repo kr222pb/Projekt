@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Lager_1" data-name="Lager 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.47 92.6">
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.4 99.27">
   <defs>
     <style>
       .cls-1 {
-        fill: none;
-        stroke: #000;
-        stroke-miterlimit: 10;
-        stroke-width: 5px;
+        fill: #00a49d;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #f7ab0c;
       }
     </style>
   </defs>
-  <polygon class="cls-1" points="5.29 46.1 45.93 24.41 86.26 2.2 5.36 45.47 86.03 90.42 45.82 68 5.29 46.1"/>
+  <g id="Lager_1-2" data-name="Lager 1">
+    <rect class="cls-1" x="47.76" y="-30.85" width="20.84" height="123.53" rx="10.42" ry="10.42" transform="translate(53.05 96.6) rotate(-113.52)"/>
+    <rect class="cls-2" x="47.78" y="8.28" width="20.84" height="123.53" rx="10.42" ry="10.42" transform="translate(-28.29 98.55) rotate(-68.52)"/>
+  </g>
 </svg>

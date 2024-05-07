@@ -3,52 +3,56 @@
     src: url(../bilder/font/Hedvig.otf);
 }
 
-body{
-    background-color: #eeeeea;
+body {
+    background-color: #a9a4a4;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;  
-    min-height: 100vh;      /* Full höjd på viewporten */
+    align-items: center; /* Centrerar innehållet vertikalt */
+    justify-content: center; /* Centrerar innehållet horisontellt */
+    min-height: 100vh; /* Full höjd på viewporten */
     margin: 0;
     font-family: main, 'Times New Roman', Times, serif;
-    
 }
-header{         
+header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    display: flex; 
-    align-items: center; 
-    text-align: center;
-    z-index: 1000;      /* Lägger till lite utrymme runt texten */
-}
-.logo{
-    margin-right: auto;
-}
-.header-content {
-    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-grow: 1; 
-    cursor: pointer;
+    justify-content: center; /* Lägg till centrerad justering här */
+    z-index: 1000;
+}
+.logo {
+    position: absolute;
+    left: 10px; /* Flytta logotypen till vänster */
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Säkerställer att innehållet är centrerat */
+    width: 100%;
 }
 .header-content a {
-    color: #333;
     display: flex;
-    align-items: center; 
-    justify-content: center; 
-    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+.header-content .filter-trigger .arrow {
+    margin-top: 30px; /* Justera detta värde för att flytta ner pilen */
+}
+.arrow {
+    width: 70px; /* eller den bredd du föredrar */
+    height: auto; /* bibehåller bildens aspektförhållande */
 }
 img{
     width: 70px;
     margin-right: 10px;
 }
 
+
 .container{
-    background-color: #7d7f8a;
+    background-image: url(/bilder/bakgrundt_1.svg);
     position: relative;
     width: 80%;
     margin: auto;
@@ -71,11 +75,20 @@ img{
     text-align: center;
     font-weight: 400;
 }
-.swipe{
+
+.image-wrapper {
+    width: 100%;      /* Eller en annan fast bredd */
+    max-height: 200px;    /* Fast höjd */
+    overflow: hidden; /* Gömmer delar av bilden som inte passar */
+}
+
+.swipe {
     width: 100%;
-    height: 70%;
+    height: auto;
+    min-height: 100%; /* Minst hela höjden av wrappern */
     object-fit: cover;
 }
+
 .item__overlay {
     position: absolute;
     bottom: 0;
@@ -124,12 +137,20 @@ img{
     width: 60%; 
     margin: 0 auto 20px auto; /* Centrerar options och ger utrymme nedanför */
     padding: 10px 0;
-    background-color: #7d7f8a; 
-    border-radius: 0px 0px 15px 15px; 
+    background-color: #a9a4a4; 
+    border-radius: 15px;
 }
 .options img {
     padding: 5px 15px;
     width: 2em;
+}
+
+#kryss {
+    width: 45px;
+}
+
+#bock {
+    width: 45px;
 }
 
 #pin{
@@ -144,7 +165,7 @@ img{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #eeeeea;
+    background-color: #a9a4a4;
     display: flex;
     justify-content: space-around; 
     padding: 10px 0;
@@ -204,9 +225,6 @@ h2{
     mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent); /* Maskerar kanterna */
 }
 
-.nav-menu::-webkit-scrollbar {
-    display: none; 
-}
 
 
 
@@ -224,20 +242,19 @@ h2{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px; 
-    height: 20px; 
+    width: 24px; 
+    height: 24px; 
     z-index: 20;
     cursor: pointer;
+    margin-top: -10px;
 }
 
 .left-arrow {
     left: 0;
-    background: linear-gradient(to right, rgba(251, 137, 92, 0.5), transparent);
 }
 
 .right-arrow {
     right: 0;
-    background: linear-gradient(to left,  rgba(251, 137, 92, 0.5), transparent);
 }
 
 
@@ -276,6 +293,9 @@ h2{
     background-color: #fc7057; /* Grå färg för markerade alternativ */
     color: white; /* Säkerställer att texten är läsbar */
 }
+
+
+
 .filter-trigger .arrow {
     transition: transform 0.3s ease;
 }
@@ -292,6 +312,7 @@ h2{
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin-top: 25px;
 }
 
 #timerDisplay {
@@ -335,4 +356,20 @@ h2{
 #weather-icon {
     height: 44px;
     width: 44px;
+}
+
+/* ------ANIMATIONER------ */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+§
+
+.filter-trigger.active .arrow.rotated {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
 }

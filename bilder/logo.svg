@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 104.72 56.14">
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 851.79 456.64">
   <defs>
     <style>
       .cls-1 {
-        fill: #fff;
-        font-family: Etna-Semibold, Etna;
-        font-size: 49.68px;
-        font-weight: 600;
+        fill: #f7ab0c;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
       }
 
       .cls-2 {
-        fill: url(#Namnlös_övertoning_3);
+        fill: #e6292b;
       }
 
-      .cls-2, .cls-3 {
-        stroke-width: 0px;
+      .cls-4 {
+        fill: #4d494a;
+        font-family: Etna-Semibold, Etna;
+        font-size: 404.11px;
+        font-weight: 600;
       }
 
       .cls-3 {
-        fill: url(#Namnlös_övertoning_3-2);
+        fill: #00a49d;
       }
     </style>
-    <linearGradient id="Namnlös_övertoning_3" data-name="Namnlös övertoning 3" x1="38.81" y1="18.46" x2="38.81" y2="42.23" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#fc2d78"/>
-      <stop offset="1" stop-color="#fe7257"/>
-    </linearGradient>
-    <linearGradient id="Namnlös_övertoning_3-2" data-name="Namnlös övertoning 3" y1="4.4" y2="28.17" xlink:href="#Namnlös_övertoning_3"/>
   </defs>
   <g id="Lager_1-2" data-name="Lager 1">
+    <text class="cls-4" transform="translate(0 343.49)"><tspan x="0" y="0">L</tspan></text>
+    <text class="cls-4" transform="translate(389.5 343.49)"><tspan x="0" y="0">nk</tspan></text>
     <g>
-      <path class="cls-2" d="M38.81,42.23c-3.67,0-6.66-2.99-6.66-6.66v-11.1l.37.64c.49.86,1.14,1.59,1.93,2.19l.08.06v8.21c0,2.36,1.92,4.27,4.27,4.27s4.27-1.92,4.27-4.27v-10.46c0-2.36-1.92-4.27-4.27-4.27-1.25,0-2.44.55-3.25,1.51l-.26.31-.08-.4c-.05-.25-.08-.5-.08-.75v-1.94l.09-.06c1.07-.69,2.31-1.05,3.59-1.05,3.67,0,6.65,2.99,6.65,6.66v10.46c0,3.67-2.99,6.66-6.65,6.66Z"/>
-      <path class="cls-3" d="M38.81,28.17c-3.67,0-6.66-2.99-6.66-6.66v-10.46c0-3.67,2.99-6.66,6.66-6.66s6.65,2.99,6.65,6.66v11.1l-.37-.64c-.49-.86-1.14-1.59-1.93-2.19l-.08-.06v-8.21c0-2.36-1.92-4.27-4.27-4.27s-4.27,1.92-4.27,4.27v10.46c0,2.36,1.92,4.27,4.27,4.27,1.25,0,2.44-.55,3.25-1.51l.26-.31.08.4c.05.25.08.5.08.75v1.94l-.09.06c-1.07.69-2.31,1.05-3.59,1.05Z"/>
+      <rect class="cls-2" x="266.67" y="112.9" width="22.9" height="230.59"/>
+      <rect class="cls-1" x="289.57" y="112.9" width="22.9" height="230.59"/>
+      <rect class="cls-3" x="312.47" y="112.9" width="22.9" height="230.59"/>
     </g>
-    <text class="cls-1" transform="translate(0 42.23)"><tspan x="0" y="0">L</tspan></text>
-    <text class="cls-1" transform="translate(47.89 42.23)"><tspan x="0" y="0">nk</tspan></text>
+    <g>
+      <path class="cls-2" d="M289.57,36.74h0v60.97h0c-12.64,0-22.9-10.26-22.9-22.9v-15.17c0-12.64,10.26-22.9,22.9-22.9Z"/>
+      <rect class="cls-1" x="289.57" y="36.74" width="22.9" height="60.97"/>
+      <path class="cls-3" d="M312.47,36.74h0c12.64,0,22.9,10.26,22.9,22.9v15.17c0,12.64-10.26,22.9-22.9,22.9h0v-60.97h0Z"/>
+    </g>
   </g>
 </svg>

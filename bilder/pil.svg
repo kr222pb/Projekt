@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 55.18 36.01">
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.18 36.23">
   <defs>
     <style>
       .cls-1 {
-        fill: url(#Namnlös_övertoning_548);
+        fill: #4d494a;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
         stroke-width: 0px;
       }
+
+      .cls-2 {
+        fill: #00a49d;
+      }
+
+      .cls-3 {
+        fill: #e6292b;
+      }
+
+      .cls-4 {
+        fill: #f7ab0c;
+      }
     </style>
-    <linearGradient id="Namnlös_övertoning_548" data-name="Namnlös övertoning 548" x1="27.59" y1="0" x2="27.59" y2="36.01" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#fd2e78"/>
-      <stop offset="1" stop-color="#fc7057"/>
-    </linearGradient>
   </defs>
   <g id="Lager_1-2" data-name="Lager 1">
-    <path class="cls-1" d="M55.12,15.17l-27.45,20.81c-.05.04-.12.04-.17,0L.05,15.17c-.1-.08-.05-.25.08-.25h7.19V2.68c0-1.48,1.2-2.68,2.67-2.68h35.19c1.48,0,2.67,1.2,2.67,2.68v12.24h7.19c.13,0,.19.17.08.25Z"/>
+    <g>
+      <path class="cls-1" d="M55.12,15.39l-9.31,7.06-3.58,2.71-1.25.95-3.57,2.71-1.32,1-3.57,2.7-4.85,3.68c-.05.04-.12.04-.17,0L.05,15.39c-.1-.08-.05-.25.08-.25h7.19V2.9c0-1.48,1.2-2.68,2.67-2.68h35.19c.22,0,.43.03.63.07,1.17.29,2.04,1.35,2.04,2.61v12.24h7.19c.13,0,.19.17.08.25Z"/>
+      <polygon class="cls-3" points="36.09 0 36.09 29.82 32.52 32.52 32.52 0 36.09 0"/>
+      <polygon class="cls-4" points="40.98 .11 40.98 26.11 37.41 28.82 37.41 .11 40.98 .11"/>
+      <polygon class="cls-2" points="45.81 .21 45.81 22.45 42.23 25.16 42.23 .21 45.81 .21"/>
+    </g>
   </g>
 </svg>
