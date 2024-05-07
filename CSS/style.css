@@ -5,6 +5,8 @@
 
 body {
     background-color: #a9a4a4;
+body{
+    background-color: #000;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centrerar innehållet vertikalt */
@@ -290,7 +292,7 @@ h2{
     background-color: rgba(248, 242, 242, 0.7); /* Mörkare vid hover för bättre feedback */
 }
 .nav-item a.active {
-    background-color: #fc7057; /* Grå färg för markerade alternativ */
+    background-color: #fc7057; 
     color: white; /* Säkerställer att texten är läsbar */
 }
 
@@ -372,4 +374,29 @@ h2{
 .filter-trigger.active .arrow.rotated {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
+}
+
+/*Profil-sidan*/
+#bigbox{
+    background-image:linear-gradient(188deg, #fd2e78,#fc7057 )  ;
+    border-radius: 12%;
+
+    text-align: center;
+    color: #fff;
+
+    padding: 50px;
+}
+#bigbox ul{
+  font-size: 2em;
+    text-align: left;
+    list-style: none;
+}
+#bigbox li {
+    padding-left: 20px; /* Justera vänstermarginalen för att ge plats för listpluppen */
+}
+
+#bigbox li::before {
+    content: '\2764'; /* Unicode-tecknet för hjärta */
+    display: inline-block;
+    margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
 }

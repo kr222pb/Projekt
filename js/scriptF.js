@@ -12,6 +12,8 @@ let selected_lat;
 let selected_lng;
 
 function init() {
+    console.log("1")
+    display()
     let bock = document.querySelector("#bock");
     bock.addEventListener("click", nextSlide);
 
@@ -130,7 +132,6 @@ function makeURL() {
 }
 
 async function fetchSMAPI() {
-    console.log("Banan")
     // URLer
     let aktivitet = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=activity&method=getfromlatlng&lat=" + selected_lat + "&lng=" + selected_lng + "&radius=50&descriptions=Temapark,Nöjespark,Älgpark,Djurpark,Simhall,Gokart,Zipline,Nöjescenter,Klippklättring,Paintballcenter, Hälsocenter,Golfbana,Bowlinghall,Nattklubb";
 
@@ -254,10 +255,14 @@ function nextSlide(e) {
     makeMap(lat, lng);
 
     if (e.id != "bock") {
+        consol.log("KEX")
         let name = nextIndex.name;
         selectedActivities.push(name);
-        console.log(selectedActivities);
+        console.log(selectedActivities);  
+          saveData()
     }
+    console.log(selectedActivities)
+   
 }
 
 function makeMap(lat, lng) {
@@ -281,4 +286,35 @@ function makeMap(lat, lng) {
     }
 
     marker = L.marker([lat, lng], { icon: icon }).addTo(map);
+}
+
+function display() {
+    console.log("Annanas");
+    selectedActivities = ["Banan", "Melon", "Kiwi", "Citron", "Annans"];
+    console.log(selectedActivities);
+
+    let msg = document.querySelector("#msg");
+
+    // Skapa ett ul-element för listan
+    let ulElement = document.createElement("ul");
+
+    // Loopa igenom varje aktivitet och skapa ett li-element för varje
+    for (let x = 0; x < selectedActivities.length; x++) {
+        // Skapa ett li-element för den aktuella aktiviteten
+        let liElement = document.createElement("li");
+        // Ange textinnehållet för li-elementet
+        liElement.textContent = selectedActivities[x];
+        // Lägg till li-elementet som ett barn till ul-elementet
+        ulElement.appendChild(liElement);
+    }
+
+    // Lägg till ul-elementet (listan) som ett barn till msg-elementet
+    msg.appendChild(ulElement);
+}
+
+
+function saveData() {
+    let data = selectedActivities
+    console.log("Kiwi")
+    localStorage.setItem('myArray',data);
 }

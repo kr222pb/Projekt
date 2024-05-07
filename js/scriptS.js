@@ -1,17 +1,18 @@
 let combinedData = [];
 let filteredData = [];
+let cityD=[];
+let provinceD =[];
 let currentIndex = 0;
 let lat, lng, map, marker;
 
 function init() {
     console.time("Data Fetch Time");
     fetchAllEstablishmentData();
-    setupEventListeners(); // Flyttad till init
+    setupEventListeners();
 }
 
 async function fetchAllEstablishmentData() {
-    const apiKey = "61fTJHBb";
-    const url = `https://smapi.lnu.se/api/?api_key=${apiKey}&controller=establishment&method=getall`;
+    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
 
     try {
         const response = await fetch(url);
@@ -20,6 +21,13 @@ async function fetchAllEstablishmentData() {
         const jsonData = await response.json();
         combinedData = jsonData.payload;
         console.timeEnd("Data Fetch Time");
+        for (const item of combinedData) {
+            if (item.city) {
+                cityD.push(item);
+            } else if (item.province) {
+                provinceD.push(item);
+            }
+        }
 
         setupCityListeners();
     } catch (error) {
@@ -28,55 +36,90 @@ async function fetchAllEstablishmentData() {
 }
 
 function setupCityListeners() {
-    const cityLinks = document.querySelectorAll(".nav-link[data-stad]");
-    cityLinks.forEach(link => {
+    // Välj alla länkar med antingen data-stad eller data-provins
+    const navLinks = document.querySelectorAll(".nav-menu a[data-stad], .nav-menu a[data-provins]");
+    
+    // Lägg till en klicklyssnare för varje länk
+    navLinks.forEach(link => {
         link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const selectedCity = this.getAttribute("data-stad");
-            filterAndShow(selectedCity);
+            event.preventDefault(); // Förhindra navigering
+
+            // Toggla aktiv status på länken
+            this.classList.toggle("active");
+
+            // Endast anropa `filterAndShow` om länken är aktiv
+            if (this.classList.contains("active")) {
+                filterAndShow();
+            }
         });
     });
 }
-
 function setupEventListeners() {
     document.querySelector("#bock").addEventListener("click", nextSlide);
     document.querySelector("#kryss").addEventListener("click", nextSlide);
 }
 
-function filterAndShow(city) {
-    filteredData = combinedData.filter(item => item.city === city);
-    console.log(`Filtered data for ${city}:`, filteredData);
-    currentIndex = 0; // Återställ index till början
+function filterAndShow() {
+    localStorage.removeItem("savedActivity");
+    const allowedTypes = ["activity", "food", "attraction"];
+
+    // Samla alla aktiva städer
+    const activeCities = [...document.querySelectorAll(".nav-menu a.active[data-stad]")].map(link => link.getAttribute("data-stad"));
+    const activeProvinces = [...document.querySelectorAll(".nav-menu a.active[data-provins]")].map(link => link.getAttribute("data-provins"));
+    
+
+    // Filtrera datan efter de valda städerna och typer
+    filteredData = combinedData.filter(item => {
+        const isCitySelected = activeCities.includes(item.city);
+        const isProvinceSelected = activeProvinces.includes(item.province);
+        const isTypeAllowed = allowedTypes.includes(item.type);
+
+        // Include the item if it's in a selected city/province and matches one of the allowed types
+        return (isCitySelected || isProvinceSelected) && isTypeAllowed;
+    });
+
+    // Blanda resultatet slumpmässigt
+    shuffleArray(filteredData);
+
+    currentIndex = 0; 
     showCurrentSuggestion();
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 function showCurrentSuggestion() {
     if (filteredData.length > 0 && currentIndex < filteredData.length) {
-        // Visa objektet om indexet är giltigt
         updateUI(filteredData[currentIndex]);
     } else {
         const container = document.querySelector(".container h2");
         if (container) {
-            container.innerHTML = `<h2>Inga resultat eller ogiltigt index</h2>`;
+            container.innerHTML = `<h2>Inga resultat</h2>`;
         } else {
-            console.error("Container not found");
+            console.error("Container element not found");
         }
     }
 }
 
 function nextSlide(e) {
     if (e.target.id === "bock" && currentIndex < filteredData.length) {
-        // Godkänn den nuvarande aktiviteten
-        console.log(`Accepted: ${filteredData[currentIndex].name}`);
+        
+        const savedSuggestions = JSON.parse(localStorage.getItem("savedActivity")) || [];
+        savedSuggestions.push(filteredData[currentIndex]);
+        localStorage.setItem("savedActivity", JSON.stringify(savedSuggestions));
+        
     }
-    
-    // Öka index och kontrollera gränserna
+
     currentIndex++;
     if (currentIndex >= filteredData.length) {
-        currentIndex = 0; // Alternativt återställ eller stanna vid slutet
+        currentIndex = 0;
     }
-    
-    showCurrentSuggestion(); // Visa nästa objekt eller meddelande
+
+    showCurrentSuggestion();
 }
 
 function updateUI(obj) {
@@ -88,9 +131,9 @@ function updateUI(obj) {
     }
     lat = obj.lat;
     lng = obj.lng;
-    console.log(`Lat: ${lat}, Lng: ${lng}`);
     makeMap(lat, lng);
 }
+
 
 function makeMap(lat, lng) {
     const icon = L.icon({
