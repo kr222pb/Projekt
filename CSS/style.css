@@ -273,7 +273,7 @@ h2{
     background-color: rgba(248, 242, 242, 0.7); /* Mörkare vid hover för bättre feedback */
 }
 .nav-item a.active {
-    background-color: #fc7057; /* Grå färg för markerade alternativ */
+    background-color: #fc7057; 
     color: white; /* Säkerställer att texten är läsbar */
 }
 .filter-trigger .arrow {
