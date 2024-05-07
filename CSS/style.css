@@ -269,7 +269,17 @@ h2{
     background-color: #808080; /* Grå färg för markerade alternativ */
     color: white; /* Säkerställer att texten är läsbar */
 }
+.filter-trigger .arrow {
+    transition: transform 0.3s ease;
+}
 
+/* Rotationseffekt när menyn är aktiv */
+.filter-trigger.active .arrow {
+    transform: rotate(180deg);
+}
+.filter-trigger.active h1 {
+    visibility: hidden; 
+}
 
 .timerWrapper {
     display: flex;
@@ -305,3 +315,13 @@ h2{
     width: 40px;
 }
 
+.container img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.added{
+    background-color: #fd2e78 !important; 
+}
