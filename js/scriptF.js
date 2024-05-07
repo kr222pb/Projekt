@@ -42,7 +42,7 @@ function init() {
     Vimmerby.addEventListener("click", makeURL)
 
     let Jönköping = document.querySelector('a[data-stad="Jönköping"]');
-    jönköping.addEventListener("click", makeURL)
+    Jönköping.addEventListener("click", makeURL)
   
 
     let Öland = document.querySelector('a[data-stad="Öland"]');
