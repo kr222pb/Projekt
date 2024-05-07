@@ -130,6 +130,7 @@ function makeURL() {
 }
 
 async function fetchSMAPI() {
+    console.log("Banan")
     // URLer
     let aktivitet = "https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=activity&method=getfromlatlng&lat=" + selected_lat + "&lng=" + selected_lng + "&radius=50&descriptions=Temapark,Nöjespark,Älgpark,Djurpark,Simhall,Gokart,Zipline,Nöjescenter,Klippklättring,Paintballcenter, Hälsocenter,Golfbana,Bowlinghall,Nattklubb";
 
@@ -244,6 +245,8 @@ function nextSlide(e) {
 
     let container = document.querySelector(".container");
     container.innerHTML = HTMLCode;
+
+    let open = document.querySelector("#opening-hours-container p")
 
     lat = nextIndex.lat;
     lng = nextIndex.lng;
