@@ -206,7 +206,7 @@ h2{
 .nav-item a {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    background: #fc7057;
+    background:#808080;;
     padding: 4px 24px;
     display: inline-block;
     border-radius: 4px;
@@ -266,7 +266,7 @@ h2{
     background-color: rgba(248, 242, 242, 0.7); /* Mörkare vid hover för bättre feedback */
 }
 .nav-item a.active {
-    background-color: #808080; /* Grå färg för markerade alternativ */
+    background-color: #fc7057; /* Grå färg för markerade alternativ */
     color: white; /* Säkerställer att texten är läsbar */
 }
 .filter-trigger .arrow {

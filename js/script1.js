@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener("click", function(event) {
             event.preventDefault(); // Förhindrar att sidan navigerar
             const stad = this.getAttribute('data-stad');
-            fetchSMAPIByCity(stad); // Anropa funktionen med vald stad som argument
+            filterAndShow(stad); // Anropa funktionen med vald stad som argument
         });
     });
 
