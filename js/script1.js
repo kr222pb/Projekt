@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toggla dropdown vid klick på 'Filtrera'
     filterTrigger.addEventListener("click", function() {
         tabsContainer.classList.toggle("active");
+        filterTrigger.classList.toggle("active");
     });
 
     //skrollning åt höger
