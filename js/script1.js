@@ -23,17 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     navLinks.forEach(link => {
         link.addEventListener("click", function(event) {
-            event.preventDefault(); // Förhindrar att sidan navigerar
-            this.classList.toggle("active");
-            const stad = this.getAttribute('data-stad');
-            const provins = this.getAttribute('data-provins');
-
-            // Anropa filterAndShow med lämpligt argument
-            if (stad) {
-                filterAndShow(stad);
-            } else if (provins) {
-                filterAndShow(provins);
-            }
+            event.preventDefault();
+            this.classList.toggle('active');
+            updateArrowAnimation();
         });
     });
 
@@ -52,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         }
     });
+
+
+
 
     infoButton.addEventListener('click', function() {
         if (infoPanel.style.transform === "translateY(0%)") {
