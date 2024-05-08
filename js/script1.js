@@ -1,85 +1,86 @@
 document.addEventListener('DOMContentLoaded', function() {
     const filterTrigger = document.querySelector(".filter-trigger");
-    const arrow = document.querySelector(".filter-trigger .arrow");
     const tabsContainer = document.querySelector(".scrollable-tabs-container");
-    const navMenu = document.querySelector(".nav-menu");
-    const navLinks = document.querySelectorAll(".nav-menu a");
     const leftArrow = document.querySelector(".left-arrow");
     const rightArrow = document.querySelector(".right-arrow");
-    const infoButton = document.getElementById("info");
-    const infoPanel = document.getElementById("infoPanel");
-
-    function updateArrowAnimation() {
-        const isMenuActive = tabsContainer.classList.contains('active');
-        const isAnyCityActive = Array.from(navLinks).some(link => link.classList.contains('active'));
-
-        if (!isMenuActive && !isAnyCityActive) {
-            arrow.style.animation = 'bounce 2s infinite ease-in-out';
-            arrow.classList.remove('rotated');
-        } else {
-            arrow.style.animation = 'none';
-        }
-    }
-
+    const navMenu = document.querySelector(".nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu a");
+    
     navLinks.forEach(link => {
         link.addEventListener("click", function(event) {
-            event.preventDefault();
-            this.classList.toggle('active');
-            updateArrowAnimation();
+            event.preventDefault(); // Förhindrar att sidan navigerar
+            this.classList.toggle("active");
+            const stad = this.getAttribute('data-stad');
+            const provins = this.getAttribute('data-provins');
+
+            // Anropa filterAndShow med lämpligt argument
+            if (stad) {
+                filterAndShow(stad);
+            } else if (provins) {
+                filterAndShow(provins);
+            }
         });
     });
 
+    // gömmer vänster pil
+    leftArrow.style.display = 'none';
+
+    // Toggla dropdown vid klick på 'Filtrera'
     filterTrigger.addEventListener("click", function() {
-        const wasActive = tabsContainer.classList.contains('active');
         tabsContainer.classList.toggle("active");
-        this.classList.toggle('active');
-
-        if (!wasActive) {
-            arrow.classList.add('rotated');
-            arrow.style.animation = 'none';
-        } else {
-            setTimeout(() => {
-                arrow.classList.remove('rotated');
-                updateArrowAnimation();
-            }, 300);
-        }
+        filterTrigger.classList.toggle("active");
     });
 
-
-
-
-    infoButton.addEventListener('click', function() {
-        if (infoPanel.style.transform === "translateY(0%)") {
-            infoPanel.style.transform = "translateY(100%)";
-        } else {
-            infoPanel.style.transform = "translateY(0%)";
-        }
+    //skrollning åt höger
+    rightArrow.addEventListener("click", function() {
+        navMenu.scrollBy({ left: 100, behavior: 'smooth' });
     });
 
-    // Function to smoothly scroll the navigation menu
-    function scrollMenu(direction) {
-        const scrollAmount = 200; // adjust scroll distance as needed
-        if (direction === 'right') {
-            navMenu.scrollTo({
-                left: navMenu.scrollLeft + scrollAmount,
-                behavior: 'smooth'
-            });
+    //skrollning åt vänster
+    leftArrow.addEventListener("click", function() {
+        navMenu.scrollBy({ left: -100, behavior: 'smooth' });
+    });
+
+    // kontrollera pilarnas synlighet
+    navMenu.addEventListener('scroll', function() {
+        const maxScrollLeft = navMenu.scrollWidth - navMenu.clientWidth;
+
+        if (navMenu.scrollLeft > 0) {
+            leftArrow.style.display = 'flex'; // Visar vänster pil när användaren har scrollat
         } else {
-            navMenu.scrollTo({
-                left: navMenu.scrollLeft - scrollAmount,
-                behavior: 'smooth'
-            });
+            leftArrow.style.display = 'none'; // Gömer vänster pil när användaren är helt till vänster
         }
+
+        if (navMenu.scrollLeft < maxScrollLeft) {
+            rightArrow.style.display = 'flex'; // Visar höger pil om det finns innehåll att skrolla till
+        } else {
+            rightArrow.style.display = 'none'; // Göm höger pil när användaren har nått slutet
+        }
+    });
+    navLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // Förhindrar att sidan navigerar
+            this.classList.toggle("active"); 
+        });
+    });
+});
+
+function toggleInfo() {
+    var infoPanel = document.getElementById("infoPanel");
+    if (infoPanel.style.transform === "translateY(0%)") {
+        infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
+    } else {
+        infoPanel.style.transform = "translateY(0%)"; // Visa panelen
     }
+}
 
-    leftArrow.addEventListener('click', function() {
-        scrollMenu('left');
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    const infoButton = document.getElementById("info");
+    //console.log(selectedActivities)
+    // Initiera dold informationspanel vid laddning
+    const infoPanel = document.getElementById("infoPanel");
+    infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
 
-    rightArrow.addEventListener('click', function() {
-        scrollMenu('right');
-    });
-    infoPanel.style.transform = "translateY(100%)"; 
-
-    updateArrowAnimation();
+    // Eventlyssnare för att visa/dölja informationspanelen
+    infoButton.addEventListener('click', toggleInfo);
 });
