@@ -129,7 +129,14 @@ img{
 }
 
 .item__body {
-    margin-top: 20px;
+    padding: 20px;
+    max-height: 50px;
+    overflow-y: auto; 
+}
+#map,
+#weather-container {
+    position: relative; 
+    z-index: 5;
 }
 .options{
     background-color: #6c6c6f;

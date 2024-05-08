@@ -116,9 +116,11 @@ function nextSlide(e) {
 }
 
 function updateUI(obj) {
-    const container = document.querySelector(".container h2");
+    const container = document.querySelector(".container");
     if (container) {
-        container.innerHTML = `<h2>${obj.name}</h2><h3>${obj.description}</h3>`;
+        container.querySelector("h2").innerHTML = `<h2>${obj.name}</h2><h3>${obj.description}</h3>`;
+        container.querySelector(".item__overlay h3").textContent = `Information om ${obj.name}`;
+        container.querySelector(".item__body").innerHTML = `<p>${obj.abstract}</p>`;
     } else {
         console.error("Container element not found");
     }
