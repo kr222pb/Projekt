@@ -79,27 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     rightArrow.addEventListener('click', function() {
         scrollMenu('right');
     });
+    infoPanel.style.transform = "translateY(100%)"; 
 
     updateArrowAnimation();
 });
-
-function toggleInfo() {
-    var infoPanel = document.getElementById("infoPanel");
-    if (infoPanel.style.transform === "translateY(0%)") {
-        infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
-    } else {
-        infoPanel.style.transform = "translateY(0%)"; // Visa panelen
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const infoButton = document.getElementById("info");
-    //console.log(selectedActivities)
-    // Initiera dold informationspanel vid laddning
-    const infoPanel = document.getElementById("infoPanel");
-    infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
-
-    // Eventlyssnare för att visa/dölja informationspanelen
-    infoButton.addEventListener('click', toggleInfo);
-});
-
