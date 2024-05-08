@@ -2,6 +2,7 @@
     font-family: Main;
     src: url(../bilder/font/Hedvig.otf);
 }
+
 body{
     background-color: #a9a4a4;
     display: flex;
