@@ -117,7 +117,8 @@ img{
     background-color: rgba(255, 255, 255, 0.8); /* Lätt transparens */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center; 
+    text-align: center;
+    
 }
 
 .info-block h4 {
@@ -129,8 +130,7 @@ img{
 }
 
 .item__body {
-    padding: 20px;
-    max-height: 50px;
+    max-height: 70px;
     overflow-y: auto; 
 }
 #map,
