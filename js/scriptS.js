@@ -12,7 +12,7 @@ function init() {
 }
 
 async function fetchAllEstablishmentData() {
-    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
+    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall&descriptions=Temapark,Nöjespark,Älgpark,Djurpark,Simhall,Gokart,Zipline,Nöjescenter,Klippklättring,Paintballcenter, Hälsocenter,Golfbana,Bowlinghall,Nattklubb,Restaurang,Pizzeria,Gatukök,Bistro,Cafe,Museum,Slott,Konstgalleri,Ateljé,Glasbruk,Konsthall,Sevärdhet,Fornlämning,Hembygdspark,Naturreservat`;
 
     try {
         const response = await fetch(url);

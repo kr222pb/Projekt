@@ -255,7 +255,6 @@ function nextSlide(e) {
     makeMap(lat, lng);
 
     if (e.id != "bock") {
-        consol.log("KEX")
         let name = nextIndex.name;
         selectedActivities.push(name);
         console.log(selectedActivities);  
