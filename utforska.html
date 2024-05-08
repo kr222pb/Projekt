@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/scriptS.js"></script>
+    <script src="js/script1.js"></script>
+
     <title>Projekt</title>
 </head>
 <body>
@@ -12,24 +14,61 @@
         <div class="logo">
             <img src="bilder/logo.svg" alt="Logo">
         </div>
-    </header>
-    <main>
-    </main>
-        <nav role="navigation">
-            <div id="menuToggle">
-              <input type="checkbox" />
-            
-              <span></span>
-              <span></span>
-              <span></span>
-            
-              <ul id="menu">
-                <a href="#"><li>Stad</li></a>
-                <a href="#"><li>Typ av aktivitet</li></a>
-                <a href="#"><li>Pris</li></a>
-              </ul>
+        <div class="header-content">
+            <a href="#" class="filter-trigger">
+                <img src="bilder/pil.svg" alt="Pil" class="arrow">
+            </a>
+            <div class="scrollable-tabs-container">
+                <div class="left-arrow">
+                    <img src="bilder/vanster.svg">
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Växjö">Växjö</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Kalmar">Kalmar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Vimmerby">Vimmerby</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Värnamo">Värnamo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Alvesta">Alvesta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Oskarshamn">Oskarshamn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Vimmerby">Vimmerby</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-stad="Jönköping" >Jönköping</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-provins="Öland" >Öland</a>
+                    </li>
+                </ul>
+                <div class="right-arrow active">
+                    <img src="bilder/hoger.svg">
+                </div>
+                <div class="timerWrapper">
+                    <img src="bilder/time.svg" alt="timer" id="timer">
+                   
+                    <select id="timeSelect">
+                        <option value="infinite" selected>∞</option>
+                        <option value="45">45 Sek</option>
+                        <option value="60">1 Min</option>
+                        <option value="90">1,5 Min</option>
+                        <option value="120">2 Min</option>
+                    </select>
+                </div>
+                <p id="timerDisplay"></p>
             </div>
-          </nav>
+        </div>
+    </header>
           <div id="listUtf">
 
           </div>
