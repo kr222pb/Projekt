@@ -198,10 +198,20 @@ function nextSlide(e) {
         let d = ["Älgpark", "Djurpark", "Temapark"]
         let e = ["Glasbruk"];
         let f = ["Konstgalleri", "Ateljé", "Konsthall"];
+        let g = ["Restaurang", "Bistro"]
         let h = ["Gatukök"]
-
-        let alla = ["Hälsocenter", "Nöjescenter", "Gokart", "Zipline", "Bowlinghall", "Golfbana", "", "Paintballcenter", "Museum", "Slott", "Hembygdspark", "Nattklubb", "Restaurang", "Pizzeria", , "Bistro", "Cafe"]
-
+        let i = ["Gokart"]
+        let j = ["Zipline"]
+        let k = ["Bowlinghall", "Nöjescenter"]
+        let l = ["Cafe"]
+        let m = ["Pizzeria"]
+        let n = ["Paintballcenter"]
+        let o = ["Nattklubb"]
+        let p = ["Hälsocenter"]
+        let q = ["Hembygdspark"]
+        let r = ["Museum", "Slott"]
+    
+    
         let category;
         if (a.includes(nextIndex.description)) {
             category = "A";
@@ -216,11 +226,33 @@ function nextSlide(e) {
         } else if (f.includes(nextIndex.description)) {
             category = "F";
         } else if (f.includes(nextIndex.description)) {
-            category = "";
+            category = "G";
+        } else if (f.includes(nextIndex.description)) {
+            category = "H";
+        } else if (f.includes(nextIndex.description)) {
+            category = "I";
+        } else if (f.includes(nextIndex.description)) {
+            category = "J";
+        } else if (f.includes(nextIndex.description)) {
+            category = "K";
+        } else if (f.includes(nextIndex.description)) {
+            category = "L";
+        } else if (f.includes(nextIndex.description)) {
+            category = "M";
+        } else if (f.includes(nextIndex.description)) {
+            category = "N";
+        } else if (f.includes(nextIndex.description)) {
+            category = "O";
+        } else if (f.includes(nextIndex.description)) {
+            category = "P";
+        } else if (f.includes(nextIndex.description)) {
+            category = "K";
+        } else if (f.includes(nextIndex.description)) {
+            category = "R";
         } else {
             category = "Okänd kategori";
         }
-
+    
         switch (category) {
             case "A":
                 img = "Foto/klippa.jpg";
@@ -240,8 +272,41 @@ function nextSlide(e) {
             case "F":
                 img = "Foto/tavla.jpg";
                 break;
+            case "G":
+                img = "Foto/gatukök.jpg";
+                break;
             case "H":
                 img = "Foto/gatukök.jpg";
+                break;
+            case "I":
+                img = "Foto/gatukök.jpg";
+                break;
+            case "J":
+                img = "Foto/träd.jpg";
+                break;
+            case "K":
+                img = "Foto/gatukök.jpg";
+                break;
+            case "L":
+                img = "Foto/gatukök.jpg";
+                break;
+            case "M":
+                img = "Foto/gatukök.jpg";
+                break;
+            case "N":
+                img = "Foto/gatukök.jpg";
+                break;
+            case "O":
+                img = "Foto/gatukök.jpg";
+                break;
+            case "P":
+                img = "Foto/gatukök.jpg";
+                break;
+            case "Q":
+                img = "Foto/hus.jpg";
+                break;
+            case "R":
+                img = "Foto/slott.jpg";
                 break;
             default:
                 img = "";

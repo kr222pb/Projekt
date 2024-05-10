@@ -332,7 +332,7 @@ function choseImg() {
             img = "Foto/gatukök.jpg";
             break;
         case "J":
-            img = "Foto/gatukök.jpg";
+            img = "Foto/träd.jpg";
             break;
         case "K":
             img = "Foto/gatukök.jpg";
@@ -353,10 +353,10 @@ function choseImg() {
             img = "Foto/gatukök.jpg";
             break;
         case "Q":
-            img = "Foto/gatukök.jpg";
+            img = "Foto/hus.jpg";
             break;
         case "R":
-            img = "Foto/gatukök.jpg";
+            img = "Foto/slott.jpg";
             break;
         default:
             img = "";
