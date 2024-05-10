@@ -88,7 +88,7 @@ function shuffleArray(array) {
 }
 function chooseImg(description) {
     const groupA = ["Temapark", "Nöjespark", "Älgpark", "Djurpark"];
-    const groupB = ["Simhall", "Gokart", "Zipline", "Bowlinghall", "Golfbana", "Klippklättring", "Paintballcenter", "Museum","Biograf"];
+    const groupB = ["Simhall", "Gokart", "Zipline", "Bowlinghall", "Golfbana", "Klippklättring", "Paintballcenter", "Museum","Biograf", "Skateboardpark"];
     const groupC = ["Hälsocenter", "Nöjescenter"];
     const groupD = ["Nattklubb", "Restaurang", "Pizzeria", "Gatukök", "Bistro", "Cafe"];
     const groupE = ["Slott", "Sevärdhet", "Fornlämning", "Hembygdspark", "Naturreservat"];
