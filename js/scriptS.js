@@ -13,7 +13,7 @@ function init() {
 }
 
 async function fetchAllEstablishmentData() {
-    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall&descriptions=Temapark,Nöjespark,Älgpark,Djurpark,Simhall,Gokart,Zipline,Nöjescenter,Klippklättring,Paintballcenter, Hälsocenter,Golfbana,Bowlinghall,Nattklubb,Restaurang,Pizzeria,Gatukök,Bistro,Cafe,Museum,Slott,Konstgalleri,Ateljé,Glasbruk,Konsthall,Sevärdhet,Fornlämning,Hembygdspark,Naturreservat`;
+    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
 
     try {
         const response = await fetch(url);
@@ -55,6 +55,7 @@ function setupEventListeners() {
 function filterAndShow() {
     localStorage.removeItem("savedActivity");
     const allowedTypes = ["activity", "food", "attraction"];
+    const excludedDescriptions = ["Lekplats","kyrka", "Lekland", "Hamburgerkedja"];
 
     // Samla alla aktiva städer
     const activeCities = [...document.querySelectorAll(".nav-menu a.active[data-stad]")].map(link => link.getAttribute("data-stad"));
@@ -67,9 +68,11 @@ function filterAndShow() {
         const isProvinceSelected = activeProvinces.includes(item.province);
         const isTypeAllowed = allowedTypes.includes(item.type);
 
-        // Include the item if it's in a selected city/province and matches one of the allowed types
-        return (isCitySelected || isProvinceSelected) && isTypeAllowed;
+        const isDescriptionExcluded = excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()));
+
+        return (isCitySelected || isProvinceSelected) && isTypeAllowed && !isDescriptionExcluded;
     });
+    console.log("Filtered data:", filteredData);
 
     // Blanda resultatet slumpmässigt
     shuffleArray(filteredData);
@@ -82,6 +85,46 @@ function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+function chooseImg(description) {
+    const groupA = ["Temapark", "Nöjespark", "Älgpark", "Djurpark"];
+    const groupB = ["Simhall", "Gokart", "Zipline", "Bowlinghall", "Golfbana", "Klippklättring", "Paintballcenter", "Museum","Biograf", "Skateboardpark"];
+    const groupC = ["Hälsocenter", "Nöjescenter"];
+    const groupD = ["Nattklubb", "Restaurang", "Pizzeria", "Gatukök", "Bistro", "Cafe"];
+    const groupE = ["Slott", "Sevärdhet", "Fornlämning", "Hembygdspark", "Naturreservat"];
+    const groupF = ["Konstgalleri", "Ateljé", "Glasbruk", "Konsthall"];
+
+    let category;
+    if (groupA.includes(description)) {
+        category = "A";
+    } else if (groupB.includes(description)) {
+        category = "B";
+    } else if (groupC.includes(description)) {
+        category = "C";
+    } else if (groupD.includes(description)) {
+        category = "D";
+    } else if (groupE.includes(description)) {
+        category = "E";
+    } else if (groupF.includes(description)) {
+        category = "F";
+    } else {
+        category = "Unknown";
+    }
+
+    switch (category) {
+        case "A":
+            return "bilder/a.png";
+        case "B":
+            return "bilder/b.png";
+        case "C":
+            return "bilder/c.png";
+        case "D":
+            return "bilder/d.png";
+        case "E":
+            return "bilder/e.png";
+        default:
+            return "bilder/f.png";
     }
 }
 
@@ -118,7 +161,24 @@ function nextSlide(e) {
 function updateUI(obj) {
     const container = document.querySelector(".container");
     if (container) {
-        container.querySelector("h2").innerHTML = `<h2>${obj.name}</h2><h3>${obj.description}</h3>`;
+        
+        const imageWrapper = container.querySelector(".image-wrapper");
+        const img = chooseImg(obj.description);
+
+        let imgElement = imageWrapper.querySelector(".swipe");
+        if (imgElement) {
+            imgElement.src = img;
+            imgElement.alt = obj.name;
+        } else {
+            imgElement = document.createElement("img");
+            imgElement.classList.add("swipe");
+            imgElement.src = img;
+            imgElement.alt = obj.name;
+            imageWrapper.appendChild(imgElement);
+        }
+        container.querySelector("h2").innerHTML =
+        `<h2>${obj.name}</h2>` +
+        `<h3>${obj.description}</h3>`;
         container.querySelector(".item__overlay h3").textContent = `Information om ${obj.name}`;
         container.querySelector(".item__body").innerHTML = `<p>${obj.abstract}</p>`;
     } else {

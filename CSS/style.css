@@ -68,26 +68,29 @@ img{
 }
 .container h2{
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 5px;
 }
 .container h3{
     margin: 5px;
     text-align: center;
     font-weight: 400;
+    font-size: 1.2rem; 
 }
 
 .image-wrapper {
     width: 100%;      /* Eller en annan fast bredd */
     max-height: 200px;    /* Fast höjd */
     overflow: hidden; /* Gömmer delar av bilden som inte passar */
+    border-radius: 10px;
+
 }
 
 .swipe {
     width: 100%;
-    height: auto;
-    min-height: 100%; /* Minst hela höjden av wrappern */
+    height: 100%;
     object-fit: cover;
+
 }
 
 .item__overlay {
@@ -99,21 +102,25 @@ img{
     color: white;
     transition: transform 0.3s ease-in-out;
     transform: translateY(100%);
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
     z-index: 10;
     
 }
+.item__overlay p{
+    margin: 5px;
+}
+
 .info-details {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px; 
+    margin-bottom: 10px; 
     gap: 10px;
 }
 
 .info-block {
-    flex: 1;
-    padding: 8px;
+    flex: 0.75;
+    padding: 4px;
     background-color: rgba(255, 255, 255, 0.8); /* Lätt transparens */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
