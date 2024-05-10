@@ -24,7 +24,7 @@ function init() {
     //Referens till elemntet i HTML-koden
     let Växjö = document.querySelector('a[data-stad="Växjö"]');
     Växjö.addEventListener("click", makeURL)
-   
+
     let Kalmar = document.querySelector('a[data-stad="Kalmar"]');
     Kalmar.addEventListener("click", makeURL)
 
@@ -45,7 +45,7 @@ function init() {
 
     let Jönköping = document.querySelector('a[data-stad="Jönköping"]');
     Jönköping.addEventListener("click", makeURL)
-  
+
 
     let Öland = document.querySelector('a[data-stad="Öland"]');
     Öland.addEventListener("click", makeURL)
@@ -192,12 +192,15 @@ function nextSlide(e) {
     let img;
 
     function choseImg() {
-        let a = ["Temapark", "Nöjespark", "Älgpark", "Djurpark"];
-        let b = ["Simhall", "Gokart", "Zipline", "Bowlinghall", "Golfbana", "Klippklättring", "Paintballcenter", "Museum"];
-        let c = ["Hälsocenter", "Nöjescenter"];
-        let d = ["Nattklubb", "Restaurang", "Pizzeria", "Gatukök", "Bistro", "Cafe"];
-        let e = ["Slott", "Sevärdhet", "Fornlämning", "Hembygdspark", "Naturreservat"];
-        let f = ["Konstgalleri", "Ateljé", "Glasbruk", "Konsthall"];
+        let a = ["Klippklättring", "Naturreservat"];
+        let b = ["Simhall"];
+        let c = ["Sevärdhet", "Fornlämning"];
+        let d = ["Älgpark", "Djurpark", "Temapark"]
+        let e = ["Glasbruk"];
+        let f = ["Konstgalleri", "Ateljé", "Konsthall"];
+        let h = ["Gatukök"]
+
+        let alla = ["Hälsocenter", "Nöjescenter", "Gokart", "Zipline", "Bowlinghall", "Golfbana", "", "Paintballcenter", "Museum", "Slott", "Hembygdspark", "Nattklubb", "Restaurang", "Pizzeria", , "Bistro", "Cafe"]
 
         let category;
         if (a.includes(nextIndex.description)) {
@@ -212,28 +215,36 @@ function nextSlide(e) {
             category = "E";
         } else if (f.includes(nextIndex.description)) {
             category = "F";
+        } else if (f.includes(nextIndex.description)) {
+            category = "";
         } else {
             category = "Okänd kategori";
         }
 
         switch (category) {
             case "A":
-                img = "bilder/a.png";
+                img = "Foto/klippa.jpg";
                 break;
             case "B":
-                img = "bilder/b.png";
+                img = "Foto/simhall.jpg";
                 break;
             case "C":
-                img = "bilder/c.png";
+                img = "Foto/runsten.jpg";
                 break;
             case "D":
-                img = "bilder/d.png";
+                img = "Foto/Djur.jpg";
                 break;
             case "E":
-                img = "bilder/e.png";
+                img = "Foto/glaskonst.jpg";
+                break;
+            case "F":
+                img = "Foto/tavla.jpg";
+                break;
+            case "H":
+                img = "Foto/gatukök.jpg";
                 break;
             default:
-                img = "bilder/f.png";
+                img = "";
         }
     }
 
@@ -257,11 +268,11 @@ function nextSlide(e) {
     if (e.id != "bock") {
         let name = nextIndex.name;
         selectedActivities.push(name);
-        console.log(selectedActivities);  
-          saveData()
+        console.log(selectedActivities);
+        saveData()
     }
     console.log(selectedActivities)
-   
+
 }
 
 function makeMap(lat, lng) {
@@ -315,5 +326,5 @@ function display() {
 function saveData() {
     let data = selectedActivities
     console.log("Kiwi")
-    localStorage.setItem('myArray',data);
+    localStorage.setItem('myArray', data);
 }

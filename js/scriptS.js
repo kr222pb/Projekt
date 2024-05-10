@@ -1,9 +1,10 @@
 combinedData = [];
 let filteredData = [];
-let cityD=[];
-let provinceD =[];
+let cityD = [];
+let provinceD = [];
 let currentIndex = 0;
 let lat, lng, map, marker;
+let img
 
 function init() {
     console.time("Data Fetch Time");
@@ -39,7 +40,7 @@ async function fetchAllEstablishmentData() {
 function setupCityListeners() {
     const navLinks = document.querySelectorAll(".nav-menu a[data-stad], .nav-menu a[data-provins]");
     navLinks.forEach(link => {
-        link.addEventListener("click", function(event) {
+        link.addEventListener("click", function (event) {
             event.preventDefault();
             this.classList.toggle("active");
             filterAndShow();
@@ -58,7 +59,7 @@ function filterAndShow() {
     // Samla alla aktiva städer
     const activeCities = [...document.querySelectorAll(".nav-menu a.active[data-stad]")].map(link => link.getAttribute("data-stad"));
     const activeProvinces = [...document.querySelectorAll(".nav-menu a.active[data-provins]")].map(link => link.getAttribute("data-provins"));
-    
+
 
     // Filtrera datan efter de valda städerna och typer
     filteredData = combinedData.filter(item => {
@@ -73,7 +74,7 @@ function filterAndShow() {
     // Blanda resultatet slumpmässigt
     shuffleArray(filteredData);
 
-    currentIndex = 0; 
+    currentIndex = 0;
     showCurrentSuggestion();
 }
 
@@ -99,11 +100,11 @@ function showCurrentSuggestion() {
 
 function nextSlide(e) {
     if (e.target.id === "bock" && currentIndex < filteredData.length) {
-        
+
         const savedSuggestions = JSON.parse(localStorage.getItem("savedActivity")) || [];
         savedSuggestions.push(filteredData[currentIndex]);
         localStorage.setItem("savedActivity", JSON.stringify(savedSuggestions));
-        
+
         console.log(`Accepted: ${filteredData[currentIndex].name}`);
     }
 
@@ -111,7 +112,6 @@ function nextSlide(e) {
     if (currentIndex >= filteredData.length) {
         currentIndex = 0;
     }
-
     showCurrentSuggestion();
 }
 
@@ -171,12 +171,134 @@ function showRandomItemsInList() {
         const listItem = document.createElement("div");
         listItem.classList.add("list-item");
         listItem.innerHTML = `
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <p>Pris: ${item.price_range}</p>
-        `;
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <p>Pris: ${item.price_range}</p>
+    `;
         listUtf.appendChild(listItem);
     });
 }
 
 window.addEventListener("load", init);
+
+function choseImg() {
+    let a = ["Klippklättring", "Naturreservat"];
+    let b = ["Simhall"];
+    let c = ["Sevärdhet", "Fornlämning"];
+    let d = ["Älgpark", "Djurpark", "Temapark"]
+    let e = ["Glasbruk"];
+    let f = ["Konstgalleri", "Ateljé", "Konsthall"];
+    let g = ["Restaurang", "Bistro"]
+    let h = ["Gatukök"]
+    let i = ["Gokart"]
+    let j = ["Zipline"]
+    let k = ["Bowlinghall", "Nöjescenter"]
+    let l = ["Cafe"]
+    let m = ["Pizzeria"]
+    let n = ["Paintballcenter"]
+    let o = ["Nattklubb"]
+    let p = ["Hälsocenter"]
+    let q = ["Hembygdspark"]
+    let r = ["Museum", "Slott"]
+
+
+    let category;
+    if (a.includes(nextIndex.description)) {
+        category = "A";
+    } else if (b.includes(nextIndex.description)) {
+        category = "B";
+    } else if (c.includes(nextIndex.description)) {
+        category = "C";
+    } else if (d.includes(nextIndex.description)) {
+        category = "D";
+    } else if (e.includes(nextIndex.description)) {
+        category = "E";
+    } else if (f.includes(nextIndex.description)) {
+        category = "F";
+    } else if (f.includes(nextIndex.description)) {
+        category = "G";
+    } else if (f.includes(nextIndex.description)) {
+        category = "H";
+    } else if (f.includes(nextIndex.description)) {
+        category = "I";
+    } else if (f.includes(nextIndex.description)) {
+        category = "J";
+    } else if (f.includes(nextIndex.description)) {
+        category = "K";
+    } else if (f.includes(nextIndex.description)) {
+        category = "L";
+    } else if (f.includes(nextIndex.description)) {
+        category = "M";
+    } else if (f.includes(nextIndex.description)) {
+        category = "N";
+    } else if (f.includes(nextIndex.description)) {
+        category = "O";
+    } else if (f.includes(nextIndex.description)) {
+        category = "P";
+    } else if (f.includes(nextIndex.description)) {
+        category = "K";
+    } else if (f.includes(nextIndex.description)) {
+        category = "R";
+    } else {
+        category = "Okänd kategori";
+    }
+
+    switch (category) {
+        case "A":
+            img = "Foto/klippa.jpg";
+            break;
+        case "B":
+            img = "Foto/simhall.jpg";
+            break;
+        case "C":
+            img = "Foto/runsten.jpg";
+            break;
+        case "D":
+            img = "Foto/Djur.jpg";
+            break;
+        case "E":
+            img = "Foto/glaskonst.jpg";
+            break;
+        case "F":
+            img = "Foto/tavla.jpg";
+            break;
+        case "G":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "H":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "I":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "J":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "K":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "L":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "M":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "N":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "O":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "P":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "Q":
+            img = "Foto/gatukök.jpg";
+            break;
+        case "R":
+            img = "Foto/gatukök.jpg";
+            break;
+        default:
+            img = "";
+    }
+}
