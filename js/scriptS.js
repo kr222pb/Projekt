@@ -88,7 +88,7 @@ function shuffleArray(array) {
     }
 }
 function chooseImg(description) {
-    let a = ["Klippklättring", "Naturreservat"];
+    let a = ["Klippklättring"];
     let b = ["Simhall"];
     let c = ["Sevärdhet", "Fornlämning"];
     let d = ["Älgpark", "Djurpark", "Temapark"]
@@ -100,6 +100,7 @@ function chooseImg(description) {
     let j = ["Zipline"]
     let k = ["Bowlinghall", "Nöjescenter"]
     let l = ["Cafe"]
+    let m = ["Naturreservat"]
     let n = ["Paintballcenter"]
     let o = ["Nattklubb"]
     let p = ["Hälsocenter"]
@@ -131,6 +132,8 @@ function chooseImg(description) {
         category = "K";
     } else if (l.includes(description)) {
         category = "L";
+    } else if (m.includes(description)) {
+        category = "M";
     } else if (n.includes(description)) {
         category = "N";
     } else if (o.includes(description)) {
@@ -171,6 +174,8 @@ function chooseImg(description) {
             return "Foto/gatukök.jpg";
         case "L":
             return "Foto/gatukök.jpg";
+        case "M":
+            return "Foto/stig.jpg";
         case "N":
             return "Foto/gatukök.jpg";
         case "O":
