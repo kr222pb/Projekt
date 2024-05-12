@@ -449,6 +449,6 @@ h2{
     padding: 10px;
 background-image: url(/Foto/disco.jpg);
     border: 1px solid #ccc;
-    border-radius: 5px; /* Runda hörnen på rutorna */
+    border-radius: 5px; 
     justify-content: space-between;
 }

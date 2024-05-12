@@ -94,13 +94,12 @@ function chooseImg(description) {
     let d = ["Älgpark", "Djurpark", "Temapark"]
     let e = ["Glasbruk"];
     let f = ["Konstgalleri", "Ateljé", "Konsthall"];
-    let g = ["Restaurang", "Bistro"]
+    let g = ["Restaurang", "Bistro","Pizzeria"]
     let h = ["Gatukök"]
     let i = ["Gokart"]
     let j = ["Zipline"]
     let k = ["Bowlinghall", "Nöjescenter"]
     let l = ["Cafe"]
-    let m = ["Pizzeria"]
     let n = ["Paintballcenter"]
     let o = ["Nattklubb"]
     let p = ["Hälsocenter"]
@@ -132,8 +131,6 @@ function chooseImg(description) {
         category = "K";
     } else if (l.includes(description)) {
         category = "L";
-    } else if (m.includes(description)) {
-        category = "M";
     } else if (n.includes(description)) {
         category = "N";
     } else if (o.includes(description)) {
@@ -163,7 +160,7 @@ function chooseImg(description) {
         case "F":
             return "Foto/tavla.jpg";
         case "G":
-            return "Foto/gatukök.jpg";
+            return "Foto/mat.jpg";
         case "H":
             return "Foto/gatukök.jpg";
         case "I":
@@ -173,8 +170,6 @@ function chooseImg(description) {
         case "K":
             return "Foto/gatukök.jpg";
         case "L":
-            return "Foto/gatukök.jpg";
-        case "M":
             return "Foto/gatukök.jpg";
         case "N":
             return "Foto/gatukök.jpg";
