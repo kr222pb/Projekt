@@ -347,7 +347,7 @@ function choseImg() {
             img = "Foto/gatukök.jpg";
             break;
         case "O":
-            img = "Foto/gatukök.jpg";
+            img = "Foto/disco.jpg";
             break;
         case "P":
             img = "Foto/gatukök.jpg";
@@ -359,6 +359,6 @@ function choseImg() {
             img = "Foto/slott.jpg";
             break;
         default:
-            img = "";
+            img = "bilder/logo.svg";
     }
 }
