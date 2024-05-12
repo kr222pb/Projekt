@@ -386,9 +386,6 @@ function display() {
         // Lägg till li-elementet som ett barn till ul-elementet
         ulElement.appendChild(liElement);
         liElement.appendChild(imgElem)
-
-
-    
     }
 
     // Lägg till ul-elementet (listan) som ett barn till msg-elementet
