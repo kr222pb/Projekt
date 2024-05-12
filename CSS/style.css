@@ -362,12 +362,9 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 250px;
 }
 
-.added{
-    background-color: #fd2e78 !important; 
-}
 #weather-icon {
     height: 80px;
     width: 80px;
@@ -389,7 +386,7 @@ h2{
         transform: translateY(-10px);
     }
 }
-§
+
 
 .filter-trigger.active .arrow.rotated {
     transform: rotate(180deg);
@@ -450,7 +447,7 @@ h2{
 .con li {
     margin: 10px;
     padding: 10px;
-background-color: sandybrown;
+background-image: url(/Foto/disco.jpg);
     border: 1px solid #ccc;
     border-radius: 5px; /* Runda hörnen på rutorna */
     justify-content: space-between;
