@@ -376,15 +376,44 @@ function display() {
     // Loopa igenom varje aktivitet och skapa ett li-element för varje
     for (let x = 0; x < selectedActivities.length; x++) {
         // Skapa ett li-element för den aktuella aktiviteten
+        let imgElem = document.createElement("img")
         let liElement = document.createElement("li");
         // Ange textinnehållet för li-elementet
         liElement.textContent = selectedActivities[x];
+        imgElem.src = "bilder/soptunna.svg"
+        imgElem.setAttribute("id", "soptunna")
+        imgElem.addEventListener("click",tabort) 
         // Lägg till li-elementet som ett barn till ul-elementet
         ulElement.appendChild(liElement);
+        liElement.appendChild(imgElem)
+
+
+    
     }
 
     // Lägg till ul-elementet (listan) som ett barn till msg-elementet
     msg.appendChild(ulElement);
+
+
+}
+
+function tabort() {
+    // Hämta referensen till det aktuella li-elementet (där bilden klickades)
+    let liElement = this.parentNode;
+
+    // Hämta textinnehållet för li-elementet
+    let text = liElement.textContent.trim();
+
+    // Ta bort den aktuella aktiviteten från arrayen selectedActivities
+    let index = selectedActivities.indexOf(text);
+    if (index !== -1) {
+        selectedActivities.splice(index, 1);
+    }
+
+    // Uppdatera listan på webbsidan
+    liElement.parentNode.removeChild(liElement);
+
+    console.log(selectedActivities);
 }
 
 
