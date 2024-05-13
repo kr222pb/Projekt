@@ -410,14 +410,15 @@ h2{
 
 /* Profilsidan */
 #bigbox{ 
-    border: 2px solid black;
-    border-radius: 12%;
+    border: 5px solid rgb(117, 115, 115);
+    border-radius: 20%;
 
     text-align: center;
     color: #fff;
 
     padding: 20px;
-    margin: 20px;
+    margin: 200px;
+    width: 60%;
 }
 #bigbox ul{
   font-size: 2em;
@@ -492,16 +493,26 @@ main {
     margin: 20px;
     padding: 20px;
     display: flex;
+    flex-direction: column;
 }
 
 
 
 .con li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 10px;
     padding: 10px;
     background-image: url(/Foto/hum.jpg);
     background-size:cover;
     border: 1px solid #ccc;
     border-radius: 10px; 
-    justify-content: space-between;
+}
+.this{
+    background-color: rgb(117, 115, 115) ;
+    max-width: 80%;
+    border-radius: 25px;
+    padding: 10px 0;
+    margin:  10px;
 }
