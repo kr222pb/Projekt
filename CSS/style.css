@@ -424,8 +424,45 @@ h2{
     margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
 }
 
+/*Utforskare*/
+main {
+    padding-top: 70px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.search-container form {
+    display: flex;
+    width: 100%; 
+}
+
+.search-container {
+    margin-top: 20px;
+    width: 50%; 
+    margin-left: auto; 
+    margin-right: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-container button {
+    padding: 8px 12px;
+    background-color: #957376; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.search-container button:hover {
+    background-color: #6c4a61;
+}
+
 #listUtf {
-    margin-top: 100px;
+    margin-top: 20px;
     width: 100%;
 }
 
@@ -452,8 +489,8 @@ h2{
 .con li {
     margin: 10px;
     padding: 10px;
-background-image: url(/Foto/hum.jpg);
-background-size:cover;
+    background-image: url(/Foto/hum.jpg);
+    background-size:cover;
     border: 1px solid #ccc;
     border-radius: 10px; 
     justify-content: space-between;
