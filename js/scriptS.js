@@ -88,19 +88,19 @@ function shuffleArray(array) {
     }
 }
 function chooseImg(description) {
-    let a = ["Klippklättring", "Naturreservat"];
+    let a = ["Klippklättring"];
     let b = ["Simhall"];
     let c = ["Sevärdhet", "Fornlämning"];
     let d = ["Älgpark", "Djurpark", "Temapark"]
     let e = ["Glasbruk"];
     let f = ["Konstgalleri", "Ateljé", "Konsthall"];
-    let g = ["Restaurang", "Bistro"]
+    let g = ["Restaurang", "Bistro","Pizzeria"]
     let h = ["Gatukök"]
     let i = ["Gokart"]
     let j = ["Zipline"]
     let k = ["Bowlinghall", "Nöjescenter"]
     let l = ["Cafe"]
-    let m = ["Pizzeria"]
+    let m = ["Naturreservat"]
     let n = ["Paintballcenter"]
     let o = ["Nattklubb"]
     let p = ["Hälsocenter"]
@@ -163,7 +163,7 @@ function chooseImg(description) {
         case "F":
             return "Foto/tavla.jpg";
         case "G":
-            return "Foto/gatukök.jpg";
+            return "Foto/mat.jpg";
         case "H":
             return "Foto/gatukök.jpg";
         case "I":
@@ -175,7 +175,7 @@ function chooseImg(description) {
         case "L":
             return "Foto/gatukök.jpg";
         case "M":
-            return "Foto/gatukök.jpg";
+            return "Foto/stig.jpg";
         case "N":
             return "Foto/gatukök.jpg";
         case "O":

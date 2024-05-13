@@ -362,12 +362,9 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 250px;
 }
 
-.added{
-    background-color: #fd2e78 !important; 
-}
 #weather-icon {
     height: 80px;
     width: 80px;
@@ -389,7 +386,7 @@ h2{
         transform: translateY(-10px);
     }
 }
-§
+
 
 .filter-trigger.active .arrow.rotated {
     transform: rotate(180deg);
@@ -476,7 +473,7 @@ main {
 }
 
 .con {
-    width: max-content;
+    width: 400px;
     margin: 20px;
     padding: 20px;
     display: flex;
@@ -487,8 +484,9 @@ main {
 .con li {
     margin: 10px;
     padding: 10px;
-    background-color: sandybrown;
+background-image: url(/Foto/hum.jpg);
+background-size:cover;
     border: 1px solid #ccc;
-    border-radius: 5px; /* Runda hörnen på rutorna */
+    border-radius: 10px; 
     justify-content: space-between;
 }
