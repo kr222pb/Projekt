@@ -484,8 +484,8 @@ main {
 .con li {
     margin: 10px;
     padding: 10px;
-background-image: url(/Foto/hum.jpg);
-background-size:cover;
+    background-image: url(/Foto/hum.jpg);
+    background-size:cover;
     border: 1px solid #ccc;
     border-radius: 10px; 
     justify-content: space-between;
