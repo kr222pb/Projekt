@@ -12,16 +12,12 @@ body {
     background-color: #a9a4a4;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /* Centrerar innehållet vertikalt */
-    justify-content: center;
-    /* Centrerar innehållet horisontellt */
-    min-height: 100vh;
-    /* Full höjd på viewporten */
+    align-items: center; /* Centrerar innehållet vertikalt */
+    justify-content: center; /* Centrerar innehållet horisontellt */
+    min-height: 100vh; /* Full höjd på viewporten */
     margin: 0;
     font-family: main, 'Times New Roman', Times, serif;
 }
-
 header {
     position: fixed;
     top: 0;
@@ -29,45 +25,33 @@ header {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    /* Lägg till centrerad justering här */
+    justify-content: center; /* Lägg till centrerad justering här */
     z-index: 1000;
 }
-
 .logo {
     position: absolute;
-    top: 20px;
-    left: 10px;
-    /* Flytta logotypen till vänster */
+    top:20px;
+    left: 10px; /* Flytta logotypen till vänster */
 }
-
 .header-content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    /* Säkerställer att innehållet är centrerat */
+    justify-content: center; /* Säkerställer att innehållet är centrerat */
     width: 100%;
 }
-
 .header-content a {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .header-content .filter-trigger .arrow {
-    margin-top: 30px;
-    /* Justera detta värde för att flytta ner pilen */
+    margin-top: 30px; /* Justera detta värde för att flytta ner pilen */
 }
-
 .arrow {
-    width: 70px;
-    /* eller den bredd du föredrar */
-    height: auto;
-    /* bibehåller bildens aspektförhållande */
+    width: 70px; /* eller den bredd du föredrar */
+    height: auto; /* bibehåller bildens aspektförhållande */
 }
-
-img {
+img{
     width: 70px;
     margin-right: 10px;
 }
@@ -81,15 +65,16 @@ img {
     position: relative;
     width: 240px;
     margin: auto;
-    height: 300px; /*Biede vEÅR pricent*/
+    height: 320px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;  /* Centrera innehållet horisontellt */
     padding: 15px;
-    border-radius: 15px;
-    overflow: hidden; 
-    
+    padding-bottom: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #fc7057;
 }
 
 .container h2 {
@@ -104,15 +89,16 @@ img {
     margin: 5px;
     text-align: center;
     font-weight: 400;
-    font-size: 1.2rem; 
+    font-size: 1rem;
+    margin-bottom: 0;
 }
 
 .image-wrapper {
-    width: 100%;      /* Eller en annan fast bredd */
-    max-height: 200px;    /* Fast höjd */
-    overflow: hidden; /* Gömmer delar av bilden som inte passar */
-    border-radius: 10px;
-
+    position: absolute;
+    width: 190px;  
+    height: 320px;
+    top: 15px;
+    
 }
 
 .image-wrapper img {
@@ -134,63 +120,56 @@ img {
     padding: 10px;
     box-sizing: border-box;
     z-index: 10;
-
+    
 }
-
-.item__overlay p {
+.item__overlay p{
     margin: 5px;
 }
 
 .info-details {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
     gap: 10px;
 }
 
 .info-block {
     flex: 0.75;
     padding: 4px;
-    background-color: rgba(255, 255, 255, 0.8);
-    /* Lätt transparens */
+    background-color: rgba(255, 255, 255, 0.8); /* Lätt transparens */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
-
+    
 }
 
 .info-block h4 {
-    margin: 5px 0;
+    margin:5px 0;
     color: #333;
 }
-
-.info-block p {
+.info-block p{
     color: #333;
 }
 
 .item__body {
     max-height: 70px;
-    overflow-y: auto;
+    overflow-y: auto; 
 }
-
 #map,
 #weather-container {
-    position: relative;
+    position: relative; 
     z-index: 5;
 }
-
-.options {
+.options{
     background-color: #6c6c6f;
     display: flex;
     justify-content: space-around;
-    width: 60%;
-    margin: 0 auto 20px auto;
-    /* Centrerar options och ger utrymme nedanför */
+    width: 60%; 
+    margin: 0 auto 20px auto; /* Centrerar options och ger utrymme nedanför */
     padding: 10px 0;
-    background-color: #a9a4a4;
+    background-color: #a9a4a4; 
     border-radius: 15px;
 }
-
 .options img {
     padding: 5px 15px;
     width: 2em;
@@ -204,33 +183,31 @@ img {
     width: 45px;
 }
 
-#pin {
+#pin{
     height: 40px;
     position: absolute;
     bottom: 45px;
     left: 65px;
 
 }
-
-.footer {
+.footer{
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #a9a4a4;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; 
     padding: 10px 0;
-
+    
 }
-
 .footer a {
-    color: white;
-    text-decoration: none;
+    color: white; 
+    text-decoration: none; 
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
+    flex: 1; 
 }
 
 .footer a img {
@@ -239,40 +216,30 @@ img {
     object-fit: contain;
 }
 
-h2 {
+h2{
     color: white;
 }
-
 .scrollable-tabs-container {
-    max-width: 400px;
+    max-width: 400px; 
     margin: 5px auto;
     border-radius: 4px;
-    overflow: hidden;
-    /*  gömmer  innehållet */
+    overflow: hidden; /*  gömmer  innehållet */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 100%;
-    /* Positionerar dropdown precis under triggern */
-    display: none;
-    width: 95%;
-    /* Justerbar bredd för bättre layout */
-    max-height: 0;
-    /* Används för att dölja eller visa med en övergång */
-    transition: all 0.3s ease;
-    /* Ger en mjuk övergång för dropdown-effekten */
+    top: 100%; /* Positionerar dropdown precis under triggern */
+    display: none; 
+    width: 95%; /* Justerbar bredd för bättre layout */
+    max-height: 0; /* Används för att dölja eller visa med en övergång */
+    transition: all 0.3s ease; /* Ger en mjuk övergång för dropdown-effekten */
     z-index: 20;
 }
 
 .scrollable-tabs-container.active {
-    display: block;
-    /* Visas när den är aktiv */
-    max-height: 200px;
-    /* Höjd nog för att visa innehållet */
-    overflow-x: auto;
-    /* Tillåter horisontell scrollning inuti */
-    overflow-y: hidden;
-    /* Förhindrar vertikal scrollning */
+    display: block; /* Visas när den är aktiv */
+    max-height: 200px; /* Höjd nog för att visa innehållet */
+    overflow-x: auto; /* Tillåter horisontell scrollning inuti */
+    overflow-y: hidden; /* Förhindrar vertikal scrollning */
 }
 
 .nav-menu {
@@ -285,8 +252,7 @@ h2 {
     -ms-overflow-style: none;
     scrollbar-width: none;
     flex-grow: 1;
-    mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent);
-    /* Maskerar kanterna */
+    mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent); /* Maskerar kanterna */
 }
 
 
@@ -295,21 +261,19 @@ h2 {
 .nav-item a {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    background: #808080;
-    ;
+    background:#808080;;
     padding: 4px 24px;
     display: inline-block;
     border-radius: 4px;
 }
 
 
-.left-arrow,
-.right-arrow {
+.left-arrow, .right-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: 24px; 
+    height: 24px; 
     z-index: 20;
     cursor: pointer;
     margin-top: -10px;
@@ -329,41 +293,35 @@ h2 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 30;
-    width: 24px;
-    /* Enhetsstorlek för båda pilarna */
-    height: 24px;
-    /* Enhetsstorlek för båda pilarna */
+    z-index: 30;  
+    width: 24px;  /* Enhetsstorlek för båda pilarna */
+    height: 24px; /* Enhetsstorlek för båda pilarna */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 12px; 
     transition: background-color 0.3s ease;
 }
 
 
 .scrollable-tabs-container .left-arrow {
-    left: 10px;
+    left: 10px; 
 }
 
 
 .scrollable-tabs-container .right-arrow {
-    right: 10px;
+    right: 10px; 
 }
 
 /* Styling när musen hovrar över pilarna */
 .scrollable-tabs-container .left-arrow:hover,
 .scrollable-tabs-container .right-arrow:hover {
-    background-color: rgba(248, 242, 242, 0.7);
-    /* Mörkare vid hover för bättre feedback */
+    background-color: rgba(248, 242, 242, 0.7); /* Mörkare vid hover för bättre feedback */
 }
-
 .nav-item a.active {
-    background-color: #fc7057;
-    /* Grå färg för markerade alternativ */
-    color: white;
-    /* Säkerställer att texten är läsbar */
+    background-color: #fc7057; /* Grå färg för markerade alternativ */
+    color: white; /* Säkerställer att texten är läsbar */
 }
 
 
@@ -376,9 +334,8 @@ h2 {
 .filter-trigger.active .arrow {
     transform: rotate(180deg);
 }
-
 .filter-trigger.active h1 {
-    visibility: hidden;
+    visibility: hidden; 
 }
 
 .timerWrapper {
@@ -409,14 +366,14 @@ h2 {
 }
 
 #timeSelect:focus {
-    outline: 0;
+  outline: 0;
 }
 
 #timer {
     width: 40px;
 }
 
-.container img {
+.container img{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -428,23 +385,18 @@ h2 {
     width: 80px;
     margin-left: 20px;
 }
-
 #weather-info {
     font-size: large;
 }
-
-.info-block#map {
+.info-block#map{
     flex: 2;
 }
 
 /* ------ANIMATIONER------ */
 @keyframes bounce {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateY(0);
     }
-
     50% {
         transform: translateY(-10px);
     }
@@ -457,7 +409,7 @@ h2 {
 }
 
 /* Profilsidan */
-#bigbox {
+#bigbox{ 
     border: 2px solid black;
     border-radius: 12%;
 
@@ -467,21 +419,17 @@ h2 {
     padding: 20px;
     margin: 20px;
 }
-
-#bigbox ul {
-    font-size: 2em;
+#bigbox ul{
+  font-size: 2em;
     text-align: left;
     list-style: none;
 }
-
 #bigbox li {
-    padding-left: 20px;
-    /* Justera vänstermarginalen för att ge plats för listpluppen */
+    padding-left: 20px; /* Justera vänstermarginalen för att ge plats för listpluppen */
 }
 
 #bigbox li::before {
-    content: '\2764';
-    /* Unicode-tecknet för hjärta */
+    content: '\2764'; /* Unicode-tecknet för hjärta */
     display: inline-block;
     margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
 }
@@ -535,8 +483,7 @@ main {
     padding: 15px;
     margin-bottom: 15px;
 }
-
-#soptunna {
+#soptunna{
     height: 40px;
 }
 
@@ -552,9 +499,9 @@ main {
 .con li {
     margin: 10px;
     padding: 10px;
-        background-image: url(/Foto/hum.jpg);
-        background-size: cover;
+    background-image: url(/Foto/hum.jpg);
+    background-size:cover;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 10px; 
     justify-content: space-between;
 }
