@@ -97,11 +97,11 @@ function chooseImg(description) {
     let h = ["Gatukök"]
     let i = ["Gokart"]
     let j = ["Zipline"]
-    let k = ["Bowlinghall", "Nöjescenter"]
+    let k = ["Biograf"]
     let l = ["Cafe"]
     let m = ["Naturreservat"]
     let n = ["Paintballcenter"]
-    let o = ["Nattklubb"]
+    let o = ["Nattklubb", "Bowlinghall", "Nöjescenter"]
     let p = ["Hälsocenter"]
     let q = ["Hembygdspark"]
     let r = ["Museum", "Slott"]
@@ -166,21 +166,21 @@ function chooseImg(description) {
         case "H":
             return "Foto/gatukök.jpg";
         case "I":
-            return "Foto/gatukök.jpg";
+            return "Foto/mållinje.jpg";
         case "J":
             return "Foto/träd.jpg";
         case "K":
-            return "Foto/gatukök.jpg";
+            return "Foto/popcorn.jpg";
         case "L":
-            return "Foto/gatukök.jpg";
+            return "Foto/bulle.jpg";
         case "M":
             return "Foto/stig.jpg";
         case "N":
-            return "Foto/gatukök.jpg";
+            return "Foto/paintball.jpg";
         case "O":
             return "Foto/disco.jpg";
         case "P":
-            return "Foto/gatukök.jpg";
+            return "Foto/hälsocenter.jpg";
         case "Q":
             return "Foto/hus.jpg";
         case "R":
