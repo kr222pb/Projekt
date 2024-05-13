@@ -3,6 +3,11 @@
     src: url(../bilder/font/Hedvig.otf);
 }
 
+@font-face {
+    font-family: Papper;
+    src: url(../bilder/font/Young.otf);
+}
+
 body {
     background-color: #a9a4a4;
     display: flex;
@@ -476,21 +481,57 @@ h2 {
     content: '\2764';
     /* Unicode-tecknet för hjärta */
     display: inline-block;
-    margin-right: 5px;
-    /* Justera avståndet mellan hjärtat och texten */
+    margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
+}
+
+/*Utforskare*/
+main {
+    padding-top: 70px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.search-container form {
+    display: flex;
+    width: 100%; 
+}
+
+.search-container {
+    margin-top: 20px;
+    width: 50%; 
+    margin-left: auto; 
+    margin-right: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-container button {
+    padding: 8px 12px;
+    background-color: #957376; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.search-container button:hover {
+    background-color: #6c4a61;
 }
 
 #listUtf {
-    margin-top: 100px;
+    margin-top: 20px;
     width: 100%;
 }
 
 #listUtf div {
-    background-color: #f9f9f9;
-    border-radius: 5px;
+    background-image: url(/bilder/papper_1.svg);
+    font-family: Papper, 'Times New Roman', Times, serif;
+    background-repeat: no-repeat;
     padding: 15px;
     margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #soptunna {
@@ -509,8 +550,8 @@ h2 {
 .con li {
     margin: 10px;
     padding: 10px;
-    background-image: url(/Foto/hum.jpg);
-    background-size: cover;
+        background-image: url(/Foto/hum.jpg);
+        background-size: cover;
     border: 1px solid #ccc;
     border-radius: 10px;
     justify-content: space-between;
