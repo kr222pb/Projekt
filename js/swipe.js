@@ -3,7 +3,7 @@ let startX, moved = false;
 const minSwipe = 124;
 
 function init() {
-    let swipeImage = document.querySelector(".swipe");
+    let swipeImage = document.querySelector(".container");
     let swipeTextH2 = document.querySelector("h2");  // Lägger till en variabel för att hantera h2 element
     let swipeTextH3 = document.querySelector("h3");  // Lägger till en variabel för att hantera h3 element
 
@@ -54,7 +54,7 @@ function handleTouchMove(e, swipeTextH2, swipeTextH3) {
     let moveX = touch.pageX;
     let diffX = moveX - startX;
     
-    let swipeImage = document.querySelector(".swipe");
+    let swipeImage = document.querySelector(".container");
     swipeImage.style.transform = 'translateX(' + diffX + 'px)';
     
     let maxSwipeDistance = window.innerWidth / 2;
@@ -67,7 +67,7 @@ function handleTouchMove(e, swipeTextH2, swipeTextH3) {
 }
 
 function resetImagePosition() {
-    let swipeImage = document.querySelector(".swipe");
+    let swipeImage = document.querySelector(".container");
     swipeImage.style.transform = 'translateX(0px)';
     swipeImage.style.opacity = '1';
     let swipeTextH2 = document.querySelector("h2");

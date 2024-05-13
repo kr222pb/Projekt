@@ -74,57 +74,59 @@ img {
 
 
 .container {
-    background-image: url(/bilder/bakgrundt_1.svg);
+    background-image: url(/bilder/polaroid.svg);
+    background-repeat: no-repeat;
+    background-size: contain;  /* Se till att polaroid-bilden skalas inom containern */
+    background-position: center;  /* Centrera bakgrundsbilden */
     position: relative;
-    width: 80%;
+    width: 240px;
     margin: auto;
-    height: 300px;
-    /*Biede vEÅR pricent*/
+    height: 300px; /*Biede vEÅR pricent*/
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: center;  /* Centrera innehållet horisontellt */
     padding: 15px;
     border-radius: 15px;
-    overflow: hidden;
-
+    overflow: hidden; 
+    
 }
 
 .container h2 {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 5px;
+    color: black;
+    margin-bottom: 0;
 }
 
 .container h3 {
     margin: 5px;
     text-align: center;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.2rem; 
 }
 
 .image-wrapper {
-    width: 100%;
-    /* Eller en annan fast bredd */
-    max-height: 200px;
-    /* Fast höjd */
-    overflow: hidden;
-    /* Gömmer delar av bilden som inte passar */
+    width: 100%;      /* Eller en annan fast bredd */
+    max-height: 200px;    /* Fast höjd */
+    overflow: hidden; /* Gömmer delar av bilden som inte passar */
     border-radius: 10px;
 
 }
 
-.swipe {
+.image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-
 }
 
 .item__overlay {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 40px;
     right: 0;
+    width: 250px;
     background-color: rgba(158, 165, 165, 0.9);
     color: white;
     transition: transform 0.3s ease-in-out;

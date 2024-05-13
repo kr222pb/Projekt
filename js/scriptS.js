@@ -31,7 +31,6 @@ async function fetchAllEstablishmentData() {
         }
 
         setupCityListeners();
-        showRandomItemsInList();
     } catch (error) {
         console.error("Fel vid hämtning:", error);
     }
@@ -228,13 +227,12 @@ function updateUI(obj) {
         const imageWrapper = container.querySelector(".image-wrapper");
         const img = chooseImg(obj.description);
 
-        let imgElement = imageWrapper.querySelector(".swipe");
+        let imgElement = imageWrapper.querySelector("img");
         if (imgElement) {
             imgElement.src = img;
             imgElement.alt = obj.name;
         } else {
             imgElement = document.createElement("img");
-            imgElement.classList.add("swipe");
             imgElement.src = img;
             imgElement.alt = obj.name;
             imageWrapper.appendChild(imgElement);
@@ -274,32 +272,6 @@ function makeMap(lat, lng) {
     }
 
     marker = L.marker([lat, lng], { icon: icon }).addTo(map);
-}
-function showRandomItemsInList() {
-    const listUtf = document.getElementById("listUtf");
-    listUtf.innerHTML = ""; // Rensa befintligt innehåll
-
-    // Skapa en lista med 10 slumpmässiga index
-    const randomIndexes = [];
-    while (randomIndexes.length < 10) {
-        const randomIndex = Math.floor(Math.random() * combinedData.length);
-        if (!randomIndexes.includes(randomIndex)) {
-            randomIndexes.push(randomIndex);
-        }
-    }
-
-    // Skapa listelement för varje slumpmässigt valt objekt och lägg till dem i listUtf
-    randomIndexes.forEach(index => {
-        const item = combinedData[index];
-        const listItem = document.createElement("div");
-        listItem.classList.add("list-item");
-        listItem.innerHTML = `
-        <h3>${item.name}</h3>
-        <p>${item.description}</p>
-        <p>Pris: ${item.price_range}</p>
-    `;
-        listUtf.appendChild(listItem);
-    });
 }
 
 window.addEventListener("load", init);
