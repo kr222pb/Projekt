@@ -515,4 +515,5 @@ main {
     border-radius: 25px;
     padding: 10px 0;
     margin:  10px;
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
 }
