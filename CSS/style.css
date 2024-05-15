@@ -403,10 +403,28 @@ h2{
 }
 
 
+
 .filter-trigger.active .arrow.rotated {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
 }
+
+@keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  
+  #Lager_2 #_1,
+  #Lager_2 #_2,
+  #Lager_2 #_3,
+  #Lager_2 #_4 {
+    animation: slideIn 1s ease forwards;
+  }
+  
 
 /* Profilsidan */
 #bigbox{ 
@@ -508,12 +526,4 @@ main {
     background-size:cover;
     border: 1px solid #ccc;
     border-radius: 10px; 
-}
-.this{
-    background-color: rgb(117, 115, 115) ;
-    max-width: 80%;
-    border-radius: 25px;
-    padding: 10px 0;
-    margin:  10px;
-    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
 }
