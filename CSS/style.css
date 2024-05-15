@@ -452,7 +452,26 @@ h2{
     display: inline-block;
     margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
 }
+#minibox{
+    background-color: #6c4a61;
+    border-radius: 20%;
+}
 
+#date{
+  display: flex;
+  justify-content: center;
+  width: 90%;
+padding: 15px;
+}
+#date img{
+    width: 40px;
+    cursor: pointer;
+    margin:0 10px;
+}
+.rotated {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
 /*Utforskare*/
 main {
     padding-top: 70px;
