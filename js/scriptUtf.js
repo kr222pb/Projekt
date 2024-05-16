@@ -89,8 +89,8 @@ function updateListWithFilteredData(filteredData) {
         listItem.classList.add("list-item");
         listItem.innerHTML = `
             <h3>${item.name}</h3>
-            <p>${item.description || "Ingen beskrivning tillgänglig."}</p>
-            <p>Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
+            <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
+            <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
         `;
         listUtf.appendChild(listItem);
     });
@@ -129,8 +129,8 @@ function showRandomItemsInList() {
         listItem.classList.add("list-item");
         listItem.innerHTML = `
             <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <p>Plats: ${item.city || item.province}
+            <p class="itemDescr">${item.description}</p>
+            <p class="itemLocPr">Plats: ${item.city || item.province}
             </br> Pris: ${item.price_range}</p>
         `;
         listUtf.appendChild(listItem);
