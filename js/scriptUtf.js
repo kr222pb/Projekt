@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     setupEventListeners();
 });
 
+let combinedData = []; // För att lagra all hämtad data
+
 async function fetchAllEstablishmentData() {
     const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
     try {
@@ -20,11 +22,13 @@ async function fetchAllEstablishmentData() {
 
 function setupEventListeners() {
     const searchInput = document.querySelector("#searchInput");
+    const filterArrow = document.querySelector("#filterArrow"); // Element för att hantera stängning av sökfunktionen
+
     if (searchInput) {
         searchInput.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 event.preventDefault();
-                filterByLocation(searchInput.value.trim().toLowerCase());
+                performSearch(searchInput.value.trim().toLowerCase());
             }
         });
     }
@@ -33,29 +37,39 @@ function setupEventListeners() {
     if (searchForm) {
         searchForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            filterByLocation(searchInput.value.trim().toLowerCase());
+            performSearch(searchInput.value.trim().toLowerCase());
         });
     }
 
-    // Lägg till en händelsehanterare för att stänga modalen
+    if (filterArrow) {
+        filterArrow.addEventListener("click", function() {
+            searchInput.value = ""; // Rensa sökfält
+            updateListWithFilteredData([]); // Rensa listan
+        });
+    }
+
     document.getElementById("modalClose").addEventListener("click", function() {
         document.getElementById("modal").style.display = "none";
     });
 }
 
-function filterByLocation(location) {
+function performSearch(query) {
     const allowedTypes = ["activity", "food", "attraction"];
-    const excludedDescriptions = ["Lekplats", "kyrka", "Lekland", "Hamburgerkedja","Golfbana"];
+    const excludedDescriptions = ["Lekplats", "kyrka", "Lekland", "Hamburgerkedja", "Golfbana"];
 
     const filteredData = combinedData.filter(item => {
-        const isLocationSelected = (item.city && item.city.toLowerCase() === location) || (item.province && item.province.toLowerCase() === location);
+        const matchesQuery = item.city?.toLowerCase().includes(query) ||
+                             item.province?.toLowerCase().includes(query) ||
+                             item.name?.toLowerCase().includes(query) ||
+                             item.description?.toLowerCase().includes(query);
+
         const isTypeAllowed = allowedTypes.includes(item.type);
-        const isDescriptionExcluded = excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()));
-        return isLocationSelected && isTypeAllowed && !isDescriptionExcluded;
+        const isDescriptionExcluded = !excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc));
+
+        return matchesQuery && isTypeAllowed && isDescriptionExcluded;
     });
 
     updateListWithFilteredData(filteredData);
-    
 }
 
 function updateListWithFilteredData(filteredData) {
@@ -81,12 +95,9 @@ function updateListWithFilteredData(filteredData) {
     });
 }
 
-
-
 function openModal() {
     const modal = document.getElementById("modal");
     if (modal) {
         modal.style.display = "block";
     }
 }
-
