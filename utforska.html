@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/scriptUtf.js"></script>
+    <script src="js/script2.js"></script>
 
     <title>Projekt</title>
 </head>
@@ -12,6 +13,27 @@
     <header>
         <div class="logo">
             <img src="bilder/logo.svg" alt="Logo">
+        </div>
+        <div class="header-arrow">
+            <a href="#" class="filter-arrow">
+                <img src="bilder/filter.svg" alt="Pil" class="arrow2">
+            </a>
+            <div class="dropdown-menu">
+                <div class="dropdown-item" id="all">Alla</div>
+                <div class="dropdown-item" id="places">Plats▼  
+                    <div class="nested-dropdown-menu"></div>
+                </div>
+                <div class="dropdown-item" id="activities">Aktiviteter▼
+                    <div class="nested-dropdown-menu"></div>
+                </div>
+                <div class="dropdown-item" id="food">Mat▼
+                    <div class="nested-dropdown-menu"></div>
+                </div>
+                <div class="dropdown-item" id="attraktion">Attraktion▼
+                    <div class="nested-dropdown-menu"></div>
+                </div>
+                <div class="dropdown-item" id="homeEvening">Hemmakväll</div>
+            </div>
         </div>
     </header>
     <main>
@@ -27,6 +49,10 @@
         </div>
 
     </main>
+    <div id="modal" class="modal">
+        <div class="modal-content" id="modalContent"></div>
+        <span class="close" id="modalClose">&times;</span>
+    </div>
     
     <div class="footer">
         <a href="utforska.html" class="funktion1">
