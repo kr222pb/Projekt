@@ -95,7 +95,7 @@ img{
 
 .image-wrapper {
     position: absolute;
-    width: 190px;  
+    width: 192px;  
     height: 320px;
     top: 15px;
     
@@ -403,21 +403,40 @@ h2{
 }
 
 
+
 .filter-trigger.active .arrow.rotated {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
 }
 
+@keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  
+  #Lager_2 #_1,
+  #Lager_2 #_2,
+  #Lager_2 #_3,
+  #Lager_2 #_4 {
+    animation: slideIn 1s ease forwards;
+  }
+  
+
 /* Profilsidan */
 #bigbox{ 
-    border: 2px solid black;
-    border-radius: 12%;
+    border: 5px solid rgb(117, 115, 115);
+    border-radius: 20%;
 
     text-align: center;
     color: #fff;
 
     padding: 20px;
-    margin: 20px;
+    margin: 200px;
+    width: 60%;
 }
 #bigbox ul{
   font-size: 2em;
@@ -433,7 +452,26 @@ h2{
     display: inline-block;
     margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
 }
+#minibox{
+    background-color: #6c4a61;
+    border-radius: 20%;
+}
 
+#date{
+  display: flex;
+  justify-content: center;
+  width: 90%;
+padding: 15px;
+}
+#date img{
+    width: 40px;
+    cursor: pointer;
+    margin:0 10px;
+}
+.rotated {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
 /*Utforskare*/
 main {
     padding-top: 70px;
@@ -475,13 +513,37 @@ main {
     width: 100%;
 }
 
-#listUtf div {
-    background-image: url(/bilder/papper_1.svg);
-    font-family: Papper, 'Times New Roman', Times, serif;
+#listUtf .list-item {
+    background-image: url(/bilder/pappers.svg);
     background-repeat: no-repeat;
-    padding: 15px;
+    background-size: contain;
+    background-position: center;
+    font-family: Papper, 'Times New Roman', Times, serif;
+    padding: 20px;
     margin-bottom: 15px;
+    box-sizing: border-box;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+#listUtf .list-item h3 {
+    font-size: 1.2em;
+    transform: translateY(52px);
+}
+
+#listUtf .itemDescr {
+    transform: translateY(-24px);
+}
+
+#listUtf .itemLocPr {
+    text-align: right;
+    transform: translateY(-92px);
+}
+
+
 header .header-arrow {
     position: relative;
     margin-top: 20px;

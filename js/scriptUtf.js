@@ -73,8 +73,8 @@ function updateListWithFilteredData(filteredData) {
         listItem.classList.add("list-item");
         listItem.innerHTML = `
             <h3>${item.name}</h3>
-            <p>${item.description || "Ingen beskrivning tillgänglig."}</p>
-            <p>Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
+            <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
+            <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
         `;
         listItem.addEventListener("click", () => openModal());
         listUtf.appendChild(listItem);

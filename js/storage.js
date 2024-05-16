@@ -1,6 +1,10 @@
+let msgDiv
+
 function showAcceptedSuggestions() {
     const savedActivity = JSON.parse(localStorage.getItem("savedActivity")) || [];
-    const msgDiv = document.getElementById("msg");
+     msgDiv = document.getElementById("msg");
+    msgDiv.style.display = "none";
+
 
     if (msgDiv) {
         if (savedActivity.length > 0) {
@@ -27,6 +31,8 @@ function showAcceptedSuggestions() {
     } else {
         console.error("Element with id 'msg' not found.");
     }
+    saveDate()
+    openList()
 }
 
 function tabort(index) {
@@ -40,3 +46,30 @@ function tabort(index) {
 }
 
 window.addEventListener("load", showAcceptedSuggestions);
+
+function saveDate() {
+    console.log("Banan")
+    let date = new Date();
+    let dateElem = document.querySelector("#date");
+    dateElem.innerHTML = `
+    <h2>${date.getDate()}/${date.getMonth() + 1} - ${date.getFullYear()}</h2>
+    <img src="bilder/pil2.svg" alt="Pil">
+    <img src="bilder/soptunna.svg" alt="Soptunna">
+`;
+}
+
+function openList(){
+    let img = document.querySelector("#date img")
+    img.addEventListener("click", () => {
+        if (msgDiv.style.display === "none") {
+            img.classList.add("rotated")
+            msgDiv.style.display = "block";
+        } else {
+            msgDiv.style.display = "none";
+            img.classList.remove("rotated")
+        }
+    });
+}
+function saveData(){
+    
+}
