@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script2.js"></script>
     <script src="js/scriptUtf.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <title>Projekt</title>
 </head>
@@ -50,7 +52,23 @@
 
     </main>
     <div id="modal" class="modal">
-        <div class="modal-content" id="modalContent"></div>
+        <div class="modal-content" id="modalContent">
+            
+            <div class="section">
+                <div class="image-container">
+                    <img src="Foto/paintball.jpg" class="imgb" alt="">
+                </div>
+                <div class="map-container">
+                    <div id="map" style="height: 150px;"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="weather-container">
+                    <!-- Content for weather -->
+                </div>
+            </div>
+        </div>
         <span class="close" id="modalClose">&times;</span>
     </div>
     
