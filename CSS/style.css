@@ -110,9 +110,9 @@ img{
 .item__overlay {
     position: absolute;
     bottom: 0;
-    left: 40px;
+    left: 0;
     right: 0;
-    width: 250px;
+    width: auto;
     background-color: rgba(158, 165, 165, 0.9);
     color: white;
     transition: transform 0.3s ease-in-out;
@@ -442,9 +442,12 @@ h2{
   font-size: 2em;
     text-align: left;
     list-style: none;
+    padding: 15px;
+    margin-top: 0px;
 }
 #bigbox li {
     padding-left: 20px; /* Justera vänstermarginalen för att ge plats för listpluppen */
+    margin: 10px;
 }
 
 #bigbox li::before {
@@ -457,16 +460,23 @@ h2{
     border-radius: 20%;
 }
 
-#date{
+.head{
   display: flex;
   justify-content: center;
   width: 90%;
 padding: 15px;
 }
-#date img{
+.minibox img{
     width: 40px;
     cursor: pointer;
-    margin:0 10px;
+    margin: 10px;
+}
+#msg{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .rotated {
     transform: rotate(180deg);
