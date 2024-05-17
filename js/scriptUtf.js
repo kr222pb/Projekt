@@ -72,6 +72,8 @@ function performSearch(query) {
     updateListWithFilteredData(filteredData);
 }
 
+
+
 function updateListWithFilteredData(filteredData) {
     const listUtf = document.getElementById("listUtf");
     if (!listUtf) {
