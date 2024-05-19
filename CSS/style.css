@@ -649,19 +649,19 @@ header .header-arrow .filter-arrow .arrow2 {
 .nested-dropdown-menu label {
     cursor: pointer; 
 }
-
 .modal {
     display: none;
     position: fixed;
     z-index: 1;
     left: 0;
-    top: 0;
+    top: 80px;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
@@ -670,23 +670,58 @@ header .header-arrow .filter-arrow .arrow2 {
     padding: 20px;
     border: 2px solid #686767;
     width: 80%;
-    height: 40%;
+    max-width: 900px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.image-container {
+    flex: 2; 
+    padding: 10px;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-container {
+    flex: 1; 
+    padding: 10px;
+    height: 200px; 
+}
+
+.weather-container {
+    background-color: #d4edda;
+    padding: 10px;
+    display: none; 
+}
+
+.imgb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .close {
-    position: absolute; 
-    top: 50px; 
-    right: 10px; 
+    position: absolute;
+    top: 30px; 
+    right: 15px;
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
     color: black;
     text-decoration: none;
-    cursor: pointer;
 }
 /*Profil*/
 #soptunna{
