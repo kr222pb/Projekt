@@ -515,6 +515,11 @@ main {
     background-color: #6c4a61;
 }
 
+
+#searchInput {
+  font-size: 16px;
+}
+
 #listUtf {
     margin-top: 20px;
     width: 100%;
