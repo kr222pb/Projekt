@@ -1,5 +1,4 @@
 window.addEventListener("load", () => {
-    init();
     setInterval(checkForLocationUpdate, 100); // Letar efter uppdateringar varje millisekund
 });
 
@@ -130,3 +129,4 @@ function updateWeatherIcon(iconPath) {
         console.error("Kunde inte hitta elementet för att visa väderikonen.");
     }
 }
+

@@ -77,7 +77,7 @@
          <div class="container">
             <div class="image-wrapper">
             </div>
-            <h2></h2>
+            <h2>Välj en stad för att börja swipa</h2>
             <h3></h3>
             <div class="item__overlay" id="infoPanel">
                 <div class="info-details">
@@ -104,7 +104,55 @@
     </main> 
     <div class="footer">
         <a href="utforska.html" class="funktion1">
-            <img src="bilder/utforska.svg" alt="Utforska">
+
+            <?xml version="1.0" encoding="UTF-8"?>
+            <svg id="utforskaren_svg" data-name="utforskaren_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.05 15.26" width="45" height="40">
+            <defs>
+                <style>
+                .utforskaren-cls-1 {
+                    fill: #696a6a;
+                }
+
+                .utforskaren-cls-1, .utforskaren-cls-2, .utforskaren-cls-3 {
+                    stroke-width: 0px;
+                }
+
+                .utforskaren-cls-2 {
+                    fill: #4d494a;
+                }
+
+                .utforskaren-cls-3 {
+                    fill: #fff;
+                }
+                </style>
+            </defs>
+            <g id="utforskaren_layer" data-name="utforskaren_layer">
+                <g id="utforskaren_rutor">
+                <rect class="utforskaren-cls-2" width="11.52" height="7.33"/>
+                <rect class="utforskaren-cls-2" y="7.93" width="11.52" height="7.33"/>
+                <rect class="utforskaren-cls-2" x="12.53" width="11.52" height="7.33"/>
+                </g>
+                <g id="utforskaren_streck">
+                <rect class="utforskaren-cls-1" x="1.09" y="3.62" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="1.09" y="2.04" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="1.09" y="5.21" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="1.09" y="11.56" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="1.09" y="9.97" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="1.09" y="13.14" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="13.61" y="3.62" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="13.61" y="2.04" width="9.35" height=".71"/>
+                <rect class="utforskaren-cls-1" x="13.61" y="5.21" width="9.35" height=".71"/>
+                </g>
+                <g id="utforskaren_figure">
+                <rect class="utforskaren-cls-3" x="14.16" y="10.05" width="1.68" height="5" rx=".84" ry=".84" transform="translate(-4.42 10.24) rotate(-33.14)"/>
+                <path class="utforskaren-cls-3" d="M13.06,8.7l1.83,2.81-.8.52-1.83-2.81c.14-.07.28-.15.41-.24s.26-.18.38-.28Z"/>
+                <path class="utforskaren-cls-3" d="M10.92,9.53c-1.06,0-2.09-.52-2.7-1.46-.97-1.49-.55-3.49.94-4.47.72-.47,1.59-.63,2.43-.46.84.18,1.57.67,2.04,1.39.9,1.37.62,3.2-.64,4.24-.09.08-.19.15-.3.22-.11.07-.21.13-.32.19-.46.23-.95.34-1.44.34ZM10.91,3.56c-.53,0-1.04.15-1.49.45-1.26.83-1.62,2.53-.79,3.79.76,1.17,2.27,1.57,3.51.95.09-.05.19-.1.28-.16.09-.06.17-.12.25-.19,1.07-.89,1.3-2.44.54-3.6h0c-.4-.61-1.01-1.03-1.73-1.18-.19-.04-.38-.06-.57-.06Z"/>
+                <path class="utforskaren-cls-3" d="M12.59,5.22s-.69-.89-2.81-.56l-.05-.32c2.34-.37,3.1.65,3.13.69l-.26.19Z"/>
+                <path class="utforskaren-cls-3" d="M11.91,5.66s-.48-.62-1.97-.38l-.05-.32c1.7-.27,2.26.48,2.28.51l-.26.19Z"/>
+                </g>
+            </g>
+            </svg>
+            
         </a>
         <a href="planera.html" class="funktion2">
             <?xml version="1.0" encoding="UTF-8"?>
@@ -156,13 +204,89 @@
                 <rect id="line1" class="cls-2" x="26.31" y="79.16" width="139.4" height="12.4" rx="6.06" ry="6.06"/>
                 
             </svg>
-
         </a>
         <a href="index.html" class="funktion3 this">
-            <img src="bilder/swipe1.svg" alt="Swipe">
+
+            <?xml version="1.0" encoding="UTF-8"?>
+            <svg id="swipe_svg" data-name="swipe_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.18 17.66" width="45" height="40" overflow="visible">
+              <defs>
+                <style>
+                  .swipe-cls-1 {
+                    fill: #4d494a;
+                    animation: swipeHandColor 1s ease-in-out forwards;
+                  }
+                  .swipe-cls-1, .swipe-cls-2 {
+                    stroke-width: 0px;
+                  }
+                  .swipe-cls-2 {
+                    fill: #6e686b;
+                    animation: swipeColorChange 1s ease-in-out forwards;
+                  }
+                  @keyframes swipeHandColor {
+                    0% {
+                      fill: #4d494a;
+                    }
+                    100% {
+                      fill: #00a49d;
+                    }
+                  }
+                  @keyframes swipeColorChange {
+                    0% {
+                      fill: #6e686b;
+                    }
+                    100% {
+                      fill: #f7ab0c;
+                    }
+                  }
+                  @keyframes moveToStart {
+                    0% {
+                      transform: translate(0, 0);
+                    }
+                    50% {
+                      transform: translate(-6.5px, 1px);
+                    }
+                    100% {
+                      transform: translate(0, 0);
+                    }
+                  }
+                  .animated-hand {
+                    animation: moveToStart 1s ease-in-out forwards, swipeHandColor 1s ease-in-out forwards;
+                  }
+                </style>
+              </defs>
+              <g id="swipe_layer" data-name="swipe_layer">
+                <path id="swipe_path" class="swipe-cls-2 animated-swipe" d="M7.69,3.66c-3.51,1.07-6.67.93-7.05-.32-.12-.38.04-.82.4-1.28C.32,2.55-.07,3.1,0,3.61c.19,1.3,3.3,1.91,6.93,1.36s6.42-2.04,6.22-3.33c0,0,0,0,0,0-.06-.38-.53-.54-.83-.29-1.01.86-2.68,1.72-4.65,2.32Z"/>
+                <g id="swipe_hand" class="animated-hand">
+                  <g>
+                    <path class="swipe-cls-1" d="M16.86,17.66h-2.54c-.7,0-1.39-.2-1.99-.59l-6.33-3.37c-.72-.38-1.03-1.33-.69-2.12l.06-.15c.21-.51.62-.89,1.1-1.06.44-.15.9-.13,1.32.08l2.53.62v-3.91s0-.04,0-.07V1.84c0-1.01.76-1.84,1.7-1.84.46,0,.9.2,1.22.56.31.34.48.8.48,1.28v1.63c.22-.12.48-.19.74-.19h.1c.73,0,1.35.51,1.57,1.21.25-.15.53-.24.84-.24h.07c.67,0,1.24.42,1.51,1.03.26-.18.57-.29.9-.29h.09c.91,0,1.65.79,1.65,1.76v6.13c0,2.64-1.94,4.78-4.32,4.78ZM7.04,11.17c-.09,0-.18.02-.27.05-.25.09-.45.29-.57.57l-.06.15c-.15.36-.02.81.29.97l6.36,3.39h.02c.46.31.99.46,1.52.46h2.54c1.88,0,3.41-1.74,3.41-3.88v-6.13c0-.47-.34-.86-.75-.86h-.09c-.41,0-.75.39-.75.86h-.9v-.74c0-.48-.34-.86-.75-.86h-.07c-.42,0-.75.39-.75.86h-.9v-.97c0-.47-.33-.85-.74-.85h-.1c-.41,0-.74.38-.74.85h-.9V1.84c0-.26-.09-.5-.25-.68-.15-.17-.34-.26-.55-.26-.44,0-.79.42-.79.93v5.25c0-.22-.18-.4-.4-.4v.45h.4v5.07l-3.76-.92-.05-.03c-.12-.06-.25-.1-.38-.1ZM13.71,7.6h-.5v-.45h-.4v-.06h.4v-.4h.05v.4h.45v.51Z"/>
+                    <polygon class="swipe-cls-1" points="12.81 8.51 12.81 8.01 12.81 5.04 13.71 5.04 13.71 8.01 13.72 8.51 12.81 8.51"/>
+                    <rect class="swipe-cls-1" x="15.3" y="6.01" width=".9" height="2.5"/>
+                    <rect class="swipe-cls-1" x="17.78" y="6.75" width=".9" height="1.76"/>
+                  </g>
+                  <rect class="swipe-cls-1" x="10.32" y="5.82" width=".9" height="2.03"/>
+                  <rect class="swipe-cls-1" x="10.58" y="6.91" width=".49" height=".48"/>
+                </g>
+              </g>
+            </svg>
+            
+            
+
         </a>
         <a href="profil.html" class="funktion5">
-            <img src="bilder/profil.svg" alt="Logga in">
+            <?xml version="1.0" encoding="UTF-8"?>
+            <svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.67 21.48" width="45" height="40">
+            <defs>
+                <style>
+                .cls-1 {
+                    fill: #4d494a;
+                    stroke-width: 0px;
+                }
+                </style>
+            </defs>
+            <g id="Lager_6" data-name="Lager 6">
+                <path class="cls-1" d="M11.84,21.48L2.19,11.84C-4.37,5.28,5.28-4.37,11.84,2.19c6.55-6.55,16.2,3.09,9.65,9.65l-9.65,9.65Z"/>
+            </g>
+            </svg>
         </a>
     </div>
     
