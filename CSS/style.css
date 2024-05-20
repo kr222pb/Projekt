@@ -158,7 +158,7 @@ img{
 #map,
 #weather-container {
     position: relative; 
-    z-index: 5;
+    
 }
 .options{
     background-color: #6c6c6f;
@@ -387,6 +387,7 @@ h2{
 }
 #weather-info {
     font-size: large;
+   
 }
 .info-block#map{
     flex: 2;
@@ -662,9 +663,6 @@ header .header-arrow .filter-arrow .arrow2 {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .modal-content {
@@ -680,11 +678,12 @@ header .header-arrow .filter-arrow .arrow2 {
 
 .section {
     display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
 .image-container {
-    flex: 2; 
+    flex: 1;
     padding: 10px;
     margin: 0;
     overflow: hidden;
@@ -696,13 +695,23 @@ header .header-arrow .filter-arrow .arrow2 {
 .map-container {
     flex: 1; 
     padding: 10px;
-    height: 200px; 
+    height: 200px;
 }
 
 .weather-container {
-    background-color: #d4edda;
+    padding: 20px;
+    height: 100px;
+    width: 100px; 
+    margin-top: 10px;
+}
+.info-container {
+    background-color: #f0f0f0;
     padding: 10px;
-    display: none; 
+    margin-top: 10px;
+}
+
+.info-item {
+    margin-bottom: 5px;
 }
 
 .imgb {
@@ -713,17 +722,17 @@ header .header-arrow .filter-arrow .arrow2 {
 
 .close {
     position: absolute;
-    top: 30px; 
+    top: -20px; 
     right: 15px;
     color: #aaa;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
     cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 /*Profil*/
