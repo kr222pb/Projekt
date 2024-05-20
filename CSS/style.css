@@ -33,6 +33,7 @@ header {
     top:20px;
     left: 10px; /* Flytta logotypen till vänster */
 }
+
 .header-content {
     display: flex;
     align-items: center;
@@ -54,6 +55,10 @@ header {
 img{
     width: 70px;
     margin-right: 10px;
+}
+
+#timerDisplay {
+    color: #4d494b;
 }
 
 
@@ -159,6 +164,63 @@ img{
     position: relative; 
     
 }
+/* Kamera */
+.cameraState {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: -60%;
+}
+
+.cameraState p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+
+#kamera {
+    width: 300px;
+    animation: cameraMove 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes cameraMove {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes cameraRotateAndShrink {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(720deg) scale(0.5);
+    }
+}
+
+#kamera.camera-rotate {
+    animation: cameraRotateAndShrink 2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+
+/* */
+
 .options{
     background-color: #6c6c6f;
     display: flex;
