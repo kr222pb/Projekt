@@ -770,3 +770,53 @@ header .header-arrow .filter-arrow .arrow2 {
     border: 1px solid #ccc;
     border-radius: 10px; 
 }
+/*TESTING PÅGÅR*/
+
+#planera{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      margin: 10px;
+    padding: 0;
+}
+#planera h2{
+    margin: 0;
+    font-size: 2rem;
+}
+#cityRBTN, #activityRBTN, #budgetRBTN{
+    width: 80%;
+    height: 150px;
+    margin: 2%;
+    padding: 15px;
+    
+}
+#cityRBTN{
+    border: 5px solid #00a49d;
+    display: grid;
+    grid-template-columns: 10% 40% 10% 40%; /* Två kolumner med lika stor bredd */
+    gap: 2px;
+}
+#cityRBTN label {
+    cursor: pointer;
+}
+#activityRBTN{
+    border:5px solid #c45d5d;
+    display: grid;
+    grid-template-columns: 10% 40% 10% 40%; /* Två kolumner med lika stor bredd */
+    gap: 2px;
+
+}
+
+#activityRBTN label {
+    cursor: pointer;
+}
+#budgetRBTN{
+    border: 5px solid yellow;  
+    width: max-content;
+    height: max-content;
+font-size: 2rem;
+
+}
+#budgetRBTN label {
+    cursor: pointer;
+}
