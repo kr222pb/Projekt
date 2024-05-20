@@ -432,6 +432,7 @@ h2{
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     color: #fff;
 
     padding: 20px;
@@ -440,8 +441,7 @@ h2{
 }
 .minibox{
     background-color: #6c4a61;
-    border-radius: 20%;
-    padding: 10px;
+border-radius: 50%;
 }
 
 .minibox img{
@@ -459,12 +459,31 @@ h2{
 
 /*Test*/
 .testar{
+    height: 150px;
     background-image: url(/bilder/papper.svg);
     background-size: cover;
     opacity: 0.8;
+    position: relative;
+}
+.testar h2{
+    padding-top: 25px !important;
 }
 .testar h2, .testar h3{
     color: #000;
+    margin: 5px;
+    margin-top: 0px;
+}
+#tunna{
+    position: absolute;
+    top: 75px;
+    right: 12px;
+}
+#häftstift{
+    width: 20px;
+    position: absolute;
+    top: -20px;
+    left: 40%;
+
 }
 /*Utforskare*/
 main {
