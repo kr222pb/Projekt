@@ -432,55 +432,41 @@ h2{
     border-radius: 20%;
 
     text-align: center;
+    display: flex;
+    justify-content: center;
     color: #fff;
 
     padding: 20px;
     margin: 200px;
     width: 60%;
 }
-#bigbox ul{
-  font-size: 2em;
-    text-align: left;
-    list-style: none;
-    padding: 15px;
-    margin-top: 0px;
-}
-#bigbox li {
-    padding-left: 20px; /* Justera vänstermarginalen för att ge plats för listpluppen */
-    margin: 10px;
-}
-
-#bigbox li::before {
-    content: '\2764'; /* Unicode-tecknet för hjärta */
-    display: inline-block;
-    margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
-}
-#minibox{
+.minibox{
     background-color: #6c4a61;
     border-radius: 20%;
+    padding: 10px;
 }
 
-.head{
-  display: flex;
-  justify-content: center;
-  width: 90%;
-padding: 15px;
-}
 .minibox img{
     width: 40px;
     cursor: pointer;
     margin: 10px;
 }
-#msg{
-    margin: 0px;
-    padding: 0px;
+.head{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 .rotated {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
+}
+
+/*Test*/
+.testar{
+    background-image: url(/bilder/papper.svg);
+    background-size: cover;
+    opacity: 0.8;
+}
+.testar h2, .testar h3{
+    color: #000;
 }
 /*Utforskare*/
 main {

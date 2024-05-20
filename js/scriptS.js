@@ -10,7 +10,16 @@ function init() {
     console.time("Data Fetch Time");
     fetchAllEstablishmentData();
     setupEventListeners();
+
+    // Load saved activities from localStorage and ensure no duplicates
+    const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
+    localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
+
+    console.log("Loaded saved activities:", savedActivities);
 }
+
+window.addEventListener("load", init);
+
 
 async function fetchAllEstablishmentData() {
     const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
@@ -52,7 +61,7 @@ function setupEventListeners() {
 }
 
 function filterAndShow() {
-    localStorage.removeItem("savedActivity");
+    
     const allowedTypes = ["activity", "food", "attraction"];
     const excludedDescriptions = ["Lekplats","kyrka", "Lekland", "Hamburgerkedja"];
 
@@ -205,12 +214,24 @@ function showCurrentSuggestion() {
 
 function nextSlide(e) {
     if (e.target.id === "bock" && currentIndex < filteredData.length) {
-
         const savedSuggestions = JSON.parse(localStorage.getItem("savedActivity")) || [];
-        savedSuggestions.push(filteredData[currentIndex]);
-        localStorage.setItem("savedActivity", JSON.stringify(savedSuggestions));
 
-        console.log(`Accepted: ${filteredData[currentIndex].name}`);
+        const currentActivity = filteredData[currentIndex];
+        const savedActivity = {
+            name: currentActivity.name,
+            addedAt: new Date().toLocaleString() // Lägg till den aktuella tiden
+        };
+
+        // Kontrollera om aktiviteten redan finns i den sparade listan
+        const activityExists = savedSuggestions.some(activity => activity.name === savedActivity.name && activity.addedAt === savedActivity.addedAt);
+        
+        if (!activityExists) {
+            savedSuggestions.push(savedActivity);
+            localStorage.setItem("savedActivity", JSON.stringify(savedSuggestions)); // Uppdatera nyckeln här
+
+            console.log(`Accepted: ${currentActivity.name} at ${savedActivity.addedAt}`);
+            console.log("Saved Suggestions:", savedSuggestions); // Debugging
+        }
     }
 
     currentIndex++;
@@ -219,6 +240,7 @@ function nextSlide(e) {
     }
     showCurrentSuggestion();
 }
+
 
 function updateUI(obj) {
     const container = document.querySelector(".container");
