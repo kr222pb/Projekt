@@ -552,6 +552,15 @@ padding: 10px;
     left: 40%;
 
 }
+@media (max-width: 400px){
+    #tunna{
+        top: 80px;
+        right: 0px;
+    }
+    .testar{
+        height: 200px;
+    }
+}
 /*Utforskare*/
 main {
     padding-top: 70px;
