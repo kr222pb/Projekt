@@ -57,10 +57,6 @@ img{
     margin-right: 10px;
 }
 
-#timerDisplay {
-    color: #4d494b;
-}
-
 
 .container {
     background-image: url(/bilder/polaroid.svg);
@@ -217,6 +213,44 @@ img{
     display: none !important;
 }
 
+.end-message {
+    text-align: center;
+    font-size: 24px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.pulse-heart {
+    width: 150px;
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10%, 30% {
+        transform: scale(1.2);
+    }
+    20%, 40% {
+        transform: scale(1);
+    }
+}
+
+#timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+#timerDisplay {
+    color: #4d494a; 
+    font-size: 48px; 
+    text-align: center; 
+}
 
 
 /* */
@@ -404,9 +438,6 @@ h2{
     margin-top: 25px;
 }
 
-#timerDisplay {
-    color: white;
-}
 
 .select-container {
     position: relative;
@@ -420,7 +451,7 @@ h2{
     appearance: none;
     background: transparent;
     border: transparent;
-    color: white;
+    color: #4d494a;
     width: 74px;
 }
 
@@ -551,9 +582,10 @@ border-radius: 50%;
 main {
     padding-top: 70px;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 
