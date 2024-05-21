@@ -40,6 +40,11 @@ function ConNewDiv(activity, activityIndex, date) {
     dateElement.textContent = activity.addedAt;
     div.appendChild(dateElement);
 
+    const pinImg = document.createElement("img");
+    pinImg.src = "bilder/g4.png";
+    pinImg.id = "häftstift";
+    div.appendChild(pinImg);
+
     // Skapa och lägg till en img-tag för sopkorgsbilden
     const trash = document.createElement("img");
     trash.src = "bilder/soptunna.svg";
@@ -126,6 +131,8 @@ function openList() {
             if (activitiesDiv.style.display === "none") {
                 img.classList.add("rotated");
                 activitiesDiv.style.display = "block";
+                minibox.style.borderRadius = '20px';
+                minibox.style.padding = "10px";
             } else {
                 activitiesDiv.style.display = "none";
                 img.classList.remove("rotated");
@@ -135,31 +142,31 @@ function openList() {
 }
 
 function tabort(activityIndex, date, activityDiv) {
-    const groupedActivities = groupActivitiesByDate(savedActivity);
-    const activities = groupedActivities.get(date);
-    if (activities && activityIndex !== -1) {
-        activities.splice(activityIndex, 1);
-        if (activities.length === 0) {
-            groupedActivities.delete(date);
-        } else {
-            groupedActivities.set(date, activities);
-        }
-        savedActivity = Array.from(groupedActivities.values()).flat();
+    if (confirm("Är du säker på att du vill ta bort denna aktivitet?")) {
+        // Ta bort den specifika aktiviteten från savedActivity
+        savedActivity = savedActivity.filter((activity, index) => {
+            const activityDate = new Date(activity.addedAt).toLocaleDateString();
+            return !(index === activityIndex && activityDate === date);
+        });
+        
         saveData();
-        activityDiv.remove(); // Ta bort den specifika aktiviteten från DOM:en
+        // Ta bort aktiviteten från DOM:en
+        activityDiv.remove();
     }
 }
 
 function removeDateDiv(minibox, date) {
-    // Ta bort alla aktiviteter för ett specifikt datum från savedActivity
-    savedActivity = savedActivity.filter(activity => {
-        const activityDate = new Date(activity.addedAt).toLocaleDateString();
-        return activityDate !== date;
-    });
-    
-    saveData();
-    // Ta bort hela miniboxen från DOM:en
-    minibox.remove();
+    if (confirm("Är du säker på att du vill ta bort alla aktiviteter för detta datum?")) {
+        // Ta bort alla aktiviteter för ett specifikt datum från savedActivity
+        savedActivity = savedActivity.filter(activity => {
+            const activityDate = new Date(activity.addedAt).toLocaleDateString();
+            return activityDate !== date;
+        });
+        
+        saveData();
+        // Ta bort hela miniboxen från DOM:en
+        minibox.remove();
+    }
 }
 
 function saveData() {

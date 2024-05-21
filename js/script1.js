@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const rightArrow = document.querySelector(".right-arrow");
     const navMenu = document.querySelector(".nav-menu");
     const navLinks = document.querySelectorAll(".nav-menu a");
+
+    tabsContainer.classList.add("active");
+    filterTrigger.classList.add("active");
     
     navLinks.forEach(link => {
         link.addEventListener("click", function(event) {

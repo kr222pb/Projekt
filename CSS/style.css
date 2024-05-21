@@ -12,12 +12,16 @@ body {
     background-color: #a9a4a4;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrerar innehållet vertikalt */
-    justify-content: center; /* Centrerar innehållet horisontellt */
-    min-height: 100vh; /* Full höjd på viewporten */
+    align-items: center;
+    /* Centrerar innehållet vertikalt */
+    justify-content: center;
+    /* Centrerar innehållet horisontellt */
+    min-height: 100vh;
+    /* Full höjd på viewporten */
     margin: 0;
     font-family: main, 'Times New Roman', Times, serif;
 }
+
 header {
     position: fixed;
     top: 0;
@@ -25,43 +29,61 @@ header {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center; /* Lägg till centrerad justering här */
+    justify-content: center;
+    /* Lägg till centrerad justering här */
     z-index: 1000;
 }
+
 .logo {
     position: absolute;
-    top:20px;
-    left: 10px; /* Flytta logotypen till vänster */
+    top: 20px;
+    left: 10px;
+    /* Flytta logotypen till vänster */
 }
+
 .header-content {
     display: flex;
     align-items: center;
-    justify-content: center; /* Säkerställer att innehållet är centrerat */
+    justify-content: center;
+    /* Säkerställer att innehållet är centrerat */
     width: 100%;
 }
+
 .header-content a {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .header-content .filter-trigger .arrow {
-    margin-top: 30px; /* Justera detta värde för att flytta ner pilen */
+    margin-top: 30px;
+    /* Justera detta värde för att flytta ner pilen */
 }
+
 .arrow {
-    width: 70px; /* eller den bredd du föredrar */
-    height: auto; /* bibehåller bildens aspektförhållande */
+    width: 70px;
+    /* eller den bredd du föredrar */
+    height: auto;
+    /* bibehåller bildens aspektförhållande */
 }
-img{
+
+img {
     width: 70px;
     margin-right: 10px;
+}
+
+#timerDisplay {
+    color: #4d494b;
 }
 
 
 .container {
     background-image: url(/bilder/polaroid.svg);
     background-repeat: no-repeat;
-    background-size: contain;  /* Se till att polaroid-bilden skalas inom containern */
-    background-position: center;  /* Centrera bakgrundsbilden */
+    background-size: contain;
+    /* Se till att polaroid-bilden skalas inom containern */
+    background-position: center;
+    /* Centrera bakgrundsbilden */
     position: relative;
     width: 240px;
     margin: auto;
@@ -69,7 +91,8 @@ img{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center;  /* Centrera innehållet horisontellt */
+    align-items: center;
+    /* Centrera innehållet horisontellt */
     padding: 15px;
     padding-bottom: 0;
     overflow: hidden;
@@ -94,10 +117,10 @@ img{
 
 .image-wrapper {
     position: absolute;
-    width: 192px;  
+    width: 192px;
     height: 320px;
     top: 15px;
-    
+
 }
 
 .image-wrapper img {
@@ -119,56 +142,123 @@ img{
     padding: 10px;
     box-sizing: border-box;
     z-index: 10;
-    
+
 }
-.item__overlay p{
+
+.item__overlay p {
     margin: 5px;
 }
 
 .info-details {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     gap: 10px;
 }
 
 .info-block {
     flex: 0.75;
     padding: 4px;
-    background-color: rgba(255, 255, 255, 0.8); /* Lätt transparens */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Lätt transparens */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    
+
 }
 
 .info-block h4 {
-    margin:5px 0;
+    margin: 5px 0;
     color: #333;
 }
-.info-block p{
+
+.info-block p {
     color: #333;
 }
 
 .item__body {
     max-height: 70px;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
+
 #map,
 #weather-container {
-    position: relative; 
-    
+    position: relative;
+
 }
-.options{
+
+/* Kamera */
+.cameraState {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: -60%;
+}
+
+.cameraState p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+
+#kamera {
+    width: 300px;
+    animation: cameraMove 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes cameraMove {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes cameraRotateAndShrink {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(720deg) scale(0.5);
+    }
+}
+
+#kamera.camera-rotate {
+    animation: cameraRotateAndShrink 2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+
+/* */
+
+.options {
     background-color: #6c6c6f;
     display: flex;
     justify-content: space-around;
-    width: 60%; 
-    margin: 0 auto 20px auto; /* Centrerar options och ger utrymme nedanför */
+    width: 60%;
+    margin: 0 auto 20px auto;
+    /* Centrerar options och ger utrymme nedanför */
     padding: 10px 0;
-    background-color: #a9a4a4; 
+    background-color: #a9a4a4;
     border-radius: 15px;
 }
+
 .options img {
     padding: 5px 15px;
     width: 2em;
@@ -182,61 +272,73 @@ img{
     width: 45px;
 }
 
-#pin{
+#pin {
     height: 40px;
     position: absolute;
     bottom: 45px;
     left: 65px;
 
 }
-.footer{
+
+.footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #a9a4a4;
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-around;
     padding: 10px 0;
-    
+
 }
+
 .footer a {
-    color: white; 
-    text-decoration: none; 
+    color: white;
+    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1; 
+    flex: 1;
 }
 
 .footer a img {
     object-fit: contain;
 }
 
-h2{
+h2 {
     color: white;
 }
+
 .scrollable-tabs-container {
-    max-width: 400px; 
+    max-width: 400px;
     margin: 5px auto;
     border-radius: 4px;
-    overflow: hidden; /*  gömmer  innehållet */
+    overflow: hidden;
+    /*  gömmer  innehållet */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 100%; /* Positionerar dropdown precis under triggern*/
-    display: none; 
-    width: 95%; /* Justerbar bredd för bättre layout */
-    max-height: 0; /* Används för att dölja eller visa med en övergång */
-    transition: all 0.3s ease; /* Ger en mjuk övergång för dropdown-effekten */
+    top: 100%;
+    /* Positionerar dropdown precis under triggern*/
+    display: none;
+    width: 95%;
+    /* Justerbar bredd för bättre layout */
+    max-height: 0;
+    /* Används för att dölja eller visa med en övergång */
+    transition: all 0.3s ease;
+    /* Ger en mjuk övergång för dropdown-effekten */
     z-index: 20;
 }
 
 .scrollable-tabs-container.active {
-    display: block; /* Visas när den är aktiv */
-    max-height: 200px; /* Höjd nog för att visa innehållet */
-    overflow-x: auto; /* Tillåter horisontell scrollning inuti */
-    overflow-y: hidden; /* Förhindrar vertikal scrollning */
+    display: block;
+    /* Visas när den är aktiv */
+    max-height: 200px;
+    /* Höjd nog för att visa innehållet */
+    overflow-x: auto;
+    /* Tillåter horisontell scrollning inuti */
+    overflow-y: hidden;
+    /* Förhindrar vertikal scrollning */
 }
 
 .nav-menu {
@@ -249,7 +351,8 @@ h2{
     -ms-overflow-style: none;
     scrollbar-width: none;
     flex-grow: 1;
-    mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent); /* Maskerar kanterna */
+    mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent);
+    /* Maskerar kanterna */
 }
 
 
@@ -258,19 +361,21 @@ h2{
 .nav-item a {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    background:#808080;;
+    background: #808080;
+    ;
     padding: 4px 24px;
     display: inline-block;
     border-radius: 4px;
 }
 
 
-.left-arrow, .right-arrow {
+.left-arrow,
+.right-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px; 
-    height: 24px; 
+    width: 24px;
+    height: 24px;
     z-index: 20;
     cursor: pointer;
     margin-top: -10px;
@@ -290,35 +395,41 @@ h2{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 30;  
-    width: 24px;  /* Enhetsstorlek för båda pilarna */
-    height: 24px; /* Enhetsstorlek för båda pilarna */
+    z-index: 30;
+    width: 24px;
+    /* Enhetsstorlek för båda pilarna */
+    height: 24px;
+    /* Enhetsstorlek för båda pilarna */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px; 
+    border-radius: 12px;
     transition: background-color 0.3s ease;
 }
 
 
 .scrollable-tabs-container .left-arrow {
-    left: 10px; 
+    left: 10px;
 }
 
 
 .scrollable-tabs-container .right-arrow {
-    right: 10px; 
+    right: 10px;
 }
 
 /* Styling när musen hovrar över pilarna */
 .scrollable-tabs-container .left-arrow:hover,
 .scrollable-tabs-container .right-arrow:hover {
-    background-color: rgba(248, 242, 242, 0.7); /* Mörkare vid hover för bättre feedback */
+    background-color: rgba(248, 242, 242, 0.7);
+    /* Mörkare vid hover för bättre feedback */
 }
+
 .nav-item a.active {
-    background-color: #00a49d; /* Grå färg för markerade alternativ */
-    color: white; /* Säkerställer att texten är läsbar */
+    background-color: #00a49d;
+    /* Grå färg för markerade alternativ */
+    color: white;
+    /* Säkerställer att texten är läsbar */
 }
 
 
@@ -331,8 +442,9 @@ h2{
 .filter-trigger.active .arrow {
     transform: rotate(180deg);
 }
+
 .filter-trigger.active h1 {
-    visibility: hidden; 
+    visibility: hidden;
 }
 
 .timerWrapper {
@@ -363,14 +475,14 @@ h2{
 }
 
 #timeSelect:focus {
-  outline: 0;
+    outline: 0;
 }
 
 #timer {
     width: 40px;
 }
 
-.container img{
+.container img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -382,19 +494,24 @@ h2{
     width: 80px;
     margin-left: 20px;
 }
+
 #weather-info {
     font-size: large;
-   
+
 }
-.info-block#map{
+
+.info-block#map {
     flex: 2;
 }
 
 /* ------ANIMATIONER------ */
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-10px);
     }
@@ -409,63 +526,109 @@ h2{
 
 @keyframes slideIn {
     0% {
-      transform: translateX(-100%);
+        transform: translateX(-100%);
     }
+
     100% {
-      transform: translateX(0%);
+        transform: translateX(0%);
     }
-  }
-  
-  #Lager_2 #_1,
-  #Lager_2 #_2,
-  #Lager_2 #_3,
-  #Lager_2 #_4 {
+}
+
+#Lager_2 #_1,
+#Lager_2 #_2,
+#Lager_2 #_3,
+#Lager_2 #_4 {
     animation: slideIn 1s ease forwards;
-  }
-  
+}
+
 
 /* Profilsidan */
-#bigbox{ 
+#bigbox {
     border: 5px solid rgb(117, 115, 115);
-    border-radius: 20%;
+    border-radius: 50px;
 
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     color: #fff;
 
     padding: 20px;
     margin: 200px;
-    width: 60%;
+    width: 80%;
 }
-.minibox{
-    background-color: #6c4a61;
-    border-radius: 20%;
+
+.minibox {
+    background-color: #00a49d;
+    border-radius: 50px;
     padding: 10px;
 }
 
-.minibox img{
+.minibox img {
     width: 40px;
     cursor: pointer;
     margin: 10px;
 }
-.head{
+
+.head {
     display: flex;
+    justify-content: center;
 }
+
+.head h2 {
+    color: #000;
+    font-weight: bold;
+}
+
 .rotated {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
 }
 
 /*Test*/
-.testar{
+.testar {
+    height: 150px;
     background-image: url(/bilder/papper.svg);
     background-size: cover;
-    opacity: 0.8;
+    position: relative;
 }
-.testar h2, .testar h3{
+
+.testar h2 {
+    padding-top: 25px !important;
+}
+
+.testar h2,
+.testar h3 {
     color: #000;
+    margin: 5px;
+    margin-top: 0px;
 }
+
+#tunna {
+    position: absolute;
+    top: 65px;
+    right: 12px;
+}
+
+#häftstift {
+    width: 20px;
+    position: absolute;
+    top: -20px;
+    left: 40%;
+
+}
+
+@media (max-width: 431px) {
+    #tunna {
+        top: 80px;
+        right: 0px;
+    }
+
+    .testar {
+        height: 200px;
+    }
+}
+
 /*Utforskare*/
 main {
     padding-top: 70px;
@@ -478,21 +641,21 @@ main {
 
 .search-container form {
     display: flex;
-    width: 100%; 
+    width: 100%;
 }
 
 .search-container {
     margin-top: 20px;
     width: 50%;
     margin-left: 90px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     top: -270px;
 }
 
 .search-container button {
     padding: 8px 12px;
-    background-color: #00a49d; 
+    background-color: #00a49d;
     color: white;
     border: none;
     border-radius: 4px;
@@ -506,7 +669,7 @@ main {
 
 
 #searchInput {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 #listUtf {
@@ -548,18 +711,18 @@ main {
 header .header-arrow {
     position: relative;
     margin-top: 20px;
-    display: flex; 
-    justify-content: flex-end; 
-    width: 100%; 
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 header .header-arrow .filter-arrow {
-    margin-right: 10px; 
+    margin-right: 10px;
 }
 
 header .header-arrow .filter-arrow .arrow2 {
     width: 40px;
-    height: auto; 
+    height: auto;
 }
 
 .dropdown-menu {
@@ -600,10 +763,12 @@ header .header-arrow .filter-arrow .arrow2 {
 .dropdown-menu .dropdown-item:hover {
     background-color: #726464;
 }
+
 .active-dropdown-item {
-    background-color: #d3d3d3; 
-    color: #000; 
-    border: 2px solid #000; /* Borderfärg */
+    background-color: #d3d3d3;
+    color: #000;
+    border: 2px solid #000;
+    /* Borderfärg */
 }
 
 
@@ -631,18 +796,19 @@ header .header-arrow .filter-arrow .arrow2 {
     padding: 5px;
     width: 100%;
     box-sizing: border-box;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 /* Checkbox styles */
 .nested-dropdown-menu input[type="checkbox"] {
     margin-right: 10px;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .nested-dropdown-menu label {
-    cursor: pointer; 
+    cursor: pointer;
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -684,7 +850,7 @@ header .header-arrow .filter-arrow .arrow2 {
 }
 
 .map-container {
-    flex: 1; 
+    flex: 1;
     padding: 10px;
     height: 200px;
 }
@@ -692,9 +858,10 @@ header .header-arrow .filter-arrow .arrow2 {
 .weather-container {
     padding: 20px;
     height: 100px;
-    width: 100px; 
+    width: 100px;
     margin-top: 10px;
 }
+
 .info-container {
     background-color: #f0f0f0;
     padding: 10px;
@@ -713,7 +880,7 @@ header .header-arrow .filter-arrow .arrow2 {
 
 .close {
     position: absolute;
-    top: -20px; 
+    top: -20px;
     right: 15px;
     color: #aaa;
     font-size: 40px;
@@ -726,8 +893,9 @@ header .header-arrow .filter-arrow .arrow2 {
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
+
 /*Profil*/
-#soptunna{
+#soptunna {
     height: 40px;
 }
 
@@ -748,7 +916,82 @@ header .header-arrow .filter-arrow .arrow2 {
     margin: 10px;
     padding: 10px;
     background-image: url(/Foto/hum.jpg);
-    background-size:cover;
+    background-size: cover;
     border: 1px solid #ccc;
-    border-radius: 10px; 
+    border-radius: 10px;
+}
+
+/*TESTING PÅGÅR*/
+
+#planera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 100px;
+}
+
+#planera h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+#form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#cityRBTN,
+#activityRBTN,
+#budgetRBTN,
+#fysisktRBTN {
+    width: max-content;
+    height: max-content;
+    margin: 2%;
+    padding: 15px;
+
+}
+
+#cityRBTN {
+    border: 5px solid #00a49d;
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    /* Två kolumner med lika stor bredd */
+    gap: 2px;
+}
+
+#cityRBTN label,
+#activityRBTN label,
+#budgetRBTN label,
+#fysisktRBTN label {
+    cursor: pointer;
+    padding: 3px;
+}
+
+#activityRBTN {
+    border: 5px solid #c45d5d;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Två kolumner med lika stor bredd */
+    gap: 2px;
+}
+
+#budgetRBTN,
+#fysisktRBTN {
+    border: 5px solid yellow;
+    width: max-content;
+    height: max-content;
+    font-size: 1,5rem;
+
+}
+#budgetRBTN [type="radio"],
+#fysisktRBTN [type="radio"]{
+    width: 20px;
+    height: 20px;
+
+    margin-right: 10px;
+}
+#planeraMSG{
+    border: 5px solid #00a49d;
+    padding: 30px;
 }

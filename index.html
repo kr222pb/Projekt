@@ -11,6 +11,7 @@
     <script src="js/scriptS.js"></script>
     <script src="js/smhi.js"></script>
     <script src="js/swipe.js"></script>
+    <script src="js/kamera.js"></script>
     <title>Projekt</title>
 </head>
 <body>
@@ -18,7 +19,7 @@
         <div class="logo">
             <img src="bilder/logo.svg" alt="Logo">
         </div>
-        <div class="header-content">
+        <div class="header-content hidden">
             <a href="#" class="filter-trigger">
                 <img src="bilder/pil.svg" alt="Pil" class="arrow">
             </a>
@@ -69,12 +70,18 @@
                         <option value="120">2 Min</option>
                     </select>
                 </div>
-                <p id="timerDisplay"></p>
             </div>
         </div>
     </header>
     <main>
-         <div class="container">
+        <p id="timerDisplay"></p>
+
+        <div class="cameraState">
+            <p>Klicka på mig för att få förslag på en dejt!</p>
+            <img src="bilder/polaroidkameras.svg" id="kamera" alt="Polaroidkamera">
+        </div>
+
+        <div class="container hidden">
             <div class="image-wrapper">
             </div>
             <h2>Välj en stad för att börja swipa</h2>
@@ -85,7 +92,6 @@
                     </div>
                     <div class="info-block" id="weather-container">
                         <h4>Väder</h4>
-                        <!-- Plats för att dynamiskt visa väderinformation -->
                         <p id="weather-info">Laddar väder...</p>
                         <img id="weather-icon" alt="Ikon för aktuellt väder" />
                     </div>
@@ -95,11 +101,11 @@
                 </div>
             </div>
         </div>
-        <div class="options">
+        <div class="options hidden">
             <img id="kryss" src="bilder/kryss.svg" alt="kryss">
             <img id="info" src="bilder/info.svg" alt="info" >
             <img id="bock" src="bilder/bock.svg" alt="bock">
-        </div>
+        </div> 
 
     </main> 
     <div class="footer">

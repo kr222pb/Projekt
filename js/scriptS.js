@@ -223,14 +223,11 @@ function nextSlide(e) {
         };
 
         // Kontrollera om aktiviteten redan finns i den sparade listan
-        const activityExists = savedSuggestions.some(activity => activity.name === savedActivity.name && activity.addedAt === savedActivity.addedAt);
+        const activityExists = savedSuggestions.some(activity => activity.name === savedActivity.name);
         
         if (!activityExists) {
             savedSuggestions.push(savedActivity);
             localStorage.setItem("savedActivity", JSON.stringify(savedSuggestions)); // Uppdatera nyckeln här
-
-            console.log(`Accepted: ${currentActivity.name} at ${savedActivity.addedAt}`);
-            console.log("Saved Suggestions:", savedSuggestions); // Debugging
         }
     }
 
