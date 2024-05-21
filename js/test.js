@@ -142,27 +142,31 @@ function openList() {
 }
 
 function tabort(activityIndex, date, activityDiv) {
-    // Ta bort den specifika aktiviteten från savedActivity
-    savedActivity = savedActivity.filter((activity, index) => {
-        const activityDate = new Date(activity.addedAt).toLocaleDateString();
-        return !(index === activityIndex && activityDate === date);
-    });
-    
-    saveData();
-    // Ta bort aktiviteten från DOM:en
-    activityDiv.remove();
+    if (confirm("Är du säker på att du vill ta bort denna aktivitet?")) {
+        // Ta bort den specifika aktiviteten från savedActivity
+        savedActivity = savedActivity.filter((activity, index) => {
+            const activityDate = new Date(activity.addedAt).toLocaleDateString();
+            return !(index === activityIndex && activityDate === date);
+        });
+        
+        saveData();
+        // Ta bort aktiviteten från DOM:en
+        activityDiv.remove();
+    }
 }
 
 function removeDateDiv(minibox, date) {
-    // Ta bort alla aktiviteter för ett specifikt datum från savedActivity
-    savedActivity = savedActivity.filter(activity => {
-        const activityDate = new Date(activity.addedAt).toLocaleDateString();
-        return activityDate !== date;
-    });
-    
-    saveData();
-    // Ta bort hela miniboxen från DOM:en
-    minibox.remove();
+    if (confirm("Är du säker på att du vill ta bort alla aktiviteter för detta datum?")) {
+        // Ta bort alla aktiviteter för ett specifikt datum från savedActivity
+        savedActivity = savedActivity.filter(activity => {
+            const activityDate = new Date(activity.addedAt).toLocaleDateString();
+            return activityDate !== date;
+        });
+        
+        saveData();
+        // Ta bort hela miniboxen från DOM:en
+        minibox.remove();
+    }
 }
 
 function saveData() {

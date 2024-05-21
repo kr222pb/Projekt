@@ -7,6 +7,7 @@
    viewBox="0 0 53.561314 48.502518"
    version="1.1"
    id="svg1"
+   sodipodi:docname="soptunna.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -27,13 +28,13 @@
      inkscape:label="Lager 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-103.57081,-108.22622)">
+     transform="translate(-103.57081,-108.22623)">
     <path
-       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
        d="m 107.57876,119.16638 5.79478,37.16058 32.19506,-0.1675 7.74342,-37.1728 z"
        id="path1" />
     <rect
-       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
        id="rect1"
        width="52.761314"
        height="7.2417488"
@@ -41,7 +42,7 @@
        y="113.023"
        ry="3.6208744" />
     <rect
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
        id="rect2"
        width="4.3967762"
        height="21.466612"
@@ -49,7 +50,7 @@
        y="126.47196"
        ry="2.1983881" />
     <rect
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
        id="rect2-8"
        width="4.3967762"
        height="21.466612"
@@ -57,7 +58,7 @@
        y="126.65385"
        ry="2.1983881" />
     <rect
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
        id="rect2-6"
        width="4.3967762"
        height="21.466612"
