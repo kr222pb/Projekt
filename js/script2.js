@@ -324,5 +324,37 @@ document.addEventListener('DOMContentLoaded', async function() {
         dropdownMenu.classList.toggle('active');
     });
  
+    function updateMap(lat, lng) {
+        if (lat === undefined || lng === undefined) {
+            console.error("Invalid coordinates:", lat, lng);
+            return;
+        }
+    
+        const mapContainer = document.getElementById('map');
+        if (mapContainer) {
+            mapContainer.innerHTML = "";
+        }
+    
+        const icon = L.icon({
+            iconUrl: 'bilder/plats.svg',
+            iconSize: [38, 95],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76]
+        });
+    
+        if (!map) {
+            map = L.map('map').setView([lat, lng], 10);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+        } else {
+            map.setView([lat, lng]);
+            if (marker) {
+                map.removeLayer(marker);
+            }
+        }
+    
+        marker = L.marker([lat, lng], { icon: icon }).addTo(map);
+    }
     
 });
