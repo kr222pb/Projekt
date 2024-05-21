@@ -103,7 +103,7 @@ function updateListWithFilteredData(filteredData) {
                 updateMap(item.lat, item.lng);
                 lat = item.lat;
                 lng = item.lng;
-                checkForLocationUpdate(); // Uppdaterar vädret när modalen öppnas
+    
             });
             listUtf.appendChild(listItem);
         }

@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     let selectedAttractions = new Set();
     let selectedLocations = new Set();
     let selectedStreamingServices = new Set();
+    let map;
+    let marker;
+    let lat;
+    let lng;
 
     async function fetchAllEstablishmentData() {
         const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
@@ -46,21 +50,65 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     await fetchAllEstablishmentData();
     await fetchStreamingData();
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        if (modal.style.display === 'block') {
+            modal.style.display = 'none';
+        }
+    }
+    
+    function openModal() {
+        const modal = document.getElementById('modal');
+        if (modal.style.display !== 'block') {
+            modal.style.display = 'block';
+            closeAllDropdowns(); // Ensure all dropdowns are closed when the modal opens
+        }
+    }
+    function closeAllDropdowns() {
+        const dropdowns = document.querySelectorAll('.dropdown-menu');
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    }
+    const modalCloseButton = document.getElementById('modalClose');
+    if (modalCloseButton) {
+        modalCloseButton.addEventListener('click', closeModal);
+    }
+    listUtf.addEventListener('click', function(event) {
+       
+        let targetElement = event.target;
 
+        while (targetElement != null && !targetElement.classList.contains('list-item')) {
+            targetElement = targetElement.parentElement;
+        }
+
+        if (targetElement && targetElement.classList.contains('list-item')) {
+            openModal();
+        }
+    });
+    
     function toggleDropdown(dropdown, menu, selectedSet, type) {
         dropdown.addEventListener('click', function(event) {
             event.stopPropagation();
-            menu.classList.toggle('active');
-            if (menu.classList.contains('active')) {
-                populateDropdownMenu(menu, type, selectedSet);
-            }
+            // This will close the modal if it's open when any dropdown is clicked
+            closeModal();
+    
+            // Toggle the current menu's active state and close others
+            const isActive = menu.classList.contains('active');
             closeOtherMenus(menu);
+    
+            if (!isActive) {
+                menu.classList.add('active');
+                populateDropdownMenu(menu, type, selectedSet);
+            } else {
+                menu.classList.remove('active');
+            }
         });
     }
 
     function closeOtherMenus(openedMenu) {
-        [activitiesDropdown, foodDropdown, attractionDropdown, locationDropdown, homeEveningDropdown].forEach(dropdown => {
-            const menu = dropdown.querySelector('.nested-dropdown-menu');
+        const menus = document.querySelectorAll('.nested-dropdown-menu');
+        menus.forEach(menu => {
             if (menu !== openedMenu) {
                 menu.classList.remove('active');
             }
@@ -148,7 +196,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     selectedSet.delete(item);
                 }
                 if (type !== "streaming") {
-                    updateListDisplay(); // Uppdatera listan med de valda elementen
+                    updateListDisplay(); 
                 }
             });
 
@@ -201,23 +249,21 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     function updateListDisplay() {
-        console.log("Uppdaterar visningen av listan...");
+        console.log("Updating the list display...");
         const allowedTypes = ["activity", "food", "attraction"];
-        const excludedDescriptions = ["Lekplats", "kyrka", "Lekland", "Hamburgerkedja", "Hälsocenter", "Golfbana"];
-
+        const excludedDescriptions = ["Playground", "church", "Playland", "Fast food chain", "Health center", "Golf course"];
+    
         const hasCategorySelected = selectedActivities.size > 0 || selectedFoods.size > 0 || selectedAttractions.size > 0 || selectedStreamingServices.size > 0;
         const hasLocationSelected = selectedLocations.size > 0;
-        console.log(`Kategorier valda: ${hasCategorySelected}, Platser valda: ${hasLocationSelected}`);
-
-        listUtf.innerHTML = ''; // Rensa listan
-
-        // Om inga kategorier eller platser är valda, visa meddelande
+        console.log(`Categories selected: ${hasCategorySelected}, Locations selected: ${hasLocationSelected}`);
+    
+        listUtf.innerHTML = ''; 
+    
         if (!hasCategorySelected && !hasLocationSelected) {
-            messageDisplay.textContent = "Inga resultat matchar dina val.";
+            messageDisplay.textContent = "No results match your selections.";
             return;
         }
-
-        // Filtrera data baserat på valda kriterier
+   
         const filteredData = combinedData.filter(item => {
             const isTypeAllowed = allowedTypes.includes(item.type);
             const isDescriptionAllowed = !excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()));
@@ -225,22 +271,39 @@ document.addEventListener('DOMContentLoaded', async function() {
             const matchesFood = selectedFoods.has(item.description) && item.type === 'food';
             const matchesAttraction = selectedAttractions.has(item.description) && item.type === 'attraction';
             const matchesLocation = selectedLocations.has(item.city) || selectedLocations.has(item.province);
-
+    
             return isTypeAllowed && isDescriptionAllowed && 
                    ((hasCategorySelected ? (matchesActivity || matchesFood || matchesAttraction) : true) &&
                     (hasLocationSelected ? matchesLocation : true));
         });
-
-        // Hantera om inga data passar filtreringen
+    
+        
         if (filteredData.length === 0) {
-            messageDisplay.textContent = "Inga resultat matchar dina val.";
+            messageDisplay.textContent = "No results match your selections.";
         } else {
-            messageDisplay.textContent = ''; // Rensa tidigare meddelanden
+            messageDisplay.textContent = ''; 
             filteredData.forEach(item => {
-                const listItem = document.createElement('div');
-                listItem.classList.add('list-item');
-                listItem.innerHTML = `<h3>${item.name}</h3><p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p><p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>`;
-                listUtf.appendChild(listItem);
+                if (item) {
+                    const listItem = document.createElement("div");
+                    listItem.classList.add("list-item");
+                    listItem.innerHTML = `
+                        <h3>${item.name}</h3>
+                        <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
+                        <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
+                    `;
+                    listItem.addEventListener("click", () => {
+                        if (typeof item.lat !== 'undefined' && typeof item.lng !== 'undefined') {
+                            updateImageContainer(item);
+                            openModal();
+                            updateMap(item.lat, item.lng);
+                            lat = item.lat;
+                            lng = item.lng;
+                        } else {
+                            console.error("Invalid or missing coordinates for the selected item.");
+                        }
+                    });
+                    listUtf.appendChild(listItem);
+                }
             });
         }
     }
@@ -260,4 +323,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         event.preventDefault();
         dropdownMenu.classList.toggle('active');
     });
+ 
+    
 });

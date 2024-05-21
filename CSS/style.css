@@ -660,8 +660,9 @@ header .header-arrow .filter-arrow .arrow2 {
     margin: 5% auto;
     padding: 20px;
     border: 2px solid #686767;
-    width: 80%;
-    max-width: 900px; 
+    width: 80%; 
+    max-height: 600px;
+    overflow: auto;
     display: flex;
     flex-direction: column;
 }
