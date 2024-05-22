@@ -45,6 +45,14 @@ function ConNewDiv(activity, activityIndex, date) {
     pinImg.id = "häftstift";
     div.appendChild(pinImg);
 
+    const heartIcon = document.createElement("img"); 
+    heartIcon.className = "heart-icon";
+    heartIcon.addEventListener('click', function(event) {
+        event.stopPropagation();
+        toggleFavorite(activity, activityIndex, date);
+    });
+    div.appendChild(heartIcon);
+
     // Skapa och lägg till en img-tag för sopkorgsbilden
     const trash = document.createElement("img");
     trash.src = "bilder/soptunna.svg";

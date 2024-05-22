@@ -6,7 +6,6 @@ function init() {
     const headerContent = document.querySelector(".header-content");
 
     kamera.addEventListener("click", () => {
-        console.log("Kamera clicked");
 
         kamera.classList.remove("camera-move");
 

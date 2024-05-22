@@ -1,16 +1,14 @@
 //Globala variabler
 let timerActive = false;
 
-function init() {
+function initTimer() {
+    let startBtn = document.getElementById("bock");
+    startBtn.addEventListener("click", startTimer); //Starttimern startas nu via bocken
+}
 
-    let startBtn = document.getElementById("bock")
-    startBtn.addEventListener("click", startTimer) //Starttimern startas nu via bocken 
-
-} 
-window.addEventListener("load", init);
+window.addEventListener("load", initTimer);
 
 function startTimer() {
-
     if (timerActive) {
         return;
     }
@@ -21,18 +19,38 @@ function startTimer() {
         return;
     }
 
-    timerActive = true; // Förhindrar nya timers att köra
-    let time = parseInt(selectedValue)
-     document.getElementById("timerDisplay").innerHTML = time;
+    timerActive = true; //Förhindrar nya timers att köra
+    let time = parseInt(selectedValue);
+    document.getElementById("timerDisplay").innerHTML = time;
 
     let countdown = setInterval(function() {
         time--; // Minska tiden först
         if (time <= 0) {
-             clearInterval(countdown);
+            clearInterval(countdown);
             document.getElementById("timerDisplay").innerHTML = "Tiden är ute!";
-            timerActive = false; // Återställer timern
-            } else {
-                document.getElementById("timerDisplay").innerHTML = time;
-            }
-        }, 1000); // Kör funktionen varje sekund
+            timerActive = false; //Återställer timerrn
+            showEndMessage();
+        } else {
+            document.getElementById("timerDisplay").innerHTML = time;
+        }
+    }, 1000); // Kör funktionen varje sekund
+}
+
+function startTimerIfNotActive() {
+    if (!timerActive) {
+        startTimer();
+    }
+}
+
+function showEndMessage() {
+    const container = document.querySelector(".container");
+    const options = document.querySelector(".options");
+    const message = document.createElement("div");
+
+    container.classList.add("hidden");
+    options.classList.add("hidden");
+
+    message.innerHTML = '<a href="profil.html"><img src="bilder/hjarta.svg" alt="Hjärta" class="pulse-heart"></a>';
+    message.classList.add("end-message");
+    document.body.appendChild(message);
 }

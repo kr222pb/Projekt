@@ -63,7 +63,7 @@ function setupEventListeners() {
 function filterAndShow() {
     
     const allowedTypes = ["activity", "food", "attraction"];
-    const excludedDescriptions = ["Lekplats","kyrka", "Lekland", "Hamburgerkedja"];
+    const excludedDescriptions = ["Lekplats","kyrka", "Lekland", "Hamburgerkedja", "Golfbana"];
 
     // Samla alla aktiva städer
     const activeCities = [...document.querySelectorAll(".nav-menu a.active[data-stad]")].map(link => link.getAttribute("data-stad"));
