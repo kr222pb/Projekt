@@ -1,18 +1,18 @@
-// Globala variabler
+// Globala variabler för swipe-funktionen
 let startX, moved = false;
 const minSwipe = 124;
 
-function init() {
+function initSwipe() {
     let swipeImage = document.querySelector(".container");
-    let swipeTextH2 = document.querySelector("h2");  // Lägger till en variabel för att hantera h2 element
-    let swipeTextH3 = document.querySelector("h3");  // Lägger till en variabel för att hantera h3 element
+    let swipeTextH2 = document.querySelector("h2");
+    let swipeTextH3 = document.querySelector("h3");
 
     swipeImage.addEventListener("touchstart", handleTouchStart, false);
-    swipeImage.addEventListener("touchmove", (e) => handleTouchMove(e, swipeTextH2, swipeTextH3), false); // Skicka textelementen som argument
+    swipeImage.addEventListener("touchmove", (e) => handleTouchMove(e, swipeTextH2, swipeTextH3), false);
     swipeImage.addEventListener("touchend", handleTouchEnd, false);
 }
 
-window.addEventListener("load", init);
+window.addEventListener("load", initSwipe);
 
 function handleTouchStart(e) {
     let touch = e.touches[0];
@@ -39,13 +39,13 @@ function handleTouchEnd(e) {
 
     if (diffX > 0) {
         console.log("Swiped right");
+        showFeedback('right');
         swipeRight();
     } else {
         console.log("Swiped left");
+        showFeedback('left');
         swipeLeft();
     }
-
-    resetImagePosition();
 }
 
 function handleTouchMove(e, swipeTextH2, swipeTextH3) {
@@ -53,33 +53,78 @@ function handleTouchMove(e, swipeTextH2, swipeTextH3) {
     let touch = e.touches[0];
     let moveX = touch.pageX;
     let diffX = moveX - startX;
-    
+
     let swipeImage = document.querySelector(".container");
     swipeImage.style.transform = 'translateX(' + diffX + 'px)';
-    
+    swipeImage.style.transition = 'none';
+
     let maxSwipeDistance = window.innerWidth / 2;
     let opacity = 1 - Math.min(Math.abs(diffX) / maxSwipeDistance, 1);
     swipeImage.style.opacity = opacity;
-    swipeTextH2.style.opacity = opacity;  // Ändrar opacity för h2
-    swipeTextH3.style.opacity = opacity;  // Ändrar opacity för h3
+    swipeTextH2.style.opacity = opacity;
+    swipeTextH3.style.opacity = opacity;
 
     e.preventDefault();
 }
 
 function resetImagePosition() {
     let swipeImage = document.querySelector(".container");
+    swipeImage.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
     swipeImage.style.transform = 'translateX(0px)';
     swipeImage.style.opacity = '1';
     let swipeTextH2 = document.querySelector("h2");
     let swipeTextH3 = document.querySelector("h3");
-    swipeTextH2.style.opacity = '1';  // Återställer opacity för h2
-    swipeTextH3.style.opacity = '1';  // Återställer opacity för h3
+    swipeTextH2.style.transition = 'opacity 0.3s ease-out';
+    swipeTextH3.style.transition = 'opacity 0.3s ease-out';
+    swipeTextH2.style.opacity = '1';
+    swipeTextH3.style.opacity = '1';
+}
+
+function showFeedback(direction) {
+    const feedback = document.createElement("img");
+    feedback.src = direction === 'right' ? "bilder/bockf.svg" : "bilder/kryssf.svg";
+    feedback.className = "feedback";
+
+    const container = document.querySelector(".container");
+    container.appendChild(feedback);
+
+    setTimeout(() => {
+        feedback.style.opacity = '0';
+        setTimeout(() => {
+            container.removeChild(feedback);
+        }, 300);
+    }, 400);
 }
 
 function swipeRight() {
-    document.getElementById("bock").click();
+    animateSwipe('right', () => {
+        document.getElementById("bock").click();
+    });
 }
 
 function swipeLeft() {
-    document.getElementById("kryss").click();
+    animateSwipe('left', () => {
+        document.getElementById("kryss").click();
+    });
+}
+
+function animateSwipe(direction, callback) {
+    const container = document.querySelector(".container");
+    const swipeDistance = direction === 'right' ? window.innerWidth : -window.innerWidth;
+
+    container.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+    container.style.transform = `translateX(${swipeDistance}px)`;
+    container.style.opacity = '0';
+
+    setTimeout(() => {
+        container.style.transition = 'none';
+        container.style.transform = 'translateX(0)';
+        container.style.opacity = '1';
+        container.classList.add("hidden");
+        setTimeout(() => {
+            container.classList.remove("hidden");
+            resetImagePosition();
+            callback();
+        }, 10);
+    }, 300);
 }

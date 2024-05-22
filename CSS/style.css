@@ -30,8 +30,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Lägg till centrerad justering här */
     z-index: 1000;
+    
 }
 
 .logo {
@@ -72,18 +72,12 @@ img {
     margin-right: 10px;
 }
 
-#timerDisplay {
-    color: #4d494b;
-}
-
 
 .container {
     background-image: url(/bilder/polaroid.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    /* Se till att polaroid-bilden skalas inom containern */
     background-position: center;
-    /* Centrera bakgrundsbilden */
     position: relative;
     width: 240px;
     margin: auto;
@@ -92,12 +86,27 @@ img {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    /* Centrera innehållet horisontellt */
     padding: 15px;
     padding-bottom: 0;
     overflow: hidden;
     box-sizing: border-box;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
+
+.feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    width: 150px;
+    height: 150px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+
 
 .container h2 {
     text-align: center;
@@ -128,7 +137,11 @@ img {
     height: 100%;
     object-fit: cover;
 }
-
+.textContainer h2 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
 .item__overlay {
     position: absolute;
     bottom: 0;
@@ -243,6 +256,44 @@ img {
     display: none !important;
 }
 
+.end-message {
+    text-align: center;
+    font-size: 24px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.pulse-heart {
+    width: 150px;
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10%, 30% {
+        transform: scale(1.2);
+    }
+    20%, 40% {
+        transform: scale(1);
+    }
+}
+
+#timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+#timerDisplay {
+    color: #4d494a; 
+    font-size: 48px; 
+    text-align: center; 
+}
 
 
 /* */
@@ -373,11 +424,10 @@ h2 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: 20px;
     z-index: 20;
     cursor: pointer;
-    margin-top: -10px;
+    margin-top: -5px;
 }
 
 .left-arrow {
@@ -386,6 +436,14 @@ h2 {
 
 .right-arrow {
     right: 0;
+}
+
+#rightArrow {
+    width: 24px;
+}
+
+#leftArrow {
+    width: 24px;
 }
 
 
@@ -453,9 +511,6 @@ h2 {
     margin-top: 25px;
 }
 
-#timerDisplay {
-    color: white;
-}
 
 .select-container {
     position: relative;
@@ -469,7 +524,7 @@ h2 {
     appearance: none;
     background: transparent;
     border: transparent;
-    color: white;
+    color: #4d494a;
     width: 74px;
 }
 
@@ -632,9 +687,10 @@ h2 {
 main {
     padding-top: 70px;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 
