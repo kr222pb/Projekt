@@ -700,12 +700,10 @@ main {
 }
 
 .search-container {
-    margin-top: 20px;
-    width: 50%;
-    margin-left: 90px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
-    top: -270px;
+    top: 50px;
+    z-index: 2;
+    padding: 10px;
 }
 
 .search-container button {
@@ -765,7 +763,7 @@ main {
 
 #listUtf .heart-icon {
     position: absolute;
-    top: 75px; 
+    top: 90px; 
     right: 10px; 
     width: 30px;
     height: 30px;
@@ -801,7 +799,7 @@ header .header-arrow .filter-arrow .arrow2 {
     width: 100%;
     background-color: #a9a4a4;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 1;
     flex-wrap: wrap;
     padding: 5px;
     justify-content: space-around;
