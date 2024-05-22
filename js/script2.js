@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         movies.forEach(movie => {
             const listItem = document.createElement('div');
             listItem.classList.add('list-item');
-            listItem.innerHTML = `<h3>${movie.Title}</h3><p>Kategori: ${movie.Category}</p><p>Längd: ${movie.Length} min</p><p>Betyg: ${movie.Stars}</p>`;
+            listItem.innerHTML = `<h3>${movie.Title}</h3><p class="itemDescr>Kategori: ${movie.Category}</p><p class="itemLocPr">Längd: ${movie.Length} min</p><p>Betyg: ${movie.Stars}</p>`;
             listUtf.appendChild(listItem);
         });
     }

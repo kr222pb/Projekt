@@ -421,8 +421,7 @@ h2 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: 20px;
     z-index: 20;
     cursor: pointer;
     margin-top: -10px;
@@ -434,6 +433,14 @@ h2 {
 
 .right-arrow {
     right: 0;
+}
+
+#rightArrow {
+    width: 20px;
+}
+
+#leftArrow {
+    width: 20px;
 }
 
 
