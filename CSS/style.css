@@ -31,7 +31,6 @@ header {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    
 }
 
 .logo {
@@ -694,11 +693,6 @@ main {
 }
 
 
-.search-container form {
-    display: flex;
-    width: 100%;
-}
-
 .search-container {
     position: relative;
     top: 50px;
@@ -711,15 +705,13 @@ main {
     background-color: #00a49d;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 0px 4px 4px 0px ;
     cursor: pointer;
 }
-
 
 .search-container button:hover {
     background-color: #6c4a61;
 }
-
 
 #searchInput {
     font-size: 16px;
@@ -816,7 +808,7 @@ header .header-arrow .filter-arrow .arrow2 {
     text-decoration: none;
     flex: 1 1 22%;
     margin: 5px;
-    background-color: #c45d5d;
+    background-color: #00a49d;
     border-radius: 8px;
     display: flex;
     justify-content: center;
