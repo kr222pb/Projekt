@@ -424,7 +424,7 @@ h2 {
     width: 20px;
     z-index: 20;
     cursor: pointer;
-    margin-top: -10px;
+    margin-top: -5px;
 }
 
 .left-arrow {
@@ -436,11 +436,11 @@ h2 {
 }
 
 #rightArrow {
-    width: 20px;
+    width: 24px;
 }
 
 #leftArrow {
-    width: 20px;
+    width: 24px;
 }
 
 
