@@ -943,7 +943,8 @@ header .header-arrow .filter-arrow .arrow2 {
 #cityRBTN,
 #activityRBTN,
 #budgetRBTN,
-#fysisktRBTN {
+#fysisktRBTN,
+#typRBTN {
     width: max-content;
     height: max-content;
     margin: 2%;
@@ -962,7 +963,8 @@ header .header-arrow .filter-arrow .arrow2 {
 #cityRBTN label,
 #activityRBTN label,
 #budgetRBTN label,
-#fysisktRBTN label {
+#fysisktRBTN label,
+#typRBTN {
     cursor: pointer;
     padding: 3px;
 }
@@ -983,6 +985,9 @@ header .header-arrow .filter-arrow .arrow2 {
     font-size: 1,5rem;
 
 }
+#fysisktRBTN{
+    border: 5px solid #c45d5d;
+}
 #budgetRBTN [type="radio"],
 #fysisktRBTN [type="radio"]{
     width: 20px;
@@ -993,4 +998,7 @@ header .header-arrow .filter-arrow .arrow2 {
 #planeraMSG{
     border: 5px solid #00a49d;
     padding: 30px;
+}
+#planeraLista{
+    background-image: url(/bilder/papper.svg);
 }
