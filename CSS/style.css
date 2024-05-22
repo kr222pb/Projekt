@@ -339,6 +339,7 @@ img {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
+    z-index: 2;
 
 }
 
@@ -404,8 +405,6 @@ h2 {
     mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent);
     /* Maskerar kanterna */
 }
-
-
 
 
 .nav-item a {
@@ -745,6 +744,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 }
 
 #listUtf .list-item h3 {
@@ -761,6 +761,18 @@ main {
     transform: translateY(-92px);
 }
 
+#listUtf .heart-icon {
+    position: absolute;
+    top: 75px; 
+    right: 10px; 
+    width: 30px;
+    height: 30px;
+    background-image: url(/bilder/hjarta.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer; 
+    z-index: 1; 
+}
 
 header .header-arrow {
     position: relative;
@@ -866,7 +878,7 @@ header .header-arrow .filter-arrow .arrow2 {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     left: 0;
     top: 80px;
     width: 100%;

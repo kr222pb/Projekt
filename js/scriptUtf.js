@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetchAllEstablishmentData();
     setupEventListeners();
+    const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
+    localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
+
+    console.log("Loaded saved activities:", savedActivities);
 });
 
 let combinedData = []; // För att lagra all hämtad data
@@ -58,6 +62,26 @@ function setupEventListeners() {
         });
     }
 }
+function toggleFavorite(activity) {
+    let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
+    const index = favorites.findIndex(fav => fav.name === activity.name);
+
+    if (index === -1) {
+        // Lägg till aktivitet med aktuell tid om den inte redan finns
+        const savedActivity = {
+            name: activity.name,
+            addedAt: new Date().toLocaleString()// Använd ISO-sträng
+        };
+        favorites.push(savedActivity);
+    } else {
+        // Ta bort aktivitet om den redan finns
+        favorites.splice(index, 1);
+    }
+
+    localStorage.setItem("savedActivity", JSON.stringify(favorites));
+}
+
+
 
 function performSearch(query) {
     const allowedTypes = ["activity", "food", "attraction"];
@@ -95,16 +119,22 @@ function updateListWithFilteredData(filteredData) {
             listItem.innerHTML = `
                 <h3>${item.name}</h3>
                 <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
-                <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range|| "ej angiven"}</p>
+                <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
+                <div class="heart-icon"></div>
             `;
+            listItem.querySelector('.heart-icon').addEventListener('click', function(event) {
+                event.stopPropagation(); // Förhindrar att listitemets klickevent också triggas
+                toggleFavorite(item); // Hantera favorit-funktionaliteten
+            });
+
             listItem.addEventListener("click", () => {
                 updateImageContainer(item);
                 openModal();
                 updateMap(item.lat, item.lng);
                 lat = item.lat;
                 lng = item.lng;
-    
             });
+
             listUtf.appendChild(listItem);
         }
     });
