@@ -39,14 +39,13 @@ function handleTouchEnd(e) {
 
     if (diffX > 0) {
         console.log("Swiped right");
+        showFeedback('right');
         swipeRight();
     } else {
         console.log("Swiped left");
+        showFeedback('left');
         swipeLeft();
     }
-
-    resetImagePosition();
-    startTimerIfNotActive(); // Starta timern om den inte redan är aktiv
 }
 
 function handleTouchMove(e, swipeTextH2, swipeTextH3) {
@@ -57,6 +56,7 @@ function handleTouchMove(e, swipeTextH2, swipeTextH3) {
 
     let swipeImage = document.querySelector(".container");
     swipeImage.style.transform = 'translateX(' + diffX + 'px)';
+    swipeImage.style.transition = 'none';
 
     let maxSwipeDistance = window.innerWidth / 2;
     let opacity = 1 - Math.min(Math.abs(diffX) / maxSwipeDistance, 1);
@@ -69,18 +69,62 @@ function handleTouchMove(e, swipeTextH2, swipeTextH3) {
 
 function resetImagePosition() {
     let swipeImage = document.querySelector(".container");
+    swipeImage.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
     swipeImage.style.transform = 'translateX(0px)';
     swipeImage.style.opacity = '1';
     let swipeTextH2 = document.querySelector("h2");
     let swipeTextH3 = document.querySelector("h3");
+    swipeTextH2.style.transition = 'opacity 0.3s ease-out';
+    swipeTextH3.style.transition = 'opacity 0.3s ease-out';
     swipeTextH2.style.opacity = '1';
     swipeTextH3.style.opacity = '1';
 }
 
+function showFeedback(direction) {
+    const feedback = document.createElement("img");
+    feedback.src = direction === 'right' ? "bilder/bockf.svg" : "bilder/kryssf.svg";
+    feedback.className = "feedback";
+
+    const container = document.querySelector(".container");
+    container.appendChild(feedback);
+
+    setTimeout(() => {
+        feedback.style.opacity = '0';
+        setTimeout(() => {
+            container.removeChild(feedback);
+        }, 300);
+    }, 400);
+}
+
 function swipeRight() {
-    document.getElementById("bock").click();
+    animateSwipe('right', () => {
+        document.getElementById("bock").click();
+    });
 }
 
 function swipeLeft() {
-    document.getElementById("kryss").click();
+    animateSwipe('left', () => {
+        document.getElementById("kryss").click();
+    });
+}
+
+function animateSwipe(direction, callback) {
+    const container = document.querySelector(".container");
+    const swipeDistance = direction === 'right' ? window.innerWidth : -window.innerWidth;
+
+    container.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+    container.style.transform = `translateX(${swipeDistance}px)`;
+    container.style.opacity = '0';
+
+    setTimeout(() => {
+        container.style.transition = 'none';
+        container.style.transform = 'translateX(0)';
+        container.style.opacity = '1';
+        container.classList.add("hidden");
+        setTimeout(() => {
+            container.classList.remove("hidden");
+            resetImagePosition();
+            callback();
+        }, 10);
+    }, 300);
 }

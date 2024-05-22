@@ -19,7 +19,7 @@ function startTimer() {
         return;
     }
 
-    timerActive = true; // Förhindrar nya timers att köra
+    timerActive = true; //Förhindrar nya timers att köra
     let time = parseInt(selectedValue);
     document.getElementById("timerDisplay").innerHTML = time;
 
@@ -28,7 +28,7 @@ function startTimer() {
         if (time <= 0) {
             clearInterval(countdown);
             document.getElementById("timerDisplay").innerHTML = "Tiden är ute!";
-            timerActive = false; // Återställer timern
+            timerActive = false; //Återställer timerrn
             showEndMessage();
         } else {
             document.getElementById("timerDisplay").innerHTML = time;
@@ -43,7 +43,6 @@ function startTimerIfNotActive() {
 }
 
 function showEndMessage() {
-    // Döljer polaroidbilderna och visar meddelandet
     const container = document.querySelector(".container");
     const options = document.querySelector(".options");
     const message = document.createElement("div");

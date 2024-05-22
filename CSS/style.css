@@ -30,8 +30,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Lägg till centrerad justering här */
     z-index: 1000;
+    
 }
 
 .logo {
@@ -77,9 +77,7 @@ img {
     background-image: url(/bilder/polaroid.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    /* Se till att polaroid-bilden skalas inom containern */
     background-position: center;
-    /* Centrera bakgrundsbilden */
     position: relative;
     width: 240px;
     margin: auto;
@@ -88,12 +86,27 @@ img {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    /* Centrera innehållet horisontellt */
     padding: 15px;
     padding-bottom: 0;
     overflow: hidden;
     box-sizing: border-box;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
+
+.feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    width: 150px;
+    height: 150px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+
 
 .container h2 {
     text-align: center;
