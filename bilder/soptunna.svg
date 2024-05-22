@@ -1,77 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="53.561314mm"
-   height="48.502518mm"
-   viewBox="0 0 53.561314 48.502518"
-   version="1.1"
-   id="svg1"
-   sodipodi:docname="soptunna.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm" />
-  <defs
-     id="defs1" />
-  <g
-     inkscape:label="Lager 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-103.57081,-108.22623)">
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
-       d="m 107.57876,119.16638 5.79478,37.16058 32.19506,-0.1675 7.74342,-37.1728 z"
-       id="path1" />
-    <rect
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
-       id="rect1"
-       width="52.761314"
-       height="7.2417488"
-       x="103.97081"
-       y="113.023"
-       ry="3.6208744" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
-       id="rect2"
-       width="4.3967762"
-       height="21.466612"
-       x="117.67842"
-       y="126.47196"
-       ry="2.1983881" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
-       id="rect2-8"
-       width="4.3967762"
-       height="21.466612"
-       x="138.66057"
-       y="126.65385"
-       ry="2.1983881" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
-       id="rect2-6"
-       width="4.3967762"
-       height="21.466612"
-       x="127.79794"
-       y="126.65385"
-       ry="2.1983881" />
-    <rect
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.799999;stroke-opacity:1"
-       id="rect3"
-       width="10.862623"
-       height="4.1381421"
-       x="125.17879"
-       y="108.62623"
-       ry="2.0690711" />
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.55 19.98">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4d494a;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Lager_1-2" data-name="Lager 1">
+    <path class="cls-1" d="M10.85,0c.92,0,1.66.74,1.66,1.66v.41h-.46c0-.92-.74-1.66-1.66-1.66h-3.24c-.92,0-1.66.74-1.66,1.66h0s-.45,0-.45,0v-.41c0-.92.74-1.66,1.66-1.66h4.15Z"/>
+  </g>
+  <g id="Lager_3" data-name="Lager 3">
+    <path class="cls-1" d="M8.78,1.03H.78C.28,1.03-.09,1.49.02,1.97c1.26,5.8,2.53,11.6,3.79,17.4.08.36.39.61.76.61h8.41c.37,0,.68-.25.76-.61,1.26-5.8,2.53-11.6,3.79-17.4.11-.49-.26-.94-.76-.94h-8ZM12.88,19H4.67C3.5,13.4,2.33,7.79,1.15,2.18h15.24c-1.17,5.61-2.34,11.22-3.51,16.82Z"/>
+    <rect class="cls-1" x="4.83" y="6.53" width="1.26" height="7.94" rx=".54" ry=".54"/>
+    <rect class="cls-1" x="8.35" y="6.53" width="1.26" height="7.94" rx=".54" ry=".54"/>
+    <rect class="cls-1" x="11.73" y="6.53" width="1.26" height="7.94" rx=".54" ry=".54"/>
   </g>
 </svg>

@@ -729,7 +729,7 @@ main {
     background-position: center;
     font-family: Papper, 'Times New Roman', Times, serif;
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: -80px;
     box-sizing: border-box;
     height: 300px;
     overflow: hidden;
@@ -764,6 +764,11 @@ main {
     background-repeat: no-repeat;
     cursor: pointer; 
     z-index: 1; 
+}
+
+.rating {
+    text-align: right;
+    transform: translateY(-92px);
 }
 
 header .header-arrow {
