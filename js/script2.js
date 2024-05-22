@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             targetElement = targetElement.parentElement;
         }
 
-        if (targetElement && targetElement.classList.contains('list-item')) {
+        if (targetElement && !homeEveningDropdown.querySelector('.nested-dropdown-menu').contains(targetElement)) {
             openModal();
         }
     });
@@ -90,10 +90,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     function toggleDropdown(dropdown, menu, selectedSet, type) {
         dropdown.addEventListener('click', function(event) {
             event.stopPropagation();
-            // This will close the modal if it's open when any dropdown is clicked
             closeModal();
     
-            // Toggle the current menu's active state and close others
             const isActive = menu.classList.contains('active');
             closeOtherMenus(menu);
     
@@ -102,6 +100,11 @@ document.addEventListener('DOMContentLoaded', async function() {
                 populateDropdownMenu(menu, type, selectedSet);
             } else {
                 menu.classList.remove('active');
+            }
+    
+            
+            if (type === "streaming" && isActive) {
+                displayStreamingMovies(); 
             }
         });
     }
@@ -247,6 +250,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     function displayAllItems() {
         updateListDisplay();
     }
+  
 
     function updateListDisplay() {
         console.log("Updating the list display...");
@@ -257,13 +261,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         const hasLocationSelected = selectedLocations.size > 0;
         console.log(`Categories selected: ${hasCategorySelected}, Locations selected: ${hasLocationSelected}`);
     
-        listUtf.innerHTML = ''; 
+        listUtf.innerHTML = '';
     
         if (!hasCategorySelected && !hasLocationSelected) {
             messageDisplay.textContent = "No results match your selections.";
             return;
         }
-   
+    
         const filteredData = combinedData.filter(item => {
             const isTypeAllowed = allowedTypes.includes(item.type);
             const isDescriptionAllowed = !excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()));
@@ -277,11 +281,10 @@ document.addEventListener('DOMContentLoaded', async function() {
                     (hasLocationSelected ? matchesLocation : true));
         });
     
-        
         if (filteredData.length === 0) {
             messageDisplay.textContent = "No results match your selections.";
         } else {
-            messageDisplay.textContent = ''; 
+            messageDisplay.textContent = '';
             filteredData.forEach(item => {
                 if (item) {
                     const listItem = document.createElement("div");
@@ -290,6 +293,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                         <h3>${item.name}</h3>
                         <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
                         <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
+                        <div class="heart-icon"></div>
                     `;
                     listItem.addEventListener("click", () => {
                         if (typeof item.lat !== 'undefined' && typeof item.lng !== 'undefined') {
@@ -308,15 +312,19 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    function displayStreamingMovies(service) {
-        const movies = streamingData[service];
-        listUtf.innerHTML = ''; // Rensa listan
-        movies.forEach(movie => {
-            const listItem = document.createElement('div');
-            listItem.classList.add('list-item');
-            listItem.innerHTML = `<h3>${movie.Title}</h3><p>Kategori: ${movie.Category}</p><p>Längd: ${movie.Length} min</p><p>Betyg: ${movie.Stars}</p>`;
-            listUtf.appendChild(listItem);
-        });
+    function displayStreamingMovies() {
+        const selectedService = Array.from(selectedStreamingServices);
+        if (selectedService.length > 0) {
+            listUtf.innerHTML = ''; 
+            selectedService.forEach(service => {
+                streamingData[service].forEach(movie => {
+                    const listItem = document.createElement('div');
+                    listItem.classList.add('list-item');
+                    listItem.innerHTML = `<h3>${movie.Title}</h3><p>Kategori: ${movie.Category}</p><p>Längd: ${movie.Length} min</p><p>Betyg: ${movie.Stars}</p>`;
+                    listUtf.appendChild(listItem);
+                });
+            });
+        }
     }
 
     filterArrow.addEventListener('click', function(event) {
