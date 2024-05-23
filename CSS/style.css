@@ -155,7 +155,7 @@ img {
     transform: translateY(100%);
     padding: 10px;
     box-sizing: border-box;
-    z-index: 10;
+    z-index: 2;
 
 }
 
@@ -201,6 +201,7 @@ img {
 #map,
 #weather-container {
     position: relative;
+    z-index: 5;
 
 }
 #weather-icon {
