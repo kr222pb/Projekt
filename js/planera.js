@@ -10,12 +10,14 @@ let city;
 let typ;
 let activityType;
 let fysiskt;
-let disability = ""; // Initialisera med tom sträng
+let disability = "";
 let lat = "";
 let lng = "";
 
 function init() {
+    //Divelement för att skriva ut beroende på vilket anrop
     ananas = document.querySelector("#ananas");
+    //De som omringar radioknapparna i HTML
     formElem = document.querySelector("#form");
     formElem.addEventListener('change', readValue);
 }
@@ -24,13 +26,13 @@ function readValue() {
     city = formElem.city.value;
     typ = formElem.typ.value;
 
+    //Visa endast om de finns något att visa devillsäga att någon av dem är ifylld
     if (typ === "" || city === "") {
         ananas.style.display = "none";
     } else {
         ananas.style.display = "block";
     }
 
-    // Set latitude and longitude based on city
     switch (city) {
         case "Växjö":
             lat = "56.8767";
@@ -78,6 +80,7 @@ function readValue() {
 }
 
 function extraInfo() {
+    //Information som ändras beronde på vilken de är som väljs
     let extra = "";
     if (typ === "Food") {
         ananas.style.display = "block";
@@ -145,15 +148,16 @@ function extraInfo() {
         `;
     }
     ananas.innerHTML = extra;
-    addEventListeners(); // Lägg till eventlyssnare efter att HTML-innehållet har lagts till
+    addEventListeners();
 }
 
 function addEventListeners() {
+    //Gör knapparna klickbara
     let buttons = ananas.querySelectorAll("button");
     buttons.forEach(button => {
         button.addEventListener("click", testar);
     });
-
+    //Visar och döljer inforutan
     let infoBtn = document.querySelector("#infoBtn");
     if (infoBtn) {
         infoBtn.addEventListener("click", () => {
@@ -172,13 +176,13 @@ function testar(event) {
     const klass = this.className;
     const value = this.value;
 
-    // Återställ bakgrundsfärg för alla knappar i samma grupp
+    //Gör så endast en per grupp kan vara vald
     const buttons = document.querySelectorAll(`.${klass}`);
     buttons.forEach(button => {
         button.classList.remove('selected');
     });
 
-    // Sätt den valda knappen till den annorlunda bakgrundsfärgen
+    //Sätter den valda knappen till en annan färg
     this.classList.add('selected');
 
     if (klass === "mattyp") {
@@ -198,6 +202,7 @@ function testar(event) {
         disability = value;
     }
 
+    //Vilken url som ska skicaks och om de finns undatagsfall 
     let url;
     if (typ === "Food") {
         url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&settings=${mattyp}&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
@@ -222,10 +227,10 @@ function testar(event) {
         }
     }
     fetchSMAPI(url);
-    console.log(url);
 }
 
 async function fetchSMAPI(url) {
+    //Gör anrop till SMAPI
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error("Fel vid hämtning av data");
@@ -240,14 +245,14 @@ async function fetchSMAPI(url) {
 
 function displayData(data) {
     const planeraLista = document.querySelector("#planeraLista");
-    planeraLista.innerHTML = ""; // Clear previous results
+    planeraLista.innerHTML = "";
 
-    // Create and append the image element
+    //Se till att häftstiftet skapas
     let img = document.createElement("img");
     img.src = "bilder/g4.png";
     planeraLista.appendChild(img);
 
-    // Create and append h3 elements for each item in the data
+    //Själva listan
     data.forEach(obj => {
         let klick = document.querySelector("#klick")
         klick.style.display = "none"
@@ -256,6 +261,7 @@ function displayData(data) {
         planeraLista.appendChild(h3);
     });
 
+    //Medelande om inget hittades
     if (planeraLista.textContent === "") {
         planeraLista.innerHTML = "Tyvärr hittade vi inga aktiviteter som passade dina önskemål!";
     }
