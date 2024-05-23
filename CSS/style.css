@@ -764,7 +764,19 @@ main {
     background-repeat: no-repeat;
     cursor: pointer; 
     z-index: 1; 
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
 }
+
+#listUtf .heart-icon.pulse {
+    animation: pulse 1s ease-in-out 3; 
+}
+
+#listUtf .heart-icon.favorited {
+    filter: invert(32%) sepia(92%) saturate(3651%) hue-rotate(355deg) brightness(93%) contrast(119%);
+}
+
+
 
 .rating {
     text-align: right;

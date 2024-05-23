@@ -62,20 +62,28 @@ function setupEventListeners() {
         });
     }
 }
-function toggleFavorite(activity) {
+function toggleFavorite(activity, heartIcon) {
     let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
     const index = favorites.findIndex(fav => fav.name === activity.name);
 
     if (index === -1) {
-        // Lägg till aktivitet med aktuell tid om den inte redan finns
+        
         const savedActivity = {
             name: activity.name,
-            addedAt: new Date().toLocaleString()// Använd ISO-sträng
+            addedAt: new Date().toLocaleString() 
         };
         favorites.push(savedActivity);
+        heartIcon.classList.add('favorited');
+        heartIcon.classList.add('pulse');
+        heartIcon.addEventListener('animationend', () => {
+            heartIcon.classList.remove('pulse');
+        }, { once: true });
     } else {
         // Ta bort aktivitet om den redan finns
         favorites.splice(index, 1);
+        heartIcon.classList.remove('favorited');
+        heartIcon.classList.remove('pulse');
+        
     }
 
     localStorage.setItem("savedActivity", JSON.stringify(favorites));
@@ -122,10 +130,20 @@ function updateListWithFilteredData(filteredData) {
                 <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
                 <div class="heart-icon"></div>
             `;
-            listItem.querySelector('.heart-icon').addEventListener('click', function(event) {
+            const heartIcon = listItem.querySelector('.heart-icon');
+
+            // Kolla om aktiviteten redan finns i favoriter och uppdatera utseendet
+            const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
+            const isFavorited = favorites.find(fav => fav.name === item.name);
+            if (isFavorited) {
+                heartIcon.classList.add('favorited');
+            }
+
+            heartIcon.addEventListener('click', function(event) {
                 event.stopPropagation(); // Förhindrar att listitemets klickevent också triggas
-                toggleFavorite(item); // Hantera favorit-funktionaliteten
+                toggleFavorite(item, heartIcon); // Hantera favorit-funktionaliteten
             });
+            listItem.appendChild(heartIcon);
 
             listItem.addEventListener("click", () => {
                 updateImageContainer(item);
