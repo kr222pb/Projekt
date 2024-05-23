@@ -204,13 +204,13 @@ img {
 
 }
 #weather-icon {
-    height: 40px;
+    height: 80px;
     width: 40px;
     margin-left: 20px;
 }
 
 #weather-info {
-    font-size: medium;
+    font-size: large;
 
 }
 
