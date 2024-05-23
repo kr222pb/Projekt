@@ -93,7 +93,7 @@ function toggleFavorite(activity, heartIcon) {
 
 function performSearch(query) {
     const allowedTypes = ["activity", "food", "attraction"];
-    const excludedDescriptions = ["Lekplats", "kyrka", "Lekland", "Hamburgerkedja", "Golfbana"];
+    const excludedDescriptions = ["lekplats", "kyrka", "lekland", "hamburgerkedja", "golfbana"];
 
     const filteredData = combinedData.filter(item => {
         const matchesQuery = item.city?.toLowerCase().includes(query) ||
@@ -178,7 +178,14 @@ function updateImageContainer(item) {
     document.getElementById("activity-price").textContent = `Prisnivå: ${item.price_range || "Ej angiven"}`;
     document.getElementById("activity-abstract").textContent = `Beskrivning: ${item.abstract || "Ingen beskrivning tillgänglig."}`;
     document.getElementById("activity-reviews").textContent = `Recensioner: ${item.num_reviews || "Inga recensioner tillgängliga."}`;
-    document.getElementById("activity-rating").textContent = `Recensioner: ${item.rating || "Inga recensioner tillgängliga."}`;
+    document.getElementById("activity-rating").textContent = `Rating: ${item.rating || "Inga rating tillgängliga."}`;
+    
+    const websiteElement = document.getElementById("website");
+    if (item.website) {
+        websiteElement.innerHTML = `Websida: <a href="${item.website}" target="_blank">${item.website}</a>`;
+    } else {
+        websiteElement.textContent = "Ingen websida är tillgänglig.";
+    }
 }
 
 function openModal() {
@@ -189,16 +196,6 @@ function openModal() {
 }
 
 function updateMap(lat, lng) {
-    if (lat === undefined || lng === undefined) {
-        console.error("Invalid coordinates:", lat, lng);
-        return;
-    }
-
-    const mapContainer = document.getElementById('map');
-    if (mapContainer) {
-        mapContainer.innerHTML = "";
-    }
-
     const icon = L.icon({
         iconUrl: 'bilder/plats.svg',
         iconSize: [38, 95],
