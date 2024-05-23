@@ -5,12 +5,11 @@ let dateList = [];
 let thisTime = [];
 
 function showAcceptedSuggestions() {
-    // Load activities from localStorage
+    //Ta in från localstorage igen
     savedActivity = JSON.parse(localStorage.getItem("savedActivity")) || [];
-    // Load current session activities from sessionStorage
     thisTime = JSON.parse(sessionStorage.getItem("thisTime")) || [];
 
-    msgDiv = document.getElementById("msg");
+    msgDiv = document.querySelector("#msg");
     msgDiv.style.display = "none";
 
     if (thisTime.length === 0) {
@@ -19,7 +18,7 @@ function showAcceptedSuggestions() {
         makeOldDiv();
     }
 
-    // Load previous sessions' activities from localStorage
+    //Ladda in från localstorage
     const previousSessions = JSON.parse(localStorage.getItem("previousSessions")) || [];
     previousSessions.forEach(sessionActivities => {
         createDivFromActivities(sessionActivities);
@@ -32,7 +31,7 @@ function showAcceptedSuggestions() {
 function createDivFromActivities(activities) {
     let minibox = document.getElementById("minibox");
 
-    // Create a div with class "date"
+
     let oldDateDiv = document.createElement("div");
     oldDateDiv.className = "date";
 
@@ -242,60 +241,4 @@ function saveData() {
     let miniboxElem = document.querySelector("#minibox");
     let miniboxString = miniboxElem.innerHTML;
     localStorage.setItem("lista", miniboxString);
-}
-/* Profilsidan */
-#bigbox{ 
-    border: 5px solid rgb(117, 115, 115);
-    border-radius: 20%;
-
-    text-align: center;
-    color: #fff;
-
-    padding: 20px;
-    margin: 200px;
-    width: 60%;
-}
-#bigbox ul{
-  font-size: 2em;
-    text-align: left;
-    list-style: none;
-    padding: 15px;
-    margin-top: 0px;
-}
-#bigbox li {
-    padding-left: 20px; /* Justera vänstermarginalen för att ge plats för listpluppen */
-    margin: 10px;
-}
-
-#bigbox li::before {
-    content: '\2764'; /* Unicode-tecknet för hjärta */
-    display: inline-block;
-    margin-right: 5px; /* Justera avståndet mellan hjärtat och texten */
-}
-#minibox{
-    background-color: #6c4a61;
-    border-radius: 20%;
-}
-
-.head{
-  display: flex;
-  justify-content: center;
-  width: 90%;
-padding: 15px;
-}
-.minibox img{
-    width: 40px;
-    cursor: pointer;
-    margin: 10px;
-}
-#msg{
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.rotated {
-    transform: rotate(180deg);
-    transition: transform 0.3s ease;
 }
