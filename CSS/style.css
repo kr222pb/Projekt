@@ -171,7 +171,7 @@ img {
 }
 
 .info-block {
-    flex: 0.75;
+    flex: 1;
     padding: 4px;
     background-color: rgba(255, 255, 255, 0.8);
     /* Lätt transparens */
@@ -194,13 +194,30 @@ img {
     max-height: 70px;
     overflow-y: auto;
 }
+#weather-container{
+    flex: 0.5px;
+}
 
 #map,
 #weather-container {
     position: relative;
 
 }
+#weather-icon {
+    height: 40px;
+    width: 40px;
+    margin-left: 20px;
+}
 
+#weather-info {
+    font-size: medium;
+
+}
+
+.info-block#map {
+    flex: 5;
+    width: 80%;
+}
 /* Kamera */
 .cameraState {
     display: flex;
@@ -550,20 +567,7 @@ h2 {
     height: 250px;
 }
 
-#weather-icon {
-    height: 80px;
-    width: 80px;
-    margin-left: 20px;
-}
 
-#weather-info {
-    font-size: large;
-
-}
-
-.info-block#map {
-    flex: 2;
-}
 
 /* ------ANIMATIONER------ */
 @keyframes bounce {
