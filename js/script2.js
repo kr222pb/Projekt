@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     let marker;
     let lat;
     let lng;
+    const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
+    localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
+
+    console.log("Loaded saved activities:", savedActivities);
 
     async function fetchAllEstablishmentData() {
         const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
@@ -61,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const modal = document.getElementById('modal');
         if (modal.style.display !== 'block') {
             modal.style.display = 'block';
-            closeAllDropdowns(); // Ensure all dropdowns are closed when the modal opens
+            closeAllDropdowns(); 
         }
     }
     function closeAllDropdowns() {
@@ -83,7 +87,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         if (targetElement && !homeEveningDropdown.querySelector('.nested-dropdown-menu').contains(targetElement)) {
-            openModal();
+            if (!selectedStreamingServices.size) {
+                openModal();
+            }
         }
     });
     
@@ -108,7 +114,31 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     }
-
+    function toggleFavorite(item, heartIcon) {
+        let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
+        const index = favorites.findIndex(fav => fav.name === (item.name || item.Title));
+    
+        if (index === -1) {
+            // Lägg till objekt med aktuell tid om den inte redan finns
+            const savedItem = {
+                name: item.name || item.Title,
+                addedAt: new Date().toLocaleString()
+            };
+            favorites.push(savedItem);
+            heartIcon.classList.add('favorited');
+            heartIcon.classList.add('pulse');
+            heartIcon.addEventListener('animationend', () => {
+                heartIcon.classList.remove('pulse');
+            }, { once: true });
+        } else {
+            // Ta bort objekt om den redan finns
+            favorites.splice(index, 1);
+            heartIcon.classList.remove('favorited');
+            heartIcon.classList.remove('pulse');
+        }
+    
+        localStorage.setItem("savedActivity", JSON.stringify(favorites));
+    }
     function closeOtherMenus(openedMenu) {
         const menus = document.querySelectorAll('.nested-dropdown-menu');
         menus.forEach(menu => {
@@ -255,11 +285,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     function updateListDisplay() {
         console.log("Updating the list display...");
         const allowedTypes = ["activity", "food", "attraction"];
-        const excludedDescriptions = ["Playground", "church", "Playland", "Fast food chain", "Health center", "Golf course"];
+        const excludedDescriptions = ["lekplats", "kyrka", "lekland", "hamburgerkedja", "golfbana"];
     
         const hasCategorySelected = selectedActivities.size > 0 || selectedFoods.size > 0 || selectedAttractions.size > 0 || selectedStreamingServices.size > 0;
         const hasLocationSelected = selectedLocations.size > 0;
-        console.log(`Categories selected: ${hasCategorySelected}, Locations selected: ${hasLocationSelected}`);
+
     
         listUtf.innerHTML = '';
     
@@ -295,6 +325,20 @@ document.addEventListener('DOMContentLoaded', async function() {
                         <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
                         <div class="heart-icon"></div>
                     `;
+                    const heartIcon = listItem.querySelector('.heart-icon');
+
+                    // Kolla om aktiviteten redan finns i favoriter och uppdatera utseendet
+                    const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
+                    const isFavorited = favorites.find(fav => fav.name === item.name);
+                    if (isFavorited) {
+                        heartIcon.classList.add('favorited');
+                    }
+
+                    heartIcon.addEventListener('click', function(event) {
+                        event.stopPropagation(); // Förhindrar att listitemets klickevent också triggas
+                        toggleFavorite(item, heartIcon); // Hantera favorit-funktionaliteten
+                    });
+                    listItem.appendChild(heartIcon);
                     listItem.addEventListener("click", () => {
                         if (typeof item.lat !== 'undefined' && typeof item.lng !== 'undefined') {
                             updateImageContainer(item);
@@ -320,7 +364,20 @@ document.addEventListener('DOMContentLoaded', async function() {
                 streamingData[service].forEach(movie => {
                     const listItem = document.createElement('div');
                     listItem.classList.add('list-item');
-                    listItem.innerHTML = `<h3>${movie.Title}</h3><p class="itemDescr>Kategori: ${movie.Category}</p><p class="itemLocPr">Längd: ${movie.Length} min</p><p>Betyg: ${movie.Stars}</p>`;
+                    listItem.innerHTML = `<h3>${movie.Title}</h3><p class="itemDescr>Kategori: ${movie.Category}</p><p class="itemLocPr">Längd: ${movie.Length} min</p><p class=rating>Betyg: ${movie.Stars}</p><div class="heart-icon"></div>`;
+                    const heartIcon = listItem.querySelector('.heart-icon');
+
+                    const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
+                    const isFavorited = favorites.find(fav => fav.name === movie.Title);
+                    if (isFavorited) {
+                        heartIcon.classList.add('favorited');
+                    }
+    
+                    heartIcon.addEventListener('click', function(event) {
+                        event.stopPropagation(); // Förhindrar att listitemets klickevent också triggas
+                        toggleFavorite(movie, heartIcon); // Hantera favorit-funktionaliteten
+                    });
+    
                     listUtf.appendChild(listItem);
                 });
             });
@@ -331,28 +388,4 @@ document.addEventListener('DOMContentLoaded', async function() {
         event.preventDefault();
         dropdownMenu.classList.toggle('active');
     });
-    function updateMap(lat, lng) {
-        const icon = L.icon({
-            iconUrl: 'bilder/plats.svg',
-            iconSize: [38, 95],
-            iconAnchor: [22, 94],
-            popupAnchor: [-3, -76]
-        });
-    
-        if (!map) {
-            map = L.map('map').setView([lat, lng], 10);
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
-        } else {
-            map.setView([lat, lng]);
-            if (marker) {
-                map.removeLayer(marker);
-            }
-        }
-    
-        marker = L.marker([lat, lng], { icon: icon }).addTo(map);
-    }
- 
-    
 });

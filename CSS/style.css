@@ -737,7 +737,7 @@ main {
     background-position: center;
     font-family: Papper, 'Times New Roman', Times, serif;
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: -80px;
     box-sizing: border-box;
     height: 300px;
     overflow: hidden;
@@ -770,8 +770,25 @@ main {
     background-image: url(/bilder/hjarta.svg);
     background-size: contain;
     background-repeat: no-repeat;
+    cursor: pointer; 
+    z-index: 1; 
     cursor: pointer;
-    z-index: 1;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+#listUtf .heart-icon.pulse {
+    animation: pulse 1s ease-in-out 3; 
+}
+
+#listUtf .heart-icon.favorited {
+    filter: invert(32%) sepia(92%) saturate(3651%) hue-rotate(355deg) brightness(93%) contrast(119%);
+}
+
+
+
+.rating {
+    text-align: right;
+    transform: translateY(-92px);
 }
 
 header .header-arrow {
