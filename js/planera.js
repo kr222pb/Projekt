@@ -201,13 +201,14 @@ function testar(event) {
     let url;
     if (typ === "Food") {
         url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&settings=${mattyp}&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
-        if (mattyp === "buffe") {
-            url += "&buffet_option=y";
+    }
+      if (mattyp === "buffe") {
+        url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&buffet_option=y&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`
         }
         if (mattyp === "A_LA_CARTE") {
-            url += "&sub_types=A_LA_CARTE";
+            url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&sub_types=A_LA_CARTE&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
         }
-    }
+
     if (typ === "attraction") {
         url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=attraction&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&descriptions=${attraktion}`;
     }
