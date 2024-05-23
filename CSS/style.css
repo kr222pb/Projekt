@@ -136,11 +136,13 @@ img {
     height: 100%;
     object-fit: cover;
 }
+
 .textContainer h2 {
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 14px;
 }
+
 .item__overlay {
     position: absolute;
     bottom: 0;
@@ -270,13 +272,19 @@ img {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
-    10%, 30% {
+
+    10%,
+    30% {
         transform: scale(1.2);
     }
-    20%, 40% {
+
+    20%,
+    40% {
         transform: scale(1);
     }
 }
@@ -289,9 +297,9 @@ img {
 }
 
 #timerDisplay {
-    color: #4d494a; 
-    font-size: 48px; 
-    text-align: center; 
+    color: #4d494a;
+    font-size: 48px;
+    text-align: center;
 }
 
 
@@ -705,7 +713,7 @@ main {
     background-color: #00a49d;
     color: white;
     border: none;
-    border-radius: 0px 4px 4px 0px ;
+    border-radius: 0px 4px 4px 0px;
     cursor: pointer;
 }
 
@@ -755,15 +763,15 @@ main {
 
 #listUtf .heart-icon {
     position: absolute;
-    top: 90px; 
-    right: 10px; 
+    top: 90px;
+    right: 10px;
     width: 30px;
     height: 30px;
     background-image: url(/bilder/hjarta.svg);
     background-size: contain;
     background-repeat: no-repeat;
-    cursor: pointer; 
-    z-index: 1; 
+    cursor: pointer;
+    z-index: 1;
 }
 
 header .header-arrow {
@@ -884,7 +892,7 @@ header .header-arrow .filter-arrow .arrow2 {
     margin: 5% auto;
     padding: 20px;
     border: 2px solid #686767;
-    width: 80%; 
+    width: 80%;
     max-height: 600px;
     overflow: auto;
     display: flex;
@@ -988,21 +996,50 @@ header .header-arrow .filter-arrow .arrow2 {
     margin: 10px;
     padding: 100px;
 }
-
+#planera h1{
+    margin: 0;
+    font-size: 3rem;
+    color: #fff;
+}
 #planera h2 {
     margin: 0;
     font-size: 2rem;
 }
-#form{
+
+#form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
+}
+
+#ananas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:80% ;
+}
+.boder{
+    border: 5px solid #00a49d;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-wrap: wrap;
+}
+#infoBtn{
+    background-color: #ab2244;
+    border-radius: 0;
+    padding: 5px;
+    height: max-content;
+    margin: 0;
 }
 #cityRBTN,
-#activityRBTN,
-#budgetRBTN,
-#fysisktRBTN,
 #typRBTN {
     width: max-content;
     height: max-content;
@@ -1014,50 +1051,41 @@ header .header-arrow .filter-arrow .arrow2 {
 #cityRBTN {
     border: 5px solid #00a49d;
     display: grid;
-    grid-template-columns:1fr 1fr;
-    /* Två kolumner med lika stor bredd */
-    gap: 2px;
-}
-
-#cityRBTN label,
-#activityRBTN label,
-#budgetRBTN label,
-#fysisktRBTN label,
-#typRBTN {
-    cursor: pointer;
-    padding: 3px;
-}
-
-#activityRBTN {
-    border: 5px solid #c45d5d;
-    display: grid;
     grid-template-columns: 1fr 1fr;
     /* Två kolumner med lika stor bredd */
     gap: 2px;
 }
 
-#budgetRBTN,
-#fysisktRBTN {
-    border: 5px solid yellow;
-    width: max-content;
-    height: max-content;
-    font-size: 1,5rem;
+#cityRBTN label,
+#typRBTN {
+    cursor: pointer;
+    padding: 3px;
+}
 
-}
-#fysisktRBTN{
-    border: 5px solid #c45d5d;
-}
-#budgetRBTN [type="radio"],
-#fysisktRBTN [type="radio"]{
-    width: 20px;
-    height: 20px;
-
-    margin-right: 10px;
-}
-#planeraMSG{
-    border: 5px solid #00a49d;
+#planeraMSG {
+    position: relative;
     padding: 30px;
+    background-color: #dcd9d9;
 }
-#planeraLista{
-    background-image: url(/bilder/papper.svg);
+#planeraMSG img{
+    width: 40px;
+    position: absolute;
+    top: -15px;
+    right: 50%;
+}
+#planeraMSG h3{
+    font-size: 140%;
+}
+div button {
+    background-color: #6c4a61;
+    height: 50px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #00a49d;
 }

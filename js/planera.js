@@ -2,133 +2,228 @@ document.addEventListener("DOMContentLoaded", init);
 
 let formElem;
 let ananas;
+let selectedOption = "";
+let mattyp;
+let alkohol = "";
+let uteservering = "";
+let attraktion;
+let city;
+let typ;
+let activityType;
+let fysiskt;
+let disability;
+let lat = "";
+let lng = "";
 
 function init() {
+
     ananas = document.querySelector("#ananas");
-    ananas.innerHTML = "";
     formElem = document.querySelector("#form");
-    formElem.addEventListener("change", readValue);
-
-    // Add event listeners to all input fields
-    const inputs = formElem.querySelectorAll("input, select");
-    inputs.forEach(input => {
-        input.addEventListener("change", readValue);
-    });
-
-    readValue();
+    formElem.addEventListener('change', readValue);
 }
 
 function readValue() {
-    let city = formElem.city.value;
-    let typ = formElem.typ.value;
+    city = formElem.city.value;
+    typ = formElem.typ.value;
 
-    if (typ !== "") {
-        ananas.style.display = "block";
-    } else {
+    if (typ === "" || city === "") {
         ananas.style.display = "none";
+    } else {
+        ananas.style.display = "block";
+        selectedOption = typ;
     }
 
-    makeURL(city, typ);
+    // Set latitude and longitude based on city
+    switch (city) {
+        case "Växjö":
+            lat = "56.8767";
+            lng = "14.8039";
+            break;
+        case "Kalmar":
+            lat = "56.6616";
+            lng = "16.3600";
+            break;
+        case "Karlskrona":
+            lat = "56.1663";
+            lng = "15.5851";
+            break;
+        case "Värnamo":
+            lat = "57.18631";
+            lng = "14.03626";
+            break;
+        case "Alvesta":
+            lat = "56.8991";
+            lng = "14.5565";
+            break;
+        case "Oskarshamn":
+            lat = "57.2626";
+            lng = "16.4574";
+            break;
+        case "Vimmerby":
+            lat = "57.6632";
+            lng = "15.8582";
+            break;
+        case "Jönköping":
+            lat = "57.7849";
+            lng = "14.1632";
+            break;
+        case "Öland":
+            lat = "56.6517";
+            lng = "16.4723";
+            break;
+        default:
+            lat = "";
+            lng = "";
+            break;
+    }
+
+    extraInfo(); 
 }
-function makeURL(city, typ) {
-    let url;
-    ananas.innerHTML = "";
+
+
+function extraInfo() {
+
     let extra = "";
+    if (typ === "Food") {
+        ananas.style.display = "block";
+        extra = `
+           <h2>Mattyp:</h2>
+            <div class="boder">
+                <button class="mattyp" value="PIZZERIA">Pizza</button>
+                <button class="mattyp" value="A_LA_CARTE">A LA CARTE</button>
+                <button class="mattyp" value="cafe">Café</button>
+                <button class="mattyp" value="buffe">Buffé</button>
+                <button class="mattyp" value="take_out">Ta med</button>
+            </div>
+
+                <h2>Alkohol:</h2>
+            <div class="boder">
+            <button class="alkohol" value="Y">Ja</button>
+            <button class="alkohol" value="N">Nej</button>
+            </div>
+             <h2>Uteservering:</h2>
+            <div class="boder">
+            <button class="uteservering" value="Y">Ja</button>
+            <button class="uteservering" value="N">Nej</button>
+             </div>
+        `;
+    }
+    else if (typ === "attraction") {
+        ananas.style.display = "block";
+        extra = `
+        <div class="boder">
+                <h2>Typ:</h2>
+                <button class="attractionType" value= "konstgalleri,atteljé,konsthall">Konst</button>
+                <button class="attractionType" value="Museum">Museum</button>
+                <button class="attractionType" value="Slott">Slott</button>
+                <button class="attractionType" value="Glasbruk">Glasbruk</button>
+                <button class="attractionType" value="sevärdighet">Sevärdighet</button>
+            </div>
+        `;
+    }
+    else {
+        ananas.style.display = "block";
+        extra = `
+           
+                <h2>Aktivitet:</h2>
+                <div class="boder">
+                <button class="activityType" value="Temapark, nöjespark, älgpark, nöjescenter">Roliga parker</button>
+                <button class="activityType" value="Simhall">Simhall</button>
+                <button class="activityType" value="Gokart">Gokart</button>
+                <button class="activityType" value="Zipline">Zipline</button>
+                <button class="activityType" value="Paintballcenter">Paintball</button>
+                <button class="activityType" value="Bowlinghall">Bowling</button>
+                <button class="activityType" value="klippklättring">klippklättring</button>
+                <button class="activityType" value="skateboardpark">skateboardpark</button>
+                <button class="activityType" value="Nattklubb">Nattklubb</button>
+                <button class="activityType" value="Biograf">Bio</button>
+            </div>
+            <h2>Fysiskt krävande:</h2>
+            <button id="infoBtn">Info</button>
+            <div id="INFO" style="display:none;">
+                <p>De nivåer som finns tillgängliga är; LOW, MEDIUM och HIGH. Aktiviteter med ansträngningsnivå LOW i huvudsak "sittande" aktiviteter där utövaren inte löper någon risk för fysisk utmattning. Aktiviteter med ansträngningsnivå MEDIUM är aktiviteter där utövaren förväntas röra på sig, men utan någon direkt ansträngning och låg risk för fysisk utmattning. Aktiviteter med ansträngningsnivå HIGH är aktiviteter där utövaren utsätts för fysiska påfrestningar och därmed en hög risk för fysisk utmattning.</p>
+            </div>
+
+            <div class="boder">
+            <button class="fysiskt" value="LOW">Low</button>
+            <button class="fysiskt" value="MEDIUM">Medium</button>
+            <button class="fysiskt" value="HIGH">High</button>
+            </div>
+            <h2>Handikappsanpassat:</h2>
+            <div class="boder">
+            <button class="disability" value="Y">Ja</button>
+            <button class="disability" value="N">Nej</button>
+            </div>
+        `;
+    }
+    ananas.innerHTML = extra;
+    let buttons = ananas.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("click", testar);
+    });
+
+    document.querySelector("#infoBtn").addEventListener("click", () => {
+        let info = document.getElementById("INFO");
+        if (info.style.display === "none") {
+            info.style.display = "block";
+        } else {
+            info.style.display = "none";
+        }
+    });
+}
+
+function testar(event) {
+    event.preventDefault();
+    const klass = this.className;
+    const value = this.value;
+
+    // Återställ bakgrundsfärg för alla knappar i samma grupp
+    const buttons = document.querySelectorAll(`.${klass}`);
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    // Sätt den valda knappen till den annorlunda bakgrundsfärgen
+    this.classList.add('selected');
+
+    if (klass === "mattyp") {
+        mattyp = value;
+    } else if (klass === "alkohol") {
+        alkohol = value;
+    } else if (klass === "uteservering") {
+        uteservering = value;
+    } else if ( klass === "attractionType"){
+        attraktion = value;
+    }
+    else if (klass === "activityType") {
+        activityType= value;
+    }
+    else if(klass === "fysiskt") {
+        fysiskt = value;
+    }
+    else if(klass === "disability") {
+        disability = value;
+    }
+
 
     if (typ === "Food") {
-        extra = `
-        <div>
-            <label><input type="radio" name="foodType" id="pizza" value="pizza">Pizza</label>
-            <label><input type="radio" name="foodType" id="A_LA_CARTE" value="A_LA_CARTE">A_LA_CARTE</label>
-            <label><input type="radio" name="foodType" id="cafe" value="cafe">Cafe</label>
-            <label><input type="radio" name="foodType" id="buffe" value="buffe">Buffe</label>
-            <label><input type="radio" name="foodType" id="ta_med" value="take_out">Ta med</label>
-        </div>
-        <h2>Alkohol:</h2>
-        <div>
-            <label><input type="radio" name="alkohol" id="alkoholJA" value="y">Ja</label>
-            <label><input type="radio" name="alkohol" id="alkoholNej" value="n">Nej</label>
-        </div>
-        <h2>Uteservering:</h2>
-        <div>
-            <label><input type="radio" name="uteservering" id="uteserveringJA" value="y">Ja</label>
-            <label><input type="radio" name="uteservering" id="uteserveringNEJ" value="n">Nej</label>
-        </div>
-        `;
+        url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&settings=${mattyp}&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
 
-        ananas.innerHTML = extra;
 
-        // Lägg till event-lyssnare för att läsa värden när en radioknapp klickas
-        document.querySelectorAll('input[name="foodType"], input[name="alkohol"], input[name="uteservering"]').forEach(input => {
-            input.addEventListener('change', readValuesAndUpdateURL);
-        });
-
-    } else if (typ === "attraction") {
-        extra = `
-        <div>
-            <label><input type="radio" name="attractionType" id="konstgalleri" value="konstgalleri,atteljé,konsthall">Konst</label>
-            <label><input type="radio" name="attractionType" id="slott" value="slott">Slott</label>
-            <label><input type="radio" name="attractionType" id="museum" value="Museum">Museum</label>
-            <label><input type="radio" name="attractionType" id="glasbruk" value="Glasbruk">Glasbruk</label>
-            <label><input type="radio" name="attractionType" id="sevärdhet" value="sevärdhet">Sevärdhet</label>
-        </div>
-        `;
-
-        ananas.innerHTML = extra;
-        document.querySelectorAll('input[name="attractionType"]').forEach(input => {
-            input.addEventListener('change', readValuesAndUpdateURL);
-        });
-
-    } else {
-        extra = `
-        <div>
-            <label><input type="radio" name="activityType" id="konst" value="art">Konst</label>
-            <label><input type="radio" name="activityType" id="historia" value="HISTORY">Historia</label>
-            <label><input type="radio" name="activityType" id="cafe" value="cafe">Cafe</label>
-            <label><input type="radio" name="activityType" id="buffe" value="buffe">Buffe</label>
-        </div>
-        <h2>Alkohol:</h2>
-        <div>
-            <label><input type="radio" name="alkohol" id="alkoholJA" value="y">Ja</label>
-            <label><input type="radio" name="alkohol" id="alkoholNej" value="n">Nej</label>
-        </div>
-        <h2>Uteservering:</h2>
-        <div>
-            <label><input type="radio" name="uteservering" id="uteserveringJA" value="y">Ja</label>
-            <label><input type="radio" name="uteservering" id="uteserveringNEJ" value="n">Nej</label>
-        </div>
-        `;
-
-        ananas.innerHTML = extra;
-        document.querySelectorAll('input[name="activityType"], input[name="alkohol"], input[name="uteservering"]').forEach(input => {
-            input.addEventListener('change', readValuesAndUpdateURL);
-        });
     }
-
-    function readValuesAndUpdateURL() {
-        const foodType = document.querySelector('input[name="foodType"]:checked')?.value;
-        const alkohol = document.querySelector('input[name="alkohol"]:checked')?.value;
-        const uteservering = document.querySelector('input[name="uteservering"]:checked')?.value;
-
-        if (typ === "Food") {
-            if (["pizza", "A_LA_CARTE", "take_out", "cafe"].includes(foodType)) {
-                url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getall&settings=${foodType}&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
-            } else if (foodType === "buffe") {
-                url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getall&buffet_option=y&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
-            } else {
-                url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getall&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
-            }
-        } else if (typ === "attraction") {
-            const attractionType = document.querySelector('input[name="attractionType"]:checked')?.value;
-            url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall&cities=${city}&settings=${attractionType}`;
-        } else {
-            const activityType = document.querySelector('input[name="activityType"]:checked')?.value;
-            url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=activity&method=getall&cities=${city}&settings=${activityType}&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`;
-        }
-
-        fetchSMAPI(url);
+    if (mattyp === "buffe") {
+        url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=food&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&buffet_option=y&alcohol_licence=${alkohol}&outdoor_seating=${uteservering}`
     }
+    if (typ === "attraction") {
+        url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=attraction&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&descriptions=${attraktion}`;
+    }
+    if (typ === "activity") {
+        url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=activity&method=getfromlatlng&lat=${lat}&lng=${lng}&radius=30&descriptions=${activityType}&physical_efforts=${fysiskt}&disability_support=${disability}`;
+    }
+    fetchSMAPI(url);
 }
+
+
 
 async function fetchSMAPI(url) {
     try {
@@ -147,9 +242,20 @@ function displayData(data) {
     const planeraLista = document.querySelector("#planeraLista");
     planeraLista.innerHTML = ""; // Clear previous results
 
+
+    // Create and append the image element
+    let img = document.createElement("img");
+    img.src = "bilder/g4.png";
+    planeraLista.appendChild(img);
+
+    // Create and append h3 elements for each item in the data
     data.forEach(obj => {
-        let h3 = document.createElement("h3");
+        let h3 = document.createElement("h4");
         h3.textContent = obj.name;
         planeraLista.appendChild(h3);
     });
+
+    if(planeraLista.textContent === ""){
+        planeraLista.innerHTML = "Tyvärr hittade vi inga aktiviteter som passade dina önskemål!"
+    }
 }
