@@ -109,6 +109,34 @@ function performSearch(query) {
 
     updateListWithFilteredData(filteredData);
 }
+function getPriceImage(priceRange) {
+    console.log("Received price range:", priceRange);
+    let price = extractPrice(priceRange);
+
+    if (price >= 0 && price <= 25) {
+        return "bilder/pris1.svg";
+    } else if (price > 25 && price <= 100) {
+        return "bilder/pris1.svg";
+    } else if (price > 100 && price <= 250) {
+        return "bilder/pris2.svg";
+    } else if (price > 250 && price <= 500) {
+        return "bilder/pris2.svg";
+    } else if (price > 500) {
+        return "bilder/pris3.svg";
+    }
+
+    return "bilder/logo.svg";  // Används om inget giltigt prisintervall ges
+}
+
+function extractPrice(priceRange) {
+    if (typeof priceRange === 'string') {
+        let match = priceRange.match(/\d+/g); // Hitta alla siffror i strängen
+        if (match) {
+            return match.length > 1 ? (Number(match[0]) + Number(match[1])) / 2 : Number(match[0]);
+        }
+    }
+    return NaN; 
+}
 
 function updateListWithFilteredData(filteredData) {
     const listUtf = document.getElementById("listUtf");
@@ -124,10 +152,13 @@ function updateListWithFilteredData(filteredData) {
         if (item) {
             const listItem = document.createElement("div");
             listItem.classList.add("list-item");
+
+            const priceImageSrc = getPriceImage(item.price_range || ""); // Hämta bild baserad på prisnivå
+
             listItem.innerHTML = `
                 <h3>${item.name}</h3>
                 <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
-                <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
+                <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: <img src="${priceImageSrc}" alt="Prisnivå" style="width:20px; height:30px; vertical-align: middle;"> </p>
                 <div class="heart-icon"></div>
             `;
             const heartIcon = listItem.querySelector('.heart-icon');
@@ -171,15 +202,35 @@ function updateImageContainer(item) {
         newImgElement.alt = item.description;
         imageContainer.appendChild(newImgElement);
     }
+    
 
-    // Uppdatera informationen
     document.getElementById("activity-type").textContent = `Typ av aktivitet: ${item.type || "Ej angiven"}`;
     document.getElementById("activity-city").textContent = `Stad: ${item.city || item.province || "Ej angiven"}`;
-    document.getElementById("activity-price").textContent = `Prisnivå: ${item.price_range || "Ej angiven"}`;
+
+    const priceLevelContainer = document.getElementById("activity-price");
+    priceLevelContainer.innerHTML = '';
+    const priceLevelText = document.createTextNode(`Prisnivå: `); 
+    priceLevelContainer.appendChild(priceLevelText);
+    const priceImgElement = new Image(10, 20); 
+    priceImgElement.src = getPriceImage(item.price_range || ""); 
+    priceLevelContainer.appendChild(priceImgElement); 
+
+    // Hantera rating med ikon
+    const ratingContainer = document.getElementById("activity-rating");
+    ratingContainer.innerHTML = '';  // Rensa befintligt innehåll
+
+    const ratingText = document.createTextNode('Rating: ');
+    ratingContainer.appendChild(ratingText);
+
+    // stjärnbild för rating
+    const ratingImgElement = new Image(300, 20); 
+    ratingImgElement.src = getRatingImage(item.rating || 0);
+    ratingImgElement.alt = "Rating";
+    ratingContainer.appendChild(ratingImgElement);
+
     document.getElementById("activity-abstract").textContent = `Beskrivning: ${item.abstract || "Ingen beskrivning tillgänglig."}`;
     document.getElementById("activity-reviews").textContent = `Recensioner: ${item.num_reviews || "Inga recensioner tillgängliga."}`;
-    document.getElementById("activity-rating").textContent = `Rating: ${item.rating || "Inga rating tillgängliga."}`;
-    
+
     const websiteElement = document.getElementById("website");
     if (item.website) {
         websiteElement.innerHTML = `Websida: <a href="${item.website}" target="_blank">${item.website}</a>`;
@@ -187,7 +238,16 @@ function updateImageContainer(item) {
         websiteElement.textContent = "Ingen websida är tillgänglig.";
     }
 }
-
+function getRatingImage(rating) {
+    const roundedRating = Math.round(rating * 2) / 2;
+    let imageName = roundedRating.toString().replace('.', '');
+    if (!imageName.includes('5')) {
+        imageName = roundedRating.toString();
+    }
+    const imagePath = `bilder/${imageName}star.svg`;
+    console.log("Rating image path:", imagePath); // Logga sökvägen
+    return imagePath;
+}
 function openModal() {
     const modal = document.getElementById("modal");
     if (modal) {
