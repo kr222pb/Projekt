@@ -61,9 +61,8 @@ header {
 
 .arrow {
     width: 70px;
-    /* eller den bredd du föredrar */
     height: auto;
-    /* bibehåller bildens aspektförhållande */
+
 }
 
 img {
@@ -399,7 +398,6 @@ h2 {
     /* Positionerar dropdown precis under triggern*/
     display: none;
     width: 95%;
-    /* Justerbar bredd för bättre layout */
     max-height: 0;
     /* Används för att dölja eller visa med en övergång */
     transition: all 0.3s ease;
@@ -409,9 +407,7 @@ h2 {
 
 .scrollable-tabs-container.active {
     display: block;
-    /* Visas när den är aktiv */
     max-height: 200px;
-    /* Höjd nog för att visa innehållet */
     overflow-x: auto;
     /* Tillåter horisontell scrollning inuti */
     overflow-y: hidden;
@@ -479,7 +475,6 @@ h2 {
     transform: translateY(-50%);
     z-index: 30;
     width: 24px;
-    /* Enhetsstorlek för båda pilarna */
     height: 24px;
     /* Enhetsstorlek för båda pilarna */
     cursor: pointer;
@@ -504,12 +499,10 @@ h2 {
 .scrollable-tabs-container .left-arrow:hover,
 .scrollable-tabs-container .right-arrow:hover {
     background-color: rgba(248, 242, 242, 0.7);
-    /* Mörkare vid hover för bättre feedback */
 }
 
 .nav-item a.active {
     background-color: #00a49d;
-    /* Grå färg för markerade alternativ */
     color: white;
     /* Säkerställer att texten är läsbar */
 }
