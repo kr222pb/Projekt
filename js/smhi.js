@@ -34,7 +34,6 @@ async function fetchWeatherData() {
 
         return { temperatureData, weatherData };
     } catch (error) {
-        console.error('Error fetching weather data:', error);
         return null;
     }
 }
@@ -79,7 +78,6 @@ async function findNearestWeatherStation(lat, lng) {
 
     if (nearestTempStation && nearestWeatherStation) {
         const temperature = nearestTempStation.value[0] ? `${nearestTempStation.value[0].value} °C` : "Temperaturdata saknas";
-        console.log("Mottagen väderkod från station:", nearestWeatherStation.value[0].value); // Loggar den aktuella väderkoden
         const weatherIconPath = getWeatherDescription(parseInt(nearestWeatherStation.value[0].value));
         updateWeatherInfoText(temperature);  // Uppdatera temperaturtext
         updateWeatherIcon(`bilder/${weatherIconPath}.svg`);  // Uppdatera ikon
@@ -117,7 +115,7 @@ function updateWeatherInfoText(infoText) {
     if (weatherInfoElement) {
         weatherInfoElement.textContent = infoText;
     } else {
-        console.error("Kunde inte hitta elementet för att visa väderinformation.");
+        console.error("kan inte visa väder");
     }
 }
 
@@ -126,7 +124,7 @@ function updateWeatherIcon(iconPath) {
     if (weatherIconElement) {
         weatherIconElement.src = iconPath;
     } else {
-        console.error("Kunde inte hitta elementet för att visa väderikonen.");
+        console.error("fel med visningen utav väderikonen");
     }
 }
 

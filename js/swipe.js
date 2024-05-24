@@ -18,12 +18,10 @@ function handleTouchStart(e) {
     let touch = e.touches[0];
     startX = touch.pageX;
     moved = false;
-    console.log("Start", startX);
 }
 
 function handleTouchEnd(e) {
     if (!moved) {
-        console.log("Inte en swipe");
         resetImagePosition();
         return;
     }
@@ -32,17 +30,14 @@ function handleTouchEnd(e) {
     let diffX = endX - startX;
 
     if (Math.abs(diffX) < minSwipe) {
-        console.log(diffX);
         resetImagePosition();
         return;
     }
 
     if (diffX > 0) {
-        console.log("Swiped right");
         showFeedback('right');
         swipeRight();
     } else {
-        console.log("Swiped left");
         showFeedback('left');
         swipeLeft();
     }
