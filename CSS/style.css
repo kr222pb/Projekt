@@ -1011,8 +1011,7 @@ header .header-arrow .filter-arrow .arrow2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding: 100px;
+  
 }
 #planera h1{
     margin: 0;
