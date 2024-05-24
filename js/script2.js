@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const index = favorites.findIndex(fav => fav.name === (item.name || item.Title));
     
         if (index === -1) {
-            // Lägg till objekt med aktuell tid om den inte redan finns
+           
             const savedItem = {
                 name: item.name || item.Title,
                 addedAt: new Date().toLocaleString()
@@ -131,7 +131,6 @@ document.addEventListener('DOMContentLoaded', async function() {
                 heartIcon.classList.remove('pulse');
             }, { once: true });
         } else {
-            // Ta bort objekt om den redan finns
             favorites.splice(index, 1);
             heartIcon.classList.remove('favorited');
             heartIcon.classList.remove('pulse');
@@ -170,7 +169,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     function populateDropdownMenu(menu, type, selectedSet) {
-        menu.innerHTML = ''; // Rensa innehållet varje gång menyn befolkas
+        menu.innerHTML = ''; 
         const allowedTypes = ["activity", "food", "attraction"];
         const excludedDescriptions = ["Lekplats", "kyrka", "Lekland", "Hamburgerkedja", "Hälsocenter", "Golfbana"];
         const uniqueItems = new Set();
@@ -196,14 +195,14 @@ document.addEventListener('DOMContentLoaded', async function() {
             });
         }
 
-        // Sortera de unika platserna eller beskrivningarna
+        // Sorterar de unika platserna eller beskrivningarna
         const sortedItems = Array.from(uniqueItems).sort();
 
         sortedItems.forEach(item => {
             const checkboxContainer = document.createElement('div');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-            checkbox.id = item; // Använd beskrivning eller plats som ID
+            checkbox.id = item; 
             checkbox.name = `${type}-options`;
             checkbox.value = item;
 
@@ -282,7 +281,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
   
     function getPriceImage(priceRange) {
-        console.log("Received price range:", priceRange);
         let price = extractPrice(priceRange);
     
         if (price >= 0 && price <= 25) {
@@ -297,12 +295,12 @@ document.addEventListener('DOMContentLoaded', async function() {
             return "bilder/pris3.svg";
         }
     
-        return "bilder/logo.svg";  // Används om inget giltigt prisintervall ges
+        return "bilder/logo.svg";  
     }
     
     function extractPrice(priceRange) {
         if (typeof priceRange === 'string') {
-            let match = priceRange.match(/\d+/g); // Hitta alla siffror i strängen
+            let match = priceRange.match(/\d+/g);
             if (match) {
                 return match.length > 1 ? (Number(match[0]) + Number(match[1])) / 2 : Number(match[0]);
             }
@@ -321,7 +319,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         listUtf.innerHTML = '';
     
         if (!hasCategorySelected && !hasLocationSelected) {
-            messageDisplay.textContent = "No results match your selections.";
+            messageDisplay.textContent = "Inga resultat hittades.";
             return;
         }
     
@@ -339,14 +337,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     
         if (filteredData.length === 0) {
-            messageDisplay.textContent = "No results match your selections.";
+            messageDisplay.textContent = "Inga resultat hittades.";
         } else {
             messageDisplay.textContent = '';
             filteredData.forEach(item => {
                 if (item) {
                     const listItem = document.createElement("div");
                     listItem.classList.add("list-item");
-                    const priceImageSrc = getPriceImage(item.price_range || ""); // Hämta bild baserad på prisnivå
+                    const priceImageSrc = getPriceImage(item.price_range || ""); 
 
                     listItem.innerHTML = `
                         <h3>${item.name}</h3>
@@ -356,7 +354,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     `;
                     const heartIcon = listItem.querySelector('.heart-icon');
 
-                    // Kolla om aktiviteten redan finns i favoriter och uppdatera utseendet
+                    // Kollar om aktiviteten redan finns i favoriter och uppdatera 
                     const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
                     const isFavorited = favorites.find(fav => fav.name === item.name);
                     if (isFavorited) {
@@ -364,8 +362,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                     }
 
                     heartIcon.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Förhindrar att listitemets klickevent också triggas
-                        toggleFavorite(item, heartIcon); // Hantera favorit-funktionaliteten
+                        event.stopPropagation(); 
+                        toggleFavorite(item, heartIcon); 
                     });
                     listItem.appendChild(heartIcon);
                     listItem.addEventListener("click", () => {
@@ -376,7 +374,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                             lat = item.lat;
                             lng = item.lng;
                         } else {
-                            console.error("Invalid or missing coordinates for the selected item.");
+                            console.error("Invalid or missing coordinates.");
                         }
                     });
                     listUtf.appendChild(listItem);
@@ -403,8 +401,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                     }
     
                     heartIcon.addEventListener('click', function(event) {
-                        event.stopPropagation(); // Förhindrar att listitemets klickevent också triggas
-                        toggleFavorite(movie, heartIcon); // Hantera favorit-funktionaliteten
+                        event.stopPropagation(); 
+                        toggleFavorite(movie, heartIcon); 
                     });
     
                     listUtf.appendChild(listItem);

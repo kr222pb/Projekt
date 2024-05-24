@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     navLinks.forEach(link => {
         link.addEventListener("click", function(event) {
-            event.preventDefault(); // Förhindrar att sidan navigerar
+            event.preventDefault(); 
             this.classList.toggle("active");
             const stad = this.getAttribute('data-stad');
             const provins = this.getAttribute('data-provins');
@@ -49,20 +49,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const maxScrollLeft = navMenu.scrollWidth - navMenu.clientWidth;
 
         if (navMenu.scrollLeft > 0) {
-            leftArrow.style.display = 'flex'; // Visar vänster pil när användaren har scrollat
+            leftArrow.style.display = 'flex'; 
         } else {
-            leftArrow.style.display = 'none'; // Gömer vänster pil när användaren är helt till vänster
+            leftArrow.style.display = 'none'; 
         }
 
         if (navMenu.scrollLeft < maxScrollLeft) {
-            rightArrow.style.display = 'flex'; // Visar höger pil om det finns innehåll att skrolla till
+            rightArrow.style.display = 'flex'; 
         } else {
-            rightArrow.style.display = 'none'; // Göm höger pil när användaren har nått slutet
+            rightArrow.style.display = 'none'; 
         }
     });
     navLinks.forEach(link => {
         link.addEventListener("click", function(event) {
-            event.preventDefault(); // Förhindrar att sidan navigerar
+            event.preventDefault(); 
             this.classList.toggle("active"); 
         });
     });

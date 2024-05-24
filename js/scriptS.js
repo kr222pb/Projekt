@@ -11,7 +11,6 @@ function init() {
     fetchAllEstablishmentData();
     setupEventListeners();
 
-    // Load saved activities from localStorage and ensure no duplicates
     const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
     localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
 
@@ -70,7 +69,7 @@ function filterAndShow() {
     const activeProvinces = [...document.querySelectorAll(".nav-menu a.active[data-provins]")].map(link => link.getAttribute("data-provins"));
 
 
-    // Filtrera datan efter de valda städerna och typer
+    // Filtrerar datan efter de valda städerna och typer
     filteredData = combinedData.filter(item => {
         const isCitySelected = activeCities.includes(item.city);
         const isProvinceSelected = activeProvinces.includes(item.province);
@@ -82,13 +81,12 @@ function filterAndShow() {
     });
     console.log("Filtered data:", filteredData);
 
-    // Blanda resultatet slumpmässigt
     shuffleArray(filteredData);
 
     currentIndex = 0;
     showCurrentSuggestion();
 }
-
+// Blandar resultatet slumpmässigt
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -219,10 +217,10 @@ function nextSlide(e) {
         const currentActivity = filteredData[currentIndex];
         const savedActivity = {
             name: currentActivity.name,
-            addedAt: new Date().toLocaleString() // Lägg till den aktuella tiden
+            addedAt: new Date().toLocaleString() // Lägger till den aktuella tiden
         };
 
-        // Kontrollera om aktiviteten redan finns i den sparade listan
+        // Kontrollerar om aktiviteten redan finns i den sparade listan
         const activityExists = savedSuggestions.some(activity => activity.name === savedActivity.name);
         
         if (!activityExists) {
