@@ -79,7 +79,7 @@ function toggleFavorite(activity, heartIcon) {
             heartIcon.classList.remove('pulse');
         }, { once: true });
     } else {
-        // Ta bort aktivitet om den redan finns
+        // Tar bort aktivitet om den redan finns
         favorites.splice(index, 1);
         heartIcon.classList.remove('favorited');
         heartIcon.classList.remove('pulse');
@@ -110,7 +110,6 @@ function performSearch(query) {
     updateListWithFilteredData(filteredData);
 }
 function getPriceImage(priceRange) {
-    console.log("Received price range:", priceRange);
     let price = extractPrice(priceRange);
 
     if (price >= 0 && price <= 25) {
@@ -125,12 +124,12 @@ function getPriceImage(priceRange) {
         return "bilder/pris3.svg";
     }
 
-    return "bilder/logo.svg";  // Används om inget giltigt prisintervall ges
+    return "bilder/logo.svg";  
 }
 
 function extractPrice(priceRange) {
     if (typeof priceRange === 'string') {
-        let match = priceRange.match(/\d+/g); // Hitta alla siffror i strängen
+        let match = priceRange.match(/\d+/g); // Hittar alla siffror i strängen
         if (match) {
             return match.length > 1 ? (Number(match[0]) + Number(match[1])) / 2 : Number(match[0]);
         }
@@ -153,7 +152,7 @@ function updateListWithFilteredData(filteredData) {
             const listItem = document.createElement("div");
             listItem.classList.add("list-item");
 
-            const priceImageSrc = getPriceImage(item.price_range || ""); // Hämta bild baserad på prisnivå
+            const priceImageSrc = getPriceImage(item.price_range || ""); // Hämtar bild baserad på prisnivå
 
             listItem.innerHTML = `
                 <h3>${item.name}</h3>
@@ -163,7 +162,6 @@ function updateListWithFilteredData(filteredData) {
             `;
             const heartIcon = listItem.querySelector('.heart-icon');
 
-            // Kolla om aktiviteten redan finns i favoriter och uppdatera utseendet
             const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
             const isFavorited = favorites.find(fav => fav.name === item.name);
             if (isFavorited) {
@@ -171,8 +169,8 @@ function updateListWithFilteredData(filteredData) {
             }
 
             heartIcon.addEventListener('click', function(event) {
-                event.stopPropagation(); // Förhindrar att listitemets klickevent också triggas
-                toggleFavorite(item, heartIcon); // Hantera favorit-funktionaliteten
+                event.stopPropagation(); 
+                toggleFavorite(item, heartIcon); 
             });
             listItem.appendChild(heartIcon);
 
@@ -222,7 +220,7 @@ function updateImageContainer(item) {
     const ratingText = document.createTextNode('Rating: ');
     ratingContainer.appendChild(ratingText);
 
-    // stjärnbild för rating
+    // stjärn ikon för rating
     const ratingImgElement = new Image(300, 20); 
     ratingImgElement.src = getRatingImage(item.rating || 0);
     ratingImgElement.alt = "Rating";
@@ -245,7 +243,6 @@ function getRatingImage(rating) {
         imageName = roundedRating.toString();
     }
     const imagePath = `bilder/${imageName}star.svg`;
-    console.log("Rating image path:", imagePath); // Logga sökvägen
     return imagePath;
 }
 function openModal() {
