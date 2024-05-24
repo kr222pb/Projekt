@@ -281,7 +281,34 @@ document.addEventListener('DOMContentLoaded', async function() {
         updateListDisplay();
     }
   
-
+    function getPriceImage(priceRange) {
+        console.log("Received price range:", priceRange);
+        let price = extractPrice(priceRange);
+    
+        if (price >= 0 && price <= 25) {
+            return "bilder/pris1.svg";
+        } else if (price > 25 && price <= 100) {
+            return "bilder/pris1.svg";
+        } else if (price > 100 && price <= 250) {
+            return "bilder/pris2.svg";
+        } else if (price > 250 && price <= 500) {
+            return "bilder/pris2.svg";
+        } else if (price > 500) {
+            return "bilder/pris3.svg";
+        }
+    
+        return "bilder/logo.svg";  // Används om inget giltigt prisintervall ges
+    }
+    
+    function extractPrice(priceRange) {
+        if (typeof priceRange === 'string') {
+            let match = priceRange.match(/\d+/g); // Hitta alla siffror i strängen
+            if (match) {
+                return match.length > 1 ? (Number(match[0]) + Number(match[1])) / 2 : Number(match[0]);
+            }
+        }
+        return NaN; 
+    }
     function updateListDisplay() {
         console.log("Updating the list display...");
         const allowedTypes = ["activity", "food", "attraction"];
@@ -319,10 +346,12 @@ document.addEventListener('DOMContentLoaded', async function() {
                 if (item) {
                     const listItem = document.createElement("div");
                     listItem.classList.add("list-item");
+                    const priceImageSrc = getPriceImage(item.price_range || ""); // Hämta bild baserad på prisnivå
+
                     listItem.innerHTML = `
                         <h3>${item.name}</h3>
                         <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
-                        <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: ${item.price_range || "ej angiven"}</p>
+                        <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: <img src="${priceImageSrc}" alt="Prisnivå" style="width:20px; height:30px; vertical-align: middle;"> </p>
                         <div class="heart-icon"></div>
                     `;
                     const heartIcon = listItem.querySelector('.heart-icon');
@@ -364,7 +393,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 streamingData[service].forEach(movie => {
                     const listItem = document.createElement('div');
                     listItem.classList.add('list-item');
-                    listItem.innerHTML = `<h3>${movie.Title}</h3><p class="itemDescr>Kategori: ${movie.Category}</p><p class="itemLocPr">Längd: ${movie.Length} min</p><p class=rating>Betyg: ${movie.Stars}</p><div class="heart-icon"></div>`;
+                    listItem.innerHTML = `<h3>${movie.Title}</h3><p class="itemDescr">Kategori: ${movie.Category}</p><p class="itemLocPr">Längd: ${movie.Length} min, IMDB: ${movie.Stars}</p><div class="heart-icon"></div>`;
                     const heartIcon = listItem.querySelector('.heart-icon');
 
                     const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];

@@ -155,7 +155,7 @@ img {
     transform: translateY(100%);
     padding: 10px;
     box-sizing: border-box;
-    z-index: 10;
+    z-index: 2;
 
 }
 
@@ -171,7 +171,7 @@ img {
 }
 
 .info-block {
-    flex: 0.75;
+    flex: 1;
     padding: 4px;
     background-color: rgba(255, 255, 255, 0.8);
     /* Lätt transparens */
@@ -194,13 +194,31 @@ img {
     max-height: 70px;
     overflow-y: auto;
 }
+#weather-container{
+    flex: 0.5px;
+}
 
 #map,
 #weather-container {
     position: relative;
+    z-index: 5;
+
+}
+#weather-icon {
+    height: 80px;
+    width: 40px;
+    margin-left: 20px;
+}
+
+#weather-info {
+    font-size: large;
 
 }
 
+.info-block#map {
+    flex: 5;
+    width: 80%;
+}
 /* Kamera */
 .cameraState {
     display: flex;
@@ -550,20 +568,7 @@ h2 {
     height: 250px;
 }
 
-#weather-icon {
-    height: 80px;
-    width: 80px;
-    margin-left: 20px;
-}
 
-#weather-info {
-    font-size: large;
-
-}
-
-.info-block#map {
-    flex: 2;
-}
 
 /* ------ANIMATIONER------ */
 @keyframes bounce {
@@ -703,7 +708,7 @@ main {
 
 .search-container {
     position: relative;
-    top: 50px;
+    top: 20px;
     z-index: 2;
     padding: 10px;
 }
@@ -723,6 +728,7 @@ main {
 
 #searchInput {
     font-size: 16px;
+    width: 250px;
 }
 
 #listUtf {
@@ -989,9 +995,6 @@ header .header-arrow .filter-arrow .arrow2 {
     display: flex;
     flex-direction: column;
 }
-
-
-
 .con li {
     display: flex;
     align-items: center;
@@ -1003,15 +1006,12 @@ header .header-arrow .filter-arrow .arrow2 {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
-
-/*TESTING PÅGÅR*/
-
+/*Sparade aktiviteter*/
 #planera {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding: 100px;
+  
 }
 #planera h1{
     margin: 0;
@@ -1069,7 +1069,6 @@ header .header-arrow .filter-arrow .arrow2 {
     border: 5px solid #00a49d;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Två kolumner med lika stor bredd */
     gap: 2px;
 }
 
