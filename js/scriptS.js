@@ -60,14 +60,12 @@ function setupEventListeners() {
 }
 
 function filterAndShow() {
-    
     const allowedTypes = ["activity", "food", "attraction"];
-    const excludedDescriptions = ["Lekplats","kyrka", "Lekland", "Hamburgerkedja", "Golfbana"];
+    const includedDescriptions = [ "Sevärdhet", "Fornlämning",  "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter",  "Museum", "Slott"];
 
     // Samla alla aktiva städer
     const activeCities = [...document.querySelectorAll(".nav-menu a.active[data-stad]")].map(link => link.getAttribute("data-stad"));
     const activeProvinces = [...document.querySelectorAll(".nav-menu a.active[data-provins]")].map(link => link.getAttribute("data-provins"));
-
 
     // Filtrerar datan efter de valda städerna och typer
     filteredData = combinedData.filter(item => {
@@ -75,9 +73,9 @@ function filterAndShow() {
         const isProvinceSelected = activeProvinces.includes(item.province);
         const isTypeAllowed = allowedTypes.includes(item.type);
 
-        const isDescriptionExcluded = excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()));
+        const isDescriptionIncluded = includedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()));
 
-        return (isCitySelected || isProvinceSelected) && isTypeAllowed && !isDescriptionExcluded;
+        return (isCitySelected || isProvinceSelected) && isTypeAllowed && isDescriptionIncluded;
     });
     console.log("Filtered data:", filteredData);
 
