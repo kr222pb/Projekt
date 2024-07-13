@@ -143,30 +143,79 @@ function openList() {
 }
 
 function tabort(activityIndex, date, activityDiv) {
-    if (confirm("Är du säker på att du vill ta bort denna aktivitet?")) {
-        //Ta bort den specifika aktiviteten från savedActivity
+    // Visa dialogrutan
+    const confirmBox = document.getElementById('confirmBox');
+    confirmBox.showModal();
+
+    // Stäng dialogrutan
+    const closeModal = () => {
+        confirmBox.close();
+    };
+
+    const confirmNo = document.getElementById('confirmNo');
+    confirmNo.onclick = closeModal;
+
+    // Hantera Ja-knappen
+    const confirmYes = document.getElementById('confirmYes');
+    confirmYes.onclick = function() {
+        // Ta bort den specifika aktiviteten från savedActivity
         savedActivity = savedActivity.filter((activity, index) => {
             const activityDate = new Date(activity.addedAt).toLocaleDateString();
             return !(index === activityIndex && activityDate === date);
         });
-        
+
         saveData();
         activityDiv.remove();
-    }
+
+        // Stäng dialogrutan
+        closeModal();
+    };
+
+    // Stäng dialogrutan om användaren klickar utanför rutan
+    confirmBox.addEventListener('click', function(event) {
+        if (event.target === confirmBox) {
+            closeModal();
+        }
+    });
 }
 
 function removeDateDiv(minibox, date) {
-    if (confirm("Är du säker på att du vill ta bort alla aktiviteter för detta datum?")) {
-        //Ta bort alla aktiviteter för ett specifikt datum från savedActivity
+    // Visa dialogrutan
+    const confirmBox = document.getElementById('confirmBox');
+    confirmBox.querySelector('p').textContent = "Är du säker på att du vill ta bort alla aktiviteter för detta datum?";
+    confirmBox.showModal();
+
+    // Stäng dialogrutan
+    const closeModal = () => {
+        confirmBox.close();
+        confirmBox.querySelector('p').textContent = "Är du säker på att du vill ta bort denna aktivitet?";
+    };
+
+    const confirmNo = document.getElementById('confirmNo');
+    confirmNo.onclick = closeModal;
+
+    // Hantera Ja-knappen
+    const confirmYes = document.getElementById('confirmYes');
+    confirmYes.onclick = function() {
+        // Ta bort alla aktiviteter för ett specifikt datum från savedActivity
         savedActivity = savedActivity.filter(activity => {
             const activityDate = new Date(activity.addedAt).toLocaleDateString();
             return activityDate !== date;
         });
-        
+
         saveData();
-        //Ta bort hela miniboxen 
         minibox.remove();
-    }
+
+        // Stäng dialogrutan
+        closeModal();
+    };
+
+    // Stäng dialogrutan om användaren klickar utanför rutan
+    confirmBox.addEventListener('click', function(event) {
+        if (event.target === confirmBox) {
+            closeModal();
+        }
+    });
 }
 
 function saveData() {
