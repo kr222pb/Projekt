@@ -92,46 +92,27 @@ function shuffleArray(array) {
     }
 }
 function chooseImg(description) {
-    let a = ["Klippklättring"];
-    let b = ["Simhall"];
     let c = ["Sevärdhet", "Fornlämning"];
-    let d = ["Älgpark", "Djurpark", "Temapark"]
-    let e = ["Glasbruk"];
-    let f = ["Konstgalleri", "Ateljé", "Konsthall"];
-    let g = ["Restaurang", "Bistro","Pizzeria"]
-    let h = ["Gatukök"]
-    let i = ["Gokart"]
-    let j = ["Zipline"]
+    let d = ["Temapark"]
+    let f = ["Konstgalleri", "Konsthall"];
+    let g = ["Restaurang", "Bistro"]
     let k = ["Biograf"]
     let l = ["Cafe"]
     let m = ["Naturreservat"]
     let n = ["Paintballcenter"]
     let o = ["Nattklubb", "Bowlinghall", "Nöjescenter"]
-    let p = ["Hälsocenter"]
     let q = ["Hembygdspark"]
     let r = ["Museum", "Slott"]
 
     let category;
-    if (a.includes(description)) {
-        category = "A";
-    } else if (b.includes(description)) {
-        category = "B";
-    } else if (c.includes(description)) {
+    if (c.includes(description)) {
         category = "C";
     } else if (d.includes(description)) {
         category = "D";
-    } else if (e.includes(description)) {
-        category = "E";
     } else if (f.includes(description)) {
         category = "F";
     } else if (g.includes(description)) {
         category = "G";
-    } else if (h.includes(description)) {
-        category = "H";
-    } else if (i.includes(description)) {
-        category = "I";
-    } else if (j.includes(description)) {
-        category = "J";
     } else if (k.includes(description)) {
         category = "K";
     } else if (l.includes(description)) {
@@ -142,10 +123,8 @@ function chooseImg(description) {
         category = "N";
     } else if (o.includes(description)) {
         category = "O";
-    } else if (p.includes(description)) {
-        category = "P";
     } else if (q.includes(description)) {
-        category = "K";
+        category = "Q";
     } else if (r.includes(description)) {
         category = "R";
     } else {
@@ -154,26 +133,14 @@ function chooseImg(description) {
 
 
     switch (category) {
-        case "A":
-            return "Foto/klippa.jpg";
-        case "B":
-            return "Foto/simhall.jpg";
         case "C":
             return "Foto/runsten.jpg";
         case "D":
             return "Foto/Djur.jpg";
-        case "E":
-            return "Foto/glaskonst.jpg";
         case "F":
             return "Foto/tavla.jpg";
         case "G":
             return "Foto/mat.jpg";
-        case "H":
-            return "Foto/gatukök.jpg";
-        case "I":
-            return "Foto/mållinje.jpg";
-        case "J":
-            return "Foto/träd.jpg";
         case "K":
             return "Foto/popcorn.jpg";
         case "L":
@@ -184,8 +151,6 @@ function chooseImg(description) {
             return "Foto/paintball.jpg";
         case "O":
             return "Foto/disco.jpg";
-        case "P":
-            return "Foto/hälsocenter.jpg";
         case "Q":
             return "Foto/hus.jpg";
         case "R":
