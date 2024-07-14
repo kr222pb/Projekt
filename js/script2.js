@@ -170,8 +170,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     function populateDropdownMenu(menu, type, selectedSet) {
         menu.innerHTML = ''; 
-        const allowedTypes = ["activity", "food", "attraction"];
-        const excludedDescriptions = ["Lekplats", "kyrka", "Lekland", "Hamburgerkedja", "Hälsocenter", "Golfbana"];
+        const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
+        
         const uniqueItems = new Set();
 
         if (type === "streaming") {
@@ -186,10 +186,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                         uniqueItems.add(location);
                     }
                 } else {
-                    if (allowedTypes.includes(item.type) && !excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()))) {
-                        if (item.type === type) {
-                            uniqueItems.add(item.description);
-                        }
+                    if (item.type === type && includedDescriptions.includes(item.description)) {
+                        uniqueItems.add(item.description);
                     }
                 }
             });
@@ -309,12 +307,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     function updateListDisplay() {
         console.log("Updating the list display...");
-        const allowedTypes = ["activity", "food", "attraction"];
-        const excludedDescriptions = ["lekplats", "kyrka", "lekland", "hamburgerkedja", "golfbana"];
-    
+        const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
+        
         const hasCategorySelected = selectedActivities.size > 0 || selectedFoods.size > 0 || selectedAttractions.size > 0 || selectedStreamingServices.size > 0;
         const hasLocationSelected = selectedLocations.size > 0;
-
     
         listUtf.innerHTML = '';
     
@@ -324,14 +320,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     
         const filteredData = combinedData.filter(item => {
-            const isTypeAllowed = allowedTypes.includes(item.type);
-            const isDescriptionAllowed = !excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc.toLowerCase()));
             const matchesActivity = selectedActivities.has(item.description) && item.type === 'activity';
             const matchesFood = selectedFoods.has(item.description) && item.type === 'food';
             const matchesAttraction = selectedAttractions.has(item.description) && item.type === 'attraction';
             const matchesLocation = selectedLocations.has(item.city) || selectedLocations.has(item.province);
     
-            return isTypeAllowed && isDescriptionAllowed && 
+            return includedDescriptions.includes(item.description) && 
                    ((hasCategorySelected ? (matchesActivity || matchesFood || matchesAttraction) : true) &&
                     (hasLocationSelected ? matchesLocation : true));
         });
@@ -345,7 +339,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     const listItem = document.createElement("div");
                     listItem.classList.add("list-item");
                     const priceImageSrc = getPriceImage(item.price_range || ""); 
-
+    
                     listItem.innerHTML = `
                         <h3>${item.name}</h3>
                         <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
@@ -353,14 +347,14 @@ document.addEventListener('DOMContentLoaded', async function() {
                         <div class="heart-icon"></div>
                     `;
                     const heartIcon = listItem.querySelector('.heart-icon');
-
+    
                     // Kollar om aktiviteten redan finns i favoriter och uppdatera 
                     const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
                     const isFavorited = favorites.find(fav => fav.name === item.name);
                     if (isFavorited) {
                         heartIcon.classList.add('favorited');
                     }
-
+    
                     heartIcon.addEventListener('click', function(event) {
                         event.stopPropagation(); 
                         toggleFavorite(item, heartIcon); 
@@ -383,6 +377,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
+    
     function displayStreamingMovies() {
         const selectedService = Array.from(selectedStreamingServices);
         if (selectedService.length > 0) {
@@ -393,7 +388,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     listItem.classList.add('list-item');
                     listItem.innerHTML = `<h3>${movie.Title}</h3><p class="itemDescr">Kategori: ${movie.Category}</p><p class="itemLocPr">Längd: ${movie.Length} min, IMDB: ${movie.Stars}</p><div class="heart-icon"></div>`;
                     const heartIcon = listItem.querySelector('.heart-icon');
-
+    
                     const favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
                     const isFavorited = favorites.find(fav => fav.name === movie.Title);
                     if (isFavorited) {
