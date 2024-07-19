@@ -27,6 +27,20 @@ async function fetchAllEstablishmentData() {
     }
 }
 
+async function fetchReviews(establishmentId) {
+    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getreviews&id=${establishmentId}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Fel vid hämtning av recensioner");
+
+        const jsonData = await response.json();
+        return jsonData.payload || [];
+    } catch (error) {
+        console.error("Fel vid hämtning av recensioner:", error);
+        return [];
+    }
+}
+
 function setupEventListeners() {
     const searchInput = document.querySelector("#searchInput");
     const filterArrow = document.querySelector("#filterArrow");
@@ -62,12 +76,12 @@ function setupEventListeners() {
         });
     }
 }
+
 function toggleFavorite(activity, heartIcon) {
     let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
     const index = favorites.findIndex(fav => fav.name === activity.name);
 
     if (index === -1) {
-        
         const savedActivity = {
             name: activity.name,
             addedAt: new Date().toLocaleString() 
@@ -83,13 +97,10 @@ function toggleFavorite(activity, heartIcon) {
         favorites.splice(index, 1);
         heartIcon.classList.remove('favorited');
         heartIcon.classList.remove('pulse');
-        
     }
 
     localStorage.setItem("savedActivity", JSON.stringify(favorites));
 }
-
-
 
 function performSearch(query) {
     const allowedTypes = ["activity", "food", "attraction"];
@@ -109,6 +120,7 @@ function performSearch(query) {
 
     updateListWithFilteredData(filteredData);
 }
+
 function getPriceImage(priceRange) {
     let price = extractPrice(priceRange);
 
@@ -174,8 +186,8 @@ function updateListWithFilteredData(filteredData) {
             });
             listItem.appendChild(heartIcon);
 
-            listItem.addEventListener("click", () => {
-                updateImageContainer(item);
+            listItem.addEventListener("click", async () => {
+                await updateEstablishmentDetails(item.id);
                 openModal();
                 updateMap(item.lat, item.lng);
                 lat = item.lat;
@@ -184,6 +196,62 @@ function updateListWithFilteredData(filteredData) {
 
             listUtf.appendChild(listItem);
         }
+    });
+}
+
+async function updateEstablishmentDetails(establishmentId) {
+    try {
+        // Hitta den specifika etableringen från combinedData
+        const establishment = combinedData.find(est => est.id === establishmentId);
+        if (!establishment) throw new Error("Etablering ej hittad");
+
+        // Uppdatera visningen av etableringsdetaljer
+        updateImageContainer(establishment);
+
+        // Hämta och visa recensioner för den valda etableringen
+        const reviews = await fetchReviews(establishmentId);
+        displayReviews(reviews);
+
+    } catch (error) {
+        console.error("Fel vid uppdatering av etableringsdetaljer:", error);
+        document.getElementById("messageDisplay").textContent = "Kunde inte uppdatera detaljer.";
+    }
+}
+
+function displayReviews(reviews) {
+    const reviewsContainer = document.getElementById("activity-reviews");
+    reviewsContainer.innerHTML = ''; // Rensa befintligt innehåll
+
+    if (reviews.length === 0) {
+        reviewsContainer.textContent = "Inga recensioner tillgängliga.";
+        return;
+    }
+
+    reviews.forEach(review => {
+        const reviewElement = document.createElement("div");
+        reviewElement.classList.add("review");
+
+        const name = document.createElement("p");
+        name.classList.add("review-name");
+        name.textContent = `Recensent: ${review.name || "Anonym"}`;
+        reviewElement.appendChild(name);
+
+        const rating = document.createElement("p");
+        rating.classList.add("review-rating");
+        rating.textContent = `Betyg: ${review.rating}`;
+        reviewElement.appendChild(rating);
+
+        const comment = document.createElement("p");
+        comment.classList.add("review-comment");
+        comment.textContent = `Kommentar: ${review.comment || "Ingen kommentar."}`;
+        reviewElement.appendChild(comment);
+
+        const timestamp = document.createElement("p");
+        timestamp.classList.add("review-date");
+        timestamp.textContent = `Datum: ${review.relative_time}`;
+        reviewElement.appendChild(timestamp);
+
+        reviewsContainer.appendChild(reviewElement);
     });
 }
 
@@ -201,7 +269,6 @@ function updateImageContainer(item) {
         imageContainer.appendChild(newImgElement);
     }
     
-
     document.getElementById("activity-type").textContent = `Typ av aktivitet: ${item.type || "Ej angiven"}`;
     document.getElementById("activity-city").textContent = `Stad: ${item.city || item.province || "Ej angiven"}`;
 
@@ -227,7 +294,6 @@ function updateImageContainer(item) {
     ratingContainer.appendChild(ratingImgElement);
 
     document.getElementById("activity-abstract").textContent = `Beskrivning: ${item.abstract || "Ingen beskrivning tillgänglig."}`;
-    document.getElementById("activity-reviews").textContent = `Recensioner: ${item.num_reviews || "Inga recensioner tillgängliga."}`;
 
     const websiteElement = document.getElementById("website");
     if (item.website) {
@@ -236,6 +302,7 @@ function updateImageContainer(item) {
         websiteElement.textContent = "Ingen websida är tillgänglig.";
     }
 }
+
 function getRatingImage(rating) {
     const roundedRating = Math.round(rating * 2) / 2;
     let imageName = roundedRating.toString().replace('.', '');
@@ -245,6 +312,7 @@ function getRatingImage(rating) {
     const imagePath = `bilder/${imageName}star.svg`;
     return imagePath;
 }
+
 function openModal() {
     const modal = document.getElementById("modal");
     if (modal) {

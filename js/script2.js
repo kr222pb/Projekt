@@ -367,6 +367,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                             updateMap(item.lat, item.lng);
                             lat = item.lat;
                             lng = item.lng;
+    
+                            // Uppdatera recensioner
+                            updateReviews(item.id);; // Skickar ID  för att hämta recensioner
                         } else {
                             console.error("Invalid or missing coordinates.");
                         }
@@ -377,7 +380,59 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
+    async function updateReviews(establishmentId) {
+        const reviewsContainer = document.getElementById("activity-reviews");
+        reviewsContainer.innerHTML = ""; // Tömmer tidigare recensioner
+        
+        const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getreviews&id=${establishmentId}`;
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("Fel vid hämtning av recensioner");
+            const data = await response.json();
+            
+            const reviews = data.payload;
+            
+            if (reviews.length === 0) {
+                reviewsContainer.textContent = "Inga recensioner tillgängliga.";
+                return;
+            }
     
+            reviews.forEach(review => {
+                const reviewElement = document.createElement("div");
+                reviewElement.classList.add("review");
+    
+                //  recensentens namn
+                const name = document.createElement("p");
+                name.classList.add("review-name");
+                name.textContent = `Recensent: ${review.name || "Anonym"}`;
+                reviewElement.appendChild(name);
+    
+                //  betyg
+                const rating = document.createElement("p");
+                rating.classList.add("review-rating");
+                rating.textContent = `Betyg: ${review.rating}`;
+                reviewElement.appendChild(rating);
+    
+                //  kommentar
+                const comment = document.createElement("p");
+                comment.classList.add("review-comment");
+                comment.textContent = `Kommentar: ${review.comment || "Ingen kommentar."}`;
+                reviewElement.appendChild(comment);
+    
+                //  datum
+                const timestamp = document.createElement("p");
+                timestamp.classList.add("review-date");
+                timestamp.textContent = `Datum: ${review.relative_time}`;
+                reviewElement.appendChild(timestamp);
+    
+                // Lägg till reviewElement i reviewsContainer
+                reviewsContainer.appendChild(reviewElement);
+            });
+        } catch (error) {
+            console.error("Fel vid hämtning av recensioner:", error);
+            reviewsContainer.textContent = "Kunde inte ladda recensioner.";
+        }
+    }
     function displayStreamingMovies() {
         const selectedService = Array.from(selectedStreamingServices);
         if (selectedService.length > 0) {
