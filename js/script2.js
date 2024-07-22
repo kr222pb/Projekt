@@ -461,6 +461,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
+    //  dropdown-menyn när sidan laddas
+    dropdownMenu.classList.add('active');
     filterArrow.addEventListener('click', function(event) {
         event.preventDefault();
         dropdownMenu.classList.toggle('active');

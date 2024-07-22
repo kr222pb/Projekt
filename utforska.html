@@ -38,17 +38,18 @@
                 <div class="dropdown-item" id="homeEvening">Hemmakväll▼
                     <div class="nested-dropdown-menu"></div>
                 </div>
+                <div class="search-container">
+                  <form id="searchForm" method="GET">
+                      <input type="text" placeholder="Sök efter din stad eller aktivitet..." id="searchInput">
+                      <button type="submit">Sök</button>
+                  </form>
+                  <div id="messageDisplay"></div>
+              </div>
             </div>
         </div>
     </header>
     <main>
-        <div class="search-container">
-            <form id="searchForm" method="GET">
-                <input type="text" placeholder="Sök efter din stad eller aktivitet..." id="searchInput">
-                <button type="submit">Sök</button>
-            </form>
-            <div id="messageDisplay"></div>
-        </div>
+        
         <div id="listUtf">
 
         </div>

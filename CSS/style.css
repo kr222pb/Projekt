@@ -704,6 +704,7 @@ main {
     top: 20px;
     z-index: 2;
     padding: 10px;
+  
 }
 
 .search-container button {
@@ -824,6 +825,7 @@ header .header-arrow .filter-arrow .arrow2 {
 
 .dropdown-menu.active {
     display: flex;
+   
 }
 
 .dropdown-menu .dropdown-item {
