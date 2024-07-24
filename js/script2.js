@@ -383,55 +383,108 @@ document.addEventListener('DOMContentLoaded', async function() {
     async function updateReviews(establishmentId) {
         const reviewsContainer = document.getElementById("activity-reviews");
         reviewsContainer.innerHTML = ""; // Tömmer tidigare recensioner
-        
+    
         const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getreviews&id=${establishmentId}`;
         try {
             const response = await fetch(url);
             if (!response.ok) throw new Error("Fel vid hämtning av recensioner");
             const data = await response.json();
-            
+    
             const reviews = data.payload;
-            
+    
             if (reviews.length === 0) {
                 reviewsContainer.textContent = "Inga recensioner tillgängliga.";
                 return;
             }
     
-            reviews.forEach(review => {
-                const reviewElement = document.createElement("div");
-                reviewElement.classList.add("review");
+            console.log("Totalt antal recensioner:", reviews.length);
     
-                //  recensentens namn
-                const name = document.createElement("p");
-                name.classList.add("review-name");
-                name.textContent = `Recensent: ${review.name || "Anonym"}`;
-                reviewElement.appendChild(name);
-    
-                //  betyg
-                const rating = document.createElement("p");
-                rating.classList.add("review-rating");
-                rating.textContent = `Betyg: ${review.rating}`;
-                reviewElement.appendChild(rating);
-    
-                //  kommentar
-                const comment = document.createElement("p");
-                comment.classList.add("review-comment");
-                comment.textContent = `Kommentar: ${review.comment || "Ingen kommentar."}`;
-                reviewElement.appendChild(comment);
-    
-                //  datum
-                const timestamp = document.createElement("p");
-                timestamp.classList.add("review-date");
-                timestamp.textContent = `Datum: ${review.relative_time}`;
-                reviewElement.appendChild(timestamp);
-    
-                // Lägg till reviewElement i reviewsContainer
+            // Visa de två första recensionerna
+            const initialReviews = reviews.slice(0, 2);
+            initialReviews.forEach(review => {
+                const reviewElement = createReviewElement(review);
                 reviewsContainer.appendChild(reviewElement);
             });
+    
+            // Om det finns fler än två recensioner, visa knappen för att ladda fler
+            if (reviews.length > 2) {
+                const showMoreButton = document.createElement("button");
+                showMoreButton.textContent = "Visa fler recensioner";
+                showMoreButton.classList.add("show-more-button");
+    
+                const hideReviewsButton = document.createElement("button");
+                hideReviewsButton.textContent = "Dölj recensioner";
+                hideReviewsButton.classList.add("hide-reviews-button");
+                hideReviewsButton.style.display = "none"; // Göm knappen initialt
+    
+                const remainingReviews = reviews.slice(2);
+    
+                showMoreButton.addEventListener("click", () => {
+                    console.log("Visa fler recensioner-knappen klickad");
+    
+                    // Visa resterande recensioner
+                    remainingReviews.forEach(review => {
+                        const reviewElement = createReviewElement(review);
+                        reviewsContainer.appendChild(reviewElement);
+                    });
+    
+                    //  dölja recensioner och placera den sist
+                    showMoreButton.style.display = "none";
+                    hideReviewsButton.style.display = "block";
+                    reviewsContainer.appendChild(hideReviewsButton);
+    
+                });
+    
+                hideReviewsButton.addEventListener("click", () => {
+    
+                    // Dölj alla recensioner utom de första två
+                    reviewsContainer.innerHTML = '';
+                    initialReviews.forEach(review => {
+                        const reviewElement = createReviewElement(review);
+                        reviewsContainer.appendChild(reviewElement);
+                    });
+    
+                    // Visa knappen för att visa fler recensioner och göm dölja-knappen
+                    showMoreButton.style.display = "block";
+                    hideReviewsButton.style.display = "none";
+                    reviewsContainer.appendChild(showMoreButton);
+    
+                });
+    
+                reviewsContainer.appendChild(showMoreButton);
+                reviewsContainer.appendChild(hideReviewsButton);
+            }
         } catch (error) {
             console.error("Fel vid hämtning av recensioner:", error);
             reviewsContainer.textContent = "Kunde inte ladda recensioner.";
         }
+    }
+    
+    function createReviewElement(review) {
+        const reviewElement = document.createElement("div");
+        reviewElement.classList.add("review");
+    
+        const name = document.createElement("p");
+        name.classList.add("review-name");
+        name.textContent = `Recensent: ${review.name || "Anonym"}`;
+        reviewElement.appendChild(name);
+    
+        const rating = document.createElement("p");
+        rating.classList.add("review-rating");
+        rating.textContent = `Betyg: ${review.rating}`;
+        reviewElement.appendChild(rating);
+    
+        const comment = document.createElement("p");
+        comment.classList.add("review-comment");
+        comment.textContent = `Kommentar: ${review.comment || "Ingen kommentar."}`;
+        reviewElement.appendChild(comment);
+    
+        const timestamp = document.createElement("p");
+        timestamp.classList.add("review-date");
+        timestamp.textContent = `Datum: ${review.relative_time}`;
+        reviewElement.appendChild(timestamp);
+    
+        return reviewElement;
     }
     function displayStreamingMovies() {
         const selectedService = Array.from(selectedStreamingServices);

@@ -227,32 +227,87 @@ function displayReviews(reviews) {
         return;
     }
 
-    reviews.forEach(review => {
-        const reviewElement = document.createElement("div");
-        reviewElement.classList.add("review");
-
-        const name = document.createElement("p");
-        name.classList.add("review-name");
-        name.textContent = `Recensent: ${review.name || "Anonym"}`;
-        reviewElement.appendChild(name);
-
-        const rating = document.createElement("p");
-        rating.classList.add("review-rating");
-        rating.textContent = `Betyg: ${review.rating}`;
-        reviewElement.appendChild(rating);
-
-        const comment = document.createElement("p");
-        comment.classList.add("review-comment");
-        comment.textContent = `Kommentar: ${review.comment || "Ingen kommentar."}`;
-        reviewElement.appendChild(comment);
-
-        const timestamp = document.createElement("p");
-        timestamp.classList.add("review-date");
-        timestamp.textContent = `Datum: ${review.relative_time}`;
-        reviewElement.appendChild(timestamp);
-
+    // Visa de två första recensionerna
+    const initialReviews = reviews.slice(0, 2);
+    initialReviews.forEach(review => {
+        const reviewElement = createReviewElement(review);
         reviewsContainer.appendChild(reviewElement);
     });
+
+    // Visa knappen för att ladda fler om det finns fler än två recensioner
+    if (reviews.length > 2) {
+        const showMoreButton = document.createElement("button");
+        showMoreButton.textContent = "Visa fler recensioner";
+        showMoreButton.classList.add("show-more-button");
+
+        const hideReviewsButton = document.createElement("button");
+        hideReviewsButton.textContent = "Dölj recensioner";
+        hideReviewsButton.classList.add("hide-reviews-button");
+        hideReviewsButton.style.display = "none"; // Göm knappen initialt
+
+        showMoreButton.addEventListener("click", () => {
+
+            // Visa resterande recensioner
+            const remainingReviews = reviews.slice(2);
+            remainingReviews.forEach(review => {
+                const reviewElement = createReviewElement(review);
+                reviewsContainer.appendChild(reviewElement);
+            });
+
+            // Visa knappen för att dölja recensioner och placera den sist
+            showMoreButton.style.display = "none";
+            hideReviewsButton.style.display = "block";
+            reviewsContainer.appendChild(hideReviewsButton);
+
+        });
+
+        hideReviewsButton.addEventListener("click", () => {
+
+            // Dölj alla recensioner utom de första två
+            reviewsContainer.innerHTML = '';
+            initialReviews.forEach(review => {
+                const reviewElement = createReviewElement(review);
+                reviewsContainer.appendChild(reviewElement);
+            });
+
+            // Visa knappen för att visa fler recensioner och göm dölja-knappen
+            showMoreButton.style.display = "block";
+            hideReviewsButton.style.display = "none";
+            reviewsContainer.appendChild(showMoreButton);
+
+            console.log("Endast de två första recensionerna visade, Visa fler recensioner-knappen synlig");
+        });
+
+        reviewsContainer.appendChild(showMoreButton);
+        reviewsContainer.appendChild(hideReviewsButton); // Lägg till dölja-knappen initialt men gömd
+    }
+}
+
+function createReviewElement(review) {
+    const reviewElement = document.createElement("div");
+    reviewElement.classList.add("review");
+
+    const name = document.createElement("p");
+    name.classList.add("review-name");
+    name.textContent = `Recensent: ${review.name || "Anonym"}`;
+    reviewElement.appendChild(name);
+
+    const rating = document.createElement("p");
+    rating.classList.add("review-rating");
+    rating.textContent = `Betyg: ${review.rating}`;
+    reviewElement.appendChild(rating);
+
+    const comment = document.createElement("p");
+    comment.classList.add("review-comment");
+    comment.textContent = `Kommentar: ${review.comment || "Ingen kommentar."}`;
+    reviewElement.appendChild(comment);
+
+    const timestamp = document.createElement("p");
+    timestamp.classList.add("review-date");
+    timestamp.textContent = `Datum: ${review.relative_time}`;
+    reviewElement.appendChild(timestamp);
+
+    return reviewElement;
 }
 
 function updateImageContainer(item) {
