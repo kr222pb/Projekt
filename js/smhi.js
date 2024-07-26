@@ -1,10 +1,6 @@
-window.addEventListener("load", () => {
-    setInterval(checkForLocationUpdate, 100); // Letar efter uppdateringar varje millisekund
-});
-
 let previousLat, previousLng;
 
-// Check if the location has been updated
+// Om platsen ändrats
 function checkForLocationUpdate() {
     if (lat !== previousLat || lng !== previousLng) {
         previousLat = lat;
@@ -39,14 +35,14 @@ async function fetchWeatherData() {
 }
 
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
+    var R = 6371;
     var dLat = deg2rad(lat2 - lat1);
     var dLon = deg2rad(lon2 - lon1);
     var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
             Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
             Math.sin(dLon/2) * Math.sin(dLon/2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in km
+    return R * c;
 }
 
 function deg2rad(deg) {
@@ -79,14 +75,14 @@ async function findNearestWeatherStation(lat, lng) {
     if (nearestTempStation && nearestWeatherStation) {
         const temperature = nearestTempStation.value[0] ? `${nearestTempStation.value[0].value} °C` : "Temperaturdata saknas";
         const weatherIconPath = getWeatherDescription(parseInt(nearestWeatherStation.value[0].value));
-        updateWeatherInfoText(temperature);  // Uppdatera temperaturtext
-        updateWeatherIcon(`bilder/${weatherIconPath}.svg`);  // Uppdatera ikon
+        updateWeatherInfoText(temperature);  //uppdatera temperaturtext
+        updateWeatherIcon(`bilder/${weatherIconPath}.svg`);  // Uppdaterar ikonen
     } else {
         updateWeatherInfoText("Inga närliggande väderstationer hittades.");
     }
 }
 
-// Weather descriptions based on SMHI weather codes
+// Väderkoder från smhi
 const weatherDescriptions = {
     sunny: [0, 1, 2, 3, 5, 10, 104, 105],
     cloudy: [11, 12, 13, 14, 15, 16, 17, 30, 31, 32, 33, 34, 35, 110],

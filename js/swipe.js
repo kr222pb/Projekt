@@ -1,4 +1,4 @@
-// Globala variabler för swipe-funktionen
+// globala variabler för swipefunktionen
 let startX, moved = false;
 const minSwipe = 124;
 
@@ -95,12 +95,14 @@ function swipeRight() {
     animateSwipe('right', () => {
         document.getElementById("bock").click();
     });
+    checkForLocationUpdate();
 }
 
 function swipeLeft() {
     animateSwipe('left', () => {
         document.getElementById("kryss").click();
     });
+    checkForLocationUpdate();
 }
 
 function animateSwipe(direction, callback) {

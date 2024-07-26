@@ -27,6 +27,20 @@ async function fetchAllEstablishmentData() {
     }
 }
 
+async function fetchReviews(establishmentId) {
+    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getreviews&id=${establishmentId}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Fel vid hämtning av recensioner");
+
+        const jsonData = await response.json();
+        return jsonData.payload || [];
+    } catch (error) {
+        console.error("Fel vid hämtning av recensioner:", error);
+        return [];
+    }
+}
+
 function setupEventListeners() {
     const searchInput = document.querySelector("#searchInput");
     const filterArrow = document.querySelector("#filterArrow");
@@ -62,12 +76,12 @@ function setupEventListeners() {
         });
     }
 }
+
 function toggleFavorite(activity, heartIcon) {
     let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
     const index = favorites.findIndex(fav => fav.name === activity.name);
 
     if (index === -1) {
-        
         const savedActivity = {
             name: activity.name,
             addedAt: new Date().toLocaleString() 
@@ -83,17 +97,15 @@ function toggleFavorite(activity, heartIcon) {
         favorites.splice(index, 1);
         heartIcon.classList.remove('favorited');
         heartIcon.classList.remove('pulse');
-        
     }
 
     localStorage.setItem("savedActivity", JSON.stringify(favorites));
 }
 
 
-
 function performSearch(query) {
+    const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
     const allowedTypes = ["activity", "food", "attraction"];
-    const excludedDescriptions = ["lekplats", "kyrka", "lekland", "hamburgerkedja", "golfbana"];
 
     const filteredData = combinedData.filter(item => {
         const matchesQuery = item.city?.toLowerCase().includes(query) ||
@@ -102,13 +114,14 @@ function performSearch(query) {
                              item.description?.toLowerCase().includes(query);
 
         const isTypeAllowed = allowedTypes.includes(item.type);
-        const isDescriptionExcluded = !excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc));
+        const isDescriptionIncluded = includedDescriptions.includes(item.description);
 
-        return matchesQuery && isTypeAllowed && isDescriptionExcluded;
+        return matchesQuery && isTypeAllowed && isDescriptionIncluded;
     });
 
     updateListWithFilteredData(filteredData);
 }
+
 function getPriceImage(priceRange) {
     let price = extractPrice(priceRange);
 
@@ -137,6 +150,7 @@ function extractPrice(priceRange) {
     return NaN; 
 }
 
+
 function updateListWithFilteredData(filteredData) {
     const listUtf = document.getElementById("listUtf");
     if (!listUtf) {
@@ -145,7 +159,13 @@ function updateListWithFilteredData(filteredData) {
     }
 
     listUtf.innerHTML = "";
-    document.getElementById("messageDisplay").textContent = "";
+    const messageDisplay = document.getElementById("messageDisplay");
+    messageDisplay.textContent = "";
+
+    if (filteredData.length === 0) {
+        messageDisplay.textContent = "Inga resultat hittades.";
+        return;
+    }
 
     filteredData.forEach(item => {
         if (item) {
@@ -174,8 +194,8 @@ function updateListWithFilteredData(filteredData) {
             });
             listItem.appendChild(heartIcon);
 
-            listItem.addEventListener("click", () => {
-                updateImageContainer(item);
+            listItem.addEventListener("click", async () => {
+                await updateEstablishmentDetails(item.id);
                 openModal();
                 updateMap(item.lat, item.lng);
                 lat = item.lat;
@@ -185,6 +205,117 @@ function updateListWithFilteredData(filteredData) {
             listUtf.appendChild(listItem);
         }
     });
+}
+
+async function updateEstablishmentDetails(establishmentId) {
+    try {
+        // Hitta den specifika etableringen från combinedData
+        const establishment = combinedData.find(est => est.id === establishmentId);
+        if (!establishment) throw new Error("Etablering ej hittad");
+
+        // Uppdatera visningen av etableringsdetaljer
+        updateImageContainer(establishment);
+
+        // Hämta och visa recensioner för den valda etableringen
+        const reviews = await fetchReviews(establishmentId);
+        displayReviews(reviews);
+
+    } catch (error) {
+        console.error("Fel vid uppdatering av etableringsdetaljer:", error);
+        document.getElementById("messageDisplay").textContent = "Kunde inte uppdatera detaljer.";
+    }
+}
+
+function displayReviews(reviews) {
+    const reviewsContainer = document.getElementById("activity-reviews");
+    reviewsContainer.innerHTML = ''; // Rensa befintligt innehåll
+
+    if (reviews.length === 0) {
+        reviewsContainer.textContent = "Inga recensioner tillgängliga.";
+        return;
+    }
+
+    // Visa de två första recensionerna
+    const initialReviews = reviews.slice(0, 2);
+    initialReviews.forEach(review => {
+        const reviewElement = createReviewElement(review);
+        reviewsContainer.appendChild(reviewElement);
+    });
+
+    // Visa knappen för att ladda fler om det finns fler än två recensioner
+    if (reviews.length > 2) {
+        const showMoreButton = document.createElement("button");
+        showMoreButton.textContent = "Visa fler recensioner";
+        showMoreButton.classList.add("show-more-button");
+
+        const hideReviewsButton = document.createElement("button");
+        hideReviewsButton.textContent = "Dölj recensioner";
+        hideReviewsButton.classList.add("hide-reviews-button");
+        hideReviewsButton.style.display = "none"; // Göm knappen initialt
+
+        showMoreButton.addEventListener("click", () => {
+
+            // Visa resterande recensioner
+            const remainingReviews = reviews.slice(2);
+            remainingReviews.forEach(review => {
+                const reviewElement = createReviewElement(review);
+                reviewsContainer.appendChild(reviewElement);
+            });
+
+            // Visa knappen för att dölja recensioner och placera den sist
+            showMoreButton.style.display = "none";
+            hideReviewsButton.style.display = "block";
+            reviewsContainer.appendChild(hideReviewsButton);
+
+        });
+
+        hideReviewsButton.addEventListener("click", () => {
+
+            // Dölj alla recensioner utom de första två
+            reviewsContainer.innerHTML = '';
+            initialReviews.forEach(review => {
+                const reviewElement = createReviewElement(review);
+                reviewsContainer.appendChild(reviewElement);
+            });
+
+            // Visa knappen för att visa fler recensioner och göm dölja-knappen
+            showMoreButton.style.display = "block";
+            hideReviewsButton.style.display = "none";
+            reviewsContainer.appendChild(showMoreButton);
+
+            console.log("Endast de två första recensionerna visade, Visa fler recensioner-knappen synlig");
+        });
+
+        reviewsContainer.appendChild(showMoreButton);
+        reviewsContainer.appendChild(hideReviewsButton); // Lägg till dölja-knappen initialt men gömd
+    }
+}
+
+function createReviewElement(review) {
+    const reviewElement = document.createElement("div");
+    reviewElement.classList.add("review");
+
+    const name = document.createElement("p");
+    name.classList.add("review-name");
+    name.textContent = `Recensent: ${review.name || "Anonym"}`;
+    reviewElement.appendChild(name);
+
+    const rating = document.createElement("p");
+    rating.classList.add("review-rating");
+    rating.textContent = `Betyg: ${review.rating}`;
+    reviewElement.appendChild(rating);
+
+    const comment = document.createElement("p");
+    comment.classList.add("review-comment");
+    comment.textContent = `Kommentar: ${review.comment || "Ingen kommentar."}`;
+    reviewElement.appendChild(comment);
+
+    const timestamp = document.createElement("p");
+    timestamp.classList.add("review-date");
+    timestamp.textContent = `Datum: ${review.relative_time}`;
+    reviewElement.appendChild(timestamp);
+
+    return reviewElement;
 }
 
 function updateImageContainer(item) {
@@ -201,7 +332,6 @@ function updateImageContainer(item) {
         imageContainer.appendChild(newImgElement);
     }
     
-
     document.getElementById("activity-type").textContent = `Typ av aktivitet: ${item.type || "Ej angiven"}`;
     document.getElementById("activity-city").textContent = `Stad: ${item.city || item.province || "Ej angiven"}`;
 
@@ -227,7 +357,6 @@ function updateImageContainer(item) {
     ratingContainer.appendChild(ratingImgElement);
 
     document.getElementById("activity-abstract").textContent = `Beskrivning: ${item.abstract || "Ingen beskrivning tillgänglig."}`;
-    document.getElementById("activity-reviews").textContent = `Recensioner: ${item.num_reviews || "Inga recensioner tillgängliga."}`;
 
     const websiteElement = document.getElementById("website");
     if (item.website) {
@@ -236,6 +365,7 @@ function updateImageContainer(item) {
         websiteElement.textContent = "Ingen websida är tillgänglig.";
     }
 }
+
 function getRatingImage(rating) {
     const roundedRating = Math.round(rating * 2) / 2;
     let imageName = roundedRating.toString().replace('.', '');
@@ -245,6 +375,7 @@ function getRatingImage(rating) {
     const imagePath = `bilder/${imageName}star.svg`;
     return imagePath;
 }
+
 function openModal() {
     const modal = document.getElementById("modal");
     if (modal) {
@@ -276,46 +407,27 @@ function updateMap(lat, lng) {
 }
 
 function chooseImg(description) {
-    let a = ["Klippklättring"];
-    let b = ["Simhall"];
     let c = ["Sevärdhet", "Fornlämning"];
-    let d = ["Älgpark", "Djurpark", "Temapark"];
-    let e = ["Glasbruk"];
-    let f = ["Konstgalleri", "Ateljé", "Konsthall"];
-    let g = ["Restaurang", "Bistro", "Pizzeria"];
-    let h = ["Gatukök"];
-    let i = ["Gokart"];
-    let j = ["Zipline"];
-    let k = ["Biograf"];
-    let l = ["Cafe"];
-    let m = ["Naturreservat"];
-    let n = ["Paintballcenter"];
-    let o = ["Nattklubb", "Bowlinghall", "Nöjescenter"];
-    let p = ["Hälsocenter"];
-    let q = ["Hembygdspark"];
-    let r = ["Museum", "Slott"];
+    let d = ["Temapark"]
+    let f = ["Konstgalleri", "Konsthall"];
+    let g = ["Restaurang", "Bistro"]
+    let k = ["Biograf"]
+    let l = ["Cafe"]
+    let m = ["Naturreservat"]
+    let n = ["Paintballcenter"]
+    let o = ["Nattklubb", "Bowlinghall", "Nöjescenter"]
+    let q = ["Hembygdspark"]
+    let r = ["Museum", "Slott"]
 
     let category;
-    if (a.includes(description)) {
-        category = "A";
-    } else if (b.includes(description)) {
-        category = "B";
-    } else if (c.includes(description)) {
+    if (c.includes(description)) {
         category = "C";
     } else if (d.includes(description)) {
         category = "D";
-    } else if (e.includes(description)) {
-        category = "E";
     } else if (f.includes(description)) {
         category = "F";
     } else if (g.includes(description)) {
         category = "G";
-    } else if (h.includes(description)) {
-        category = "H";
-    } else if (i.includes(description)) {
-        category = "I";
-    } else if (j.includes(description)) {
-        category = "J";
     } else if (k.includes(description)) {
         category = "K";
     } else if (l.includes(description)) {
@@ -326,8 +438,6 @@ function chooseImg(description) {
         category = "N";
     } else if (o.includes(description)) {
         category = "O";
-    } else if (p.includes(description)) {
-        category = "P";
     } else if (q.includes(description)) {
         category = "Q";
     } else if (r.includes(description)) {
@@ -336,27 +446,16 @@ function chooseImg(description) {
         category = "Okänd kategori";
     }
 
+
     switch (category) {
-        case "A":
-            return "Foto/klippa.jpg";
-        case "B":
-            return "Foto/simhall.jpg";
         case "C":
             return "Foto/runsten.jpg";
         case "D":
             return "Foto/Djur.jpg";
-        case "E":
-            return "Foto/glaskonst.jpg";
         case "F":
             return "Foto/tavla.jpg";
         case "G":
             return "Foto/mat.jpg";
-        case "H":
-            return "Foto/gatukök.jpg";
-        case "I":
-            return "Foto/mållinje.jpg";
-        case "J":
-            return "Foto/träd.jpg";
         case "K":
             return "Foto/popcorn.jpg";
         case "L":
@@ -367,8 +466,6 @@ function chooseImg(description) {
             return "Foto/paintball.jpg";
         case "O":
             return "Foto/disco.jpg";
-        case "P":
-            return "Foto/hälsocenter.jpg";
         case "Q":
             return "Foto/hus.jpg";
         case "R":
