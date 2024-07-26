@@ -102,9 +102,10 @@ function toggleFavorite(activity, heartIcon) {
     localStorage.setItem("savedActivity", JSON.stringify(favorites));
 }
 
+
 function performSearch(query) {
+    const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
     const allowedTypes = ["activity", "food", "attraction"];
-    const excludedDescriptions = ["lekplats", "kyrka", "lekland", "hamburgerkedja", "golfbana"];
 
     const filteredData = combinedData.filter(item => {
         const matchesQuery = item.city?.toLowerCase().includes(query) ||
@@ -113,9 +114,9 @@ function performSearch(query) {
                              item.description?.toLowerCase().includes(query);
 
         const isTypeAllowed = allowedTypes.includes(item.type);
-        const isDescriptionExcluded = !excludedDescriptions.some(desc => item.description?.toLowerCase().includes(desc));
+        const isDescriptionIncluded = includedDescriptions.includes(item.description);
 
-        return matchesQuery && isTypeAllowed && isDescriptionExcluded;
+        return matchesQuery && isTypeAllowed && isDescriptionIncluded;
     });
 
     updateListWithFilteredData(filteredData);
@@ -149,6 +150,7 @@ function extractPrice(priceRange) {
     return NaN; 
 }
 
+
 function updateListWithFilteredData(filteredData) {
     const listUtf = document.getElementById("listUtf");
     if (!listUtf) {
@@ -157,7 +159,13 @@ function updateListWithFilteredData(filteredData) {
     }
 
     listUtf.innerHTML = "";
-    document.getElementById("messageDisplay").textContent = "";
+    const messageDisplay = document.getElementById("messageDisplay");
+    messageDisplay.textContent = "";
+
+    if (filteredData.length === 0) {
+        messageDisplay.textContent = "Inga resultat hittades.";
+        return;
+    }
 
     filteredData.forEach(item => {
         if (item) {
@@ -399,46 +407,27 @@ function updateMap(lat, lng) {
 }
 
 function chooseImg(description) {
-    let a = ["Klippklättring"];
-    let b = ["Simhall"];
     let c = ["Sevärdhet", "Fornlämning"];
-    let d = ["Älgpark", "Djurpark", "Temapark"];
-    let e = ["Glasbruk"];
-    let f = ["Konstgalleri", "Ateljé", "Konsthall"];
-    let g = ["Restaurang", "Bistro", "Pizzeria"];
-    let h = ["Gatukök"];
-    let i = ["Gokart"];
-    let j = ["Zipline"];
-    let k = ["Biograf"];
-    let l = ["Cafe"];
-    let m = ["Naturreservat"];
-    let n = ["Paintballcenter"];
-    let o = ["Nattklubb", "Bowlinghall", "Nöjescenter"];
-    let p = ["Hälsocenter"];
-    let q = ["Hembygdspark"];
-    let r = ["Museum", "Slott"];
+    let d = ["Temapark"]
+    let f = ["Konstgalleri", "Konsthall"];
+    let g = ["Restaurang", "Bistro"]
+    let k = ["Biograf"]
+    let l = ["Cafe"]
+    let m = ["Naturreservat"]
+    let n = ["Paintballcenter"]
+    let o = ["Nattklubb", "Bowlinghall", "Nöjescenter"]
+    let q = ["Hembygdspark"]
+    let r = ["Museum", "Slott"]
 
     let category;
-    if (a.includes(description)) {
-        category = "A";
-    } else if (b.includes(description)) {
-        category = "B";
-    } else if (c.includes(description)) {
+    if (c.includes(description)) {
         category = "C";
     } else if (d.includes(description)) {
         category = "D";
-    } else if (e.includes(description)) {
-        category = "E";
     } else if (f.includes(description)) {
         category = "F";
     } else if (g.includes(description)) {
         category = "G";
-    } else if (h.includes(description)) {
-        category = "H";
-    } else if (i.includes(description)) {
-        category = "I";
-    } else if (j.includes(description)) {
-        category = "J";
     } else if (k.includes(description)) {
         category = "K";
     } else if (l.includes(description)) {
@@ -449,8 +438,6 @@ function chooseImg(description) {
         category = "N";
     } else if (o.includes(description)) {
         category = "O";
-    } else if (p.includes(description)) {
-        category = "P";
     } else if (q.includes(description)) {
         category = "Q";
     } else if (r.includes(description)) {
@@ -459,27 +446,16 @@ function chooseImg(description) {
         category = "Okänd kategori";
     }
 
+
     switch (category) {
-        case "A":
-            return "Foto/klippa.jpg";
-        case "B":
-            return "Foto/simhall.jpg";
         case "C":
             return "Foto/runsten.jpg";
         case "D":
             return "Foto/Djur.jpg";
-        case "E":
-            return "Foto/glaskonst.jpg";
         case "F":
             return "Foto/tavla.jpg";
         case "G":
             return "Foto/mat.jpg";
-        case "H":
-            return "Foto/gatukök.jpg";
-        case "I":
-            return "Foto/mållinje.jpg";
-        case "J":
-            return "Foto/träd.jpg";
         case "K":
             return "Foto/popcorn.jpg";
         case "L":
@@ -490,8 +466,6 @@ function chooseImg(description) {
             return "Foto/paintball.jpg";
         case "O":
             return "Foto/disco.jpg";
-        case "P":
-            return "Foto/hälsocenter.jpg";
         case "Q":
             return "Foto/hus.jpg";
         case "R":
