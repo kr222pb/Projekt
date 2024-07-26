@@ -1,4 +1,4 @@
-// Globala variabler för swipe-funktionen
+// globala variabler för swipefunktionen
 let startX, moved = false;
 const minSwipe = 124;
 
