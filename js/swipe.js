@@ -95,12 +95,14 @@ function swipeRight() {
     animateSwipe('right', () => {
         document.getElementById("bock").click();
     });
+    checkForLocationUpdate();
 }
 
 function swipeLeft() {
     animateSwipe('left', () => {
         document.getElementById("kryss").click();
     });
+    checkForLocationUpdate();
 }
 
 function animateSwipe(direction, callback) {
