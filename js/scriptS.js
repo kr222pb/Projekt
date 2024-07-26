@@ -228,6 +228,7 @@ function updateUI(obj) {
     lat = obj.lat;
     lng = obj.lng;
     makeMap(lat, lng);
+    checkForLocationUpdate();
 }
 
 
