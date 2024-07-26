@@ -601,7 +601,7 @@ h2 {
 }
 
 
-/* Profilsidan */
+/* Sparade aktiviteter */
 #bigbox {
     border: 5px solid rgb(117, 115, 115);
     border-radius: 50px;
@@ -1115,7 +1115,7 @@ div button {
 }
 
 
-
+/*Popupruta för att ta bort aktiviteter*/
 .confirm-box {
     width: 80%;
     background-color: #F1A7B1;
@@ -1151,6 +1151,6 @@ div button {
 
 dialog::backdrop{
     background: linear-gradient(80deg, black, gray);
-    opacity: .8;
+    opacity: 0.8;
 
 }
