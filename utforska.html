@@ -38,6 +38,17 @@
                 <div class="dropdown-item" id="homeEvening">Hemmakväll▼
                     <div class="nested-dropdown-menu"></div>
                 </div>
+                <div class="dropdown-item">
+                  <label for="priceRange">Prisintervall: </label>
+                  <select id="priceRange" name="priceRange">
+                    <option value="0-25">0 - 25</option>
+                    <option value="25-100">25 - 100</option>
+                    <option value="100-250">100 - 250</option>
+                    <option value="250-500">250 - 500</option>
+                    <option value="500-1000">500 - 1000</option>
+                    <option value="1000+">1000+</option>
+                  </select>
+                </div>
                 <div class="search-container">
                   <form id="searchForm" method="GET">
                       <input type="text" placeholder="Sök efter din stad eller aktivitet..." id="searchInput">
@@ -60,7 +71,7 @@
             
             <div class="section">
                 <div class="image-container" class="imgb">
-                    <img src="Foto/paintball.jpg" class="imgb" alt="">
+                    <img src="bilder/" class="imgb" alt="">
                 </div>
                 <div class="map-container">
                     <div id="map" style="height: 200px;"></div>

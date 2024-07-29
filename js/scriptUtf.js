@@ -27,20 +27,6 @@ async function fetchAllEstablishmentData() {
     }
 }
 
-async function fetchReviews(establishmentId) {
-    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getreviews&id=${establishmentId}`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Fel vid hämtning av recensioner");
-
-        const jsonData = await response.json();
-        return jsonData.payload || [];
-    } catch (error) {
-        console.error("Fel vid hämtning av recensioner:", error);
-        return [];
-    }
-}
-
 function setupEventListeners() {
     const searchInput = document.querySelector("#searchInput");
     const filterArrow = document.querySelector("#filterArrow");
@@ -75,33 +61,39 @@ function setupEventListeners() {
             document.getElementById("modal").style.display = "none";
         });
     }
-}
 
-function toggleFavorite(activity, heartIcon) {
-    let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
-    const index = favorites.findIndex(fav => fav.name === activity.name);
-
-    if (index === -1) {
-        const savedActivity = {
-            name: activity.name,
-            addedAt: new Date().toLocaleString() 
-        };
-        favorites.push(savedActivity);
-        heartIcon.classList.add('favorited');
-        heartIcon.classList.add('pulse');
-        heartIcon.addEventListener('animationend', () => {
-            heartIcon.classList.remove('pulse');
-        }, { once: true });
-    } else {
-        // Tar bort aktivitet om den redan finns
-        favorites.splice(index, 1);
-        heartIcon.classList.remove('favorited');
-        heartIcon.classList.remove('pulse');
+    const priceRangeInput = document.getElementById("priceRange");
+    if (priceRangeInput) {
+        priceRangeInput.addEventListener("change", function() {
+            filterByPriceRange(priceRangeInput.value);
+        });
     }
-
-    localStorage.setItem("savedActivity", JSON.stringify(favorites));
 }
 
+function filterByPriceRange(priceRange) {
+    const [minPrice, maxPrice] = priceRange.split('-').map(price => (price === "+" ? Infinity : Number(price)));
+
+    const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
+    const allowedTypes = ["activity", "food", "attraction"];
+
+    const filteredData = combinedData.filter(item => {
+        const price = extractPrice(item.price_range);
+        const isTypeAllowed = allowedTypes.includes(item.type);
+        const isDescriptionIncluded = includedDescriptions.includes(item.description);
+        return price >= minPrice && price <= maxPrice && isTypeAllowed && isDescriptionIncluded;
+    });
+    updateListWithFilteredData(filteredData, minPrice, maxPrice);
+}
+
+function extractPrice(priceRange) {
+    if (typeof priceRange === 'string') {
+        let match = priceRange.match(/\d+/g); // Hittar alla siffror i strängen
+        if (match) {
+            return match.length > 1 ? (Number(match[0]) + Number(match[1])) / 2 : Number(match[0]);
+        }
+    }
+    return NaN; 
+}
 
 function performSearch(query) {
     const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
@@ -140,18 +132,7 @@ function getPriceImage(priceRange) {
     return "bilder/logo.svg";  
 }
 
-function extractPrice(priceRange) {
-    if (typeof priceRange === 'string') {
-        let match = priceRange.match(/\d+/g); // Hittar alla siffror i strängen
-        if (match) {
-            return match.length > 1 ? (Number(match[0]) + Number(match[1])) / 2 : Number(match[0]);
-        }
-    }
-    return NaN; 
-}
-
-
-function updateListWithFilteredData(filteredData) {
+function updateListWithFilteredData(filteredData, minPrice, maxPrice) {
     const listUtf = document.getElementById("listUtf");
     if (!listUtf) {
         console.error("Elementet 'listUtf' hittades inte.");
@@ -172,12 +153,12 @@ function updateListWithFilteredData(filteredData) {
             const listItem = document.createElement("div");
             listItem.classList.add("list-item");
 
-            const priceImageSrc = getPriceImage(item.price_range || ""); // Hämtar bild baserad på prisnivå
+            const priceImageSrc = getPriceImage(item.price_range || "");
 
             listItem.innerHTML = `
                 <h3>${item.name}</h3>
                 <p class="itemDescr">${item.description || "Ingen beskrivning tillgänglig."}</p>
-                <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: <img src="${priceImageSrc}" alt="Prisnivå" style="width:20px; height:30px; vertical-align: middle;"> </p>
+                <p class="itemLocPr">Plats: ${item.city || item.province}, Prisnivå: <img src="${priceImageSrc}" alt="Prisnivå" style="width:20px; height:30px; vertical-align: middle;"></p>
                 <div class="heart-icon"></div>
             `;
             const heartIcon = listItem.querySelector('.heart-icon');
@@ -207,22 +188,58 @@ function updateListWithFilteredData(filteredData) {
     });
 }
 
+function toggleFavorite(activity, heartIcon) {
+    let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
+    const index = favorites.findIndex(fav => fav.name === activity.name);
+
+    if (index === -1) {
+        const savedActivity = {
+            name: activity.name,
+            addedAt: new Date().toLocaleString() 
+        };
+        favorites.push(savedActivity);
+        heartIcon.classList.add('favorited');
+        heartIcon.classList.add('pulse');
+        heartIcon.addEventListener('animationend', () => {
+            heartIcon.classList.remove('pulse');
+        }, { once: true });
+    } else {
+        // Tar bort aktivitet om den redan finns
+        favorites.splice(index, 1);
+        heartIcon.classList.remove('favorited');
+        heartIcon.classList.remove('pulse');
+    }
+
+    localStorage.setItem("savedActivity", JSON.stringify(favorites));
+}
+
 async function updateEstablishmentDetails(establishmentId) {
     try {
-        // Hitta den specifika etableringen från combinedData
         const establishment = combinedData.find(est => est.id === establishmentId);
         if (!establishment) throw new Error("Etablering ej hittad");
 
-        // Uppdatera visningen av etableringsdetaljer
         updateImageContainer(establishment);
 
-        // Hämta och visa recensioner för den valda etableringen
         const reviews = await fetchReviews(establishmentId);
         displayReviews(reviews);
 
     } catch (error) {
         console.error("Fel vid uppdatering av etableringsdetaljer:", error);
         document.getElementById("messageDisplay").textContent = "Kunde inte uppdatera detaljer.";
+    }
+}
+
+async function fetchReviews(establishmentId) {
+    const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getreviews&id=${establishmentId}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Fel vid hämtning av recensioner");
+
+        const jsonData = await response.json();
+        return jsonData.payload || [];
+    } catch (error) {
+        console.error("Fel vid hämtning av recensioner:", error);
+        return [];
     }
 }
 
@@ -287,7 +304,7 @@ function displayReviews(reviews) {
         });
 
         reviewsContainer.appendChild(showMoreButton);
-        reviewsContainer.appendChild(hideReviewsButton); // Lägg till dölja-knappen initialt men gömd
+        reviewsContainer.appendChild(hideReviewsButton); // Lägg till dölja-knappen 
     }
 }
 
