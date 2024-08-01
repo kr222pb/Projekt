@@ -15,12 +15,24 @@ function initSwipe() {
 window.addEventListener("load", initSwipe);
 
 function handleTouchStart(e) {
+    let infoPanel = document.getElementById("infoPanel");
+    if (infoPanel.style.transform === "translateY(0%)") {
+        //om inforutan är uppe så går det inte att swipa
+        return;
+    }
+
     let touch = e.touches[0];
     startX = touch.pageX;
     moved = false;
 }
 
 function handleTouchEnd(e) {
+    let infoPanel = document.getElementById("infoPanel");
+    if (infoPanel.style.transform === "translateY(0%)") {
+        //om inforutan är uppe så går det inte att swipa
+        return;
+    }
+
     if (!moved) {
         resetImagePosition();
         return;
@@ -44,6 +56,12 @@ function handleTouchEnd(e) {
 }
 
 function handleTouchMove(e, swipeTextH2, swipeTextH3) {
+    let infoPanel = document.getElementById("infoPanel");
+    if (infoPanel.style.transform === "translateY(0%)") {
+        //om inforutan är uppe så går det inte att swipa
+        return;
+    }
+    
     moved = true;
     let touch = e.touches[0];
     let moveX = touch.pageX;
