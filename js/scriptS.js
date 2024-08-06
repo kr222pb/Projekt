@@ -180,7 +180,17 @@ function nextSlide(e) {
         const currentActivity = filteredData[currentIndex];
         const savedActivity = {
             name: currentActivity.name,
-            addedAt: new Date().toLocaleString() // Lägger till den aktuella tiden
+            addedAt: new Date().toLocaleString(), // Lägger till den aktuella tiden
+            description: currentActivity.description || "Ingen beskrivning tillgänglig.",
+            type: currentActivity.type || "Ej angiven",
+            city: currentActivity.city || currentActivity.province || "Ej angiven",
+            price_range: currentActivity.price_range || "Ej angiven",
+            rating: currentActivity.rating || 0,
+            abstract: currentActivity.abstract || "Ingen beskrivning tillgänglig.",
+            website: currentActivity.website || "Ingen websida är tillgänglig.",
+            id: currentActivity.id,
+            lat: currentActivity.lat,
+            lng: currentActivity.lng
         };
 
         // Kontrollerar om aktiviteten redan finns i den sparade listan
