@@ -195,7 +195,17 @@ function toggleFavorite(activity, heartIcon) {
     if (index === -1) {
         const savedActivity = {
             name: activity.name,
-            addedAt: new Date().toLocaleString() 
+            addedAt: new Date().toLocaleString(),
+            description: activity.description || "Ingen beskrivning tillgänglig.",
+            type: activity.type || "Ej angiven",
+            city: activity.city || activity.province || "Ej angiven",
+            price_range: activity.price_range || "Ej angiven",
+            rating: activity.rating || 0,
+            abstract: activity.abstract || "Ingen beskrivning tillgänglig.",
+            website: activity.website || "Ingen websida är tillgänglig.",
+            id: activity.id,
+            lat: activity.lat,
+            lng: activity.lng
         };
         favorites.push(savedActivity);
         heartIcon.classList.add('favorited');
@@ -349,7 +359,7 @@ function updateImageContainer(item) {
         imageContainer.appendChild(newImgElement);
     }
     
-    document.getElementById("activity-type").textContent = `Typ av aktivitet: ${item.type || "Ej angiven"}`;
+    document.getElementById("activity-type").textContent = ` ${item.name || "Ej angiven"}`;
     document.getElementById("activity-city").textContent = `Stad: ${item.city || item.province || "Ej angiven"}`;
 
     const priceLevelContainer = document.getElementById("activity-price");
