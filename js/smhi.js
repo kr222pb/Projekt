@@ -5,91 +5,60 @@ function checkForLocationUpdate() {
     if (lat !== previousLat || lng !== previousLng) {
         previousLat = lat;
         previousLng = lng;
-        findNearestWeatherStation(lat, lng);
+        fetchWeatherData(lat, lng); // Directly fetch weather data using current location
     }
 }
 
-async function fetchWeatherData() {
-    const temperatureUrl = 'https://opendata-download-metobs.smhi.se/api/version/latest/parameter/1/station-set/all/period/latest-hour/data.json';
-    const weatherUrl = 'https://opendata-download-metobs.smhi.se/api/version/latest/parameter/13/station-set/all/period/latest-hour/data.json';
+//nya smhi api'n så att den skickar med lat long, istället för att jämföra med närmaste väderstation
+async function fetchWeatherData(lat, lng) {
+    const apiUrl = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`;
 
     try {
-        const [tempResponse, weatherResponse] = await Promise.all([
-            fetch(temperatureUrl),
-            fetch(weatherUrl)
-        ]);
+        const response = await fetch(apiUrl);
 
-        if (!tempResponse.ok || !weatherResponse.ok) {
-            throw new Error(`HTTP error! Status: ${tempResponse.status} or ${weatherResponse.status}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const [temperatureData, weatherData] = await Promise.all([
-            tempResponse.json(),
-            weatherResponse.json()
-        ]);
+        const weatherData = await response.json();
 
-        return { temperatureData, weatherData };
+        const weatherInfo = extractWeatherInfo(weatherData);
+
+        updateWeatherInfoText(weatherInfo.temperature);
+        updateWeatherIcon(`bilder/${weatherInfo.weatherIcon}.svg`);
     } catch (error) {
-        return null;
-    }
-}
-
-function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371;
-    var dLat = deg2rad(lat2 - lat1);
-    var dLon = deg2rad(lon2 - lon1);
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon/2) * Math.sin(dLon/2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-}
-
-function deg2rad(deg) {
-    return deg * (Math.PI / 180);
-}
-
-function findNearestStation(weatherData, lat, lng) {
-    let nearestStation = null;
-    let minDistance = Infinity;
-    weatherData.station.forEach(station => {
-        const distance = getDistanceFromLatLonInKm(lat, lng, station.latitude, station.longitude);
-        if (distance < minDistance && station.value && station.value.length > 0) {
-            minDistance = distance;
-            nearestStation = station;
-        }
-    });
-    return nearestStation;
-}
-
-async function findNearestWeatherStation(lat, lng) {
-    const allWeatherData = await fetchWeatherData();
-    if (!allWeatherData) {
+        console.error("Error fetching weather data:", error);
         updateWeatherInfoText("Ingen väderdata tillgänglig.");
-        return;
-    }
-
-    let nearestTempStation = findNearestStation(allWeatherData.temperatureData, lat, lng);
-    let nearestWeatherStation = findNearestStation(allWeatherData.weatherData, lat, lng);
-
-    if (nearestTempStation && nearestWeatherStation) {
-        const temperature = nearestTempStation.value[0] ? `${nearestTempStation.value[0].value} °C` : "Temperaturdata saknas";
-        const weatherIconPath = getWeatherDescription(parseInt(nearestWeatherStation.value[0].value));
-        updateWeatherInfoText(temperature);  //uppdatera temperaturtext
-        updateWeatherIcon(`bilder/${weatherIconPath}.svg`);  // Uppdaterar ikonen
-    } else {
-        updateWeatherInfoText("Inga närliggande väderstationer hittades.");
     }
 }
 
-// Väderkoder från smhi
+// Extract weather information from the SMHI API response
+function extractWeatherInfo(weatherData) {
+    // Extract the first timeSeries entry which contains the weather data
+    const timeSeries = weatherData.timeSeries[0];
+
+    // Get temperature and weather code from the parameters
+    const temperature = timeSeries.parameters.find(param => param.name === "t").values[0];
+    const weatherCode = timeSeries.parameters.find(param => param.name === "Wsymb2").values[0];
+
+    // Get the weather description based on the SMHI weather codes
+    const weatherIconPath = getWeatherDescription(weatherCode);
+
+    return {
+        temperature: `${temperature} °C`,
+        weatherIcon: weatherIconPath
+    };
+}
+
+// Vväderkoder från SMHI
 const weatherDescriptions = {
-    sunny: [0, 1, 2, 3, 5, 10, 104, 105],
-    cloudy: [11, 12, 13, 14, 15, 16, 17, 30, 31, 32, 33, 34, 35, 110],
-    rainy: [20, 21, 22, 23, 24, 25, 26, 27, 60, 61, 62, 63, 64, 65, 66, 80, 81, 82, 123, 161, 163],
-    snowy: [70, 71, 72, 73, 74, 75, 85, 86, 87, 88, 89]
+    sunny: [1, 2, 3],
+    cloudy: [4, 5, 6],
+    rainy: [7, 8, 9],
+    snowy: [10, 11, 12]
 };
 
+// Function to get weather description based on SMHI weather codes
 function getWeatherDescription(code) {
     if (code === null) {
         return "default";
@@ -106,6 +75,7 @@ function getWeatherDescription(code) {
     }
 }
 
+// Update the weather information text on the page
 function updateWeatherInfoText(infoText) {
     const weatherInfoElement = document.getElementById("weather-info");
     if (weatherInfoElement) {
@@ -115,6 +85,7 @@ function updateWeatherInfoText(infoText) {
     }
 }
 
+// Update the weather icon on the page
 function updateWeatherIcon(iconPath) {
     const weatherIconElement = document.getElementById("weather-icon");
     if (weatherIconElement) {
@@ -123,4 +94,3 @@ function updateWeatherIcon(iconPath) {
         console.error("fel med visningen utav väderikonen");
     }
 }
-
