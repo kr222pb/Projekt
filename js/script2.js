@@ -122,7 +122,17 @@ document.addEventListener('DOMContentLoaded', async function() {
            
             const savedItem = {
                 name: item.name || item.Title,
-                addedAt: new Date().toLocaleString()
+                addedAt: new Date().toLocaleString(),
+                description: item.description || "Ingen beskrivning tillgänglig.",
+                type: item.type || "Ej angiven",
+                city: item.city || item.province || "Ej angiven",
+                price_range: item.price_range || "Ej angiven",
+                rating: item.rating || 0,
+                abstract: item.abstract || "Ingen beskrivning tillgänglig.",
+                website: item.website || "Ingen websida är tillgänglig.",
+                id: item.id,
+                lat: item.lat,
+                lng: item.lng
             };
             favorites.push(savedItem);
             heartIcon.classList.add('favorited');
