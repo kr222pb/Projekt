@@ -5,7 +5,7 @@ function checkForLocationUpdate() {
     if (lat !== previousLat || lng !== previousLng) {
         previousLat = lat;
         previousLng = lng;
-        fetchWeatherData(lat, lng); // Directly fetch weather data using current location
+        fetchWeatherData(lat, lng); //Hämtar väderdata om lat long har bytts
     }
 }
 
@@ -32,16 +32,16 @@ async function fetchWeatherData(lat, lng) {
     }
 }
 
-// Extract weather information from the SMHI API response
+//Tar ut väderdatan från SMHIs svar
 function extractWeatherInfo(weatherData) {
-    // Extract the first timeSeries entry which contains the weather data
+
     const timeSeries = weatherData.timeSeries[0];
 
-    // Get temperature and weather code from the parameters
+    // hämtar temperaturen och väderkoderna
     const temperature = timeSeries.parameters.find(param => param.name === "t").values[0];
     const weatherCode = timeSeries.parameters.find(param => param.name === "Wsymb2").values[0];
 
-    // Get the weather description based on the SMHI weather codes
+    
     const weatherIconPath = getWeatherDescription(weatherCode);
 
     return {
@@ -50,18 +50,19 @@ function extractWeatherInfo(weatherData) {
     };
 }
 
-// Vväderkoder från SMHI
+// Vväderkoder från SMHI, används för att ge rätt bild
 const weatherDescriptions = {
-    sunny: [1, 2, 3],
-    cloudy: [4, 5, 6],
-    rainy: [7, 8, 9],
-    snowy: [10, 11, 12]
+    sunny: [1, 2], 
+    cloudy: [3, 4, 5, 6, 7],
+    rainy: [8, 9, 10, 18, 19, 20], 
+    snowy: [12, 13, 14, 15, 16, 17, 22, 23, 24, 25, 26, 27] 
 };
 
-// Function to get weather description based on SMHI weather codes
+
+// Hämtar rätt väderbild utifrån väderkoderna
 function getWeatherDescription(code) {
     if (code === null) {
-        return "default";
+        return "moln";
     } else if (weatherDescriptions.sunny.includes(code)) {
         return "sol";
     } else if (weatherDescriptions.cloudy.includes(code)) {
@@ -75,7 +76,7 @@ function getWeatherDescription(code) {
     }
 }
 
-// Update the weather information text on the page
+// Uppdaterar vädret på sidan
 function updateWeatherInfoText(infoText) {
     const weatherInfoElement = document.getElementById("weather-info");
     if (weatherInfoElement) {
@@ -85,7 +86,7 @@ function updateWeatherInfoText(infoText) {
     }
 }
 
-// Update the weather icon on the page
+//Uppdaterar väderikonen på sidan
 function updateWeatherIcon(iconPath) {
     const weatherIconElement = document.getElementById("weather-icon");
     if (weatherIconElement) {

@@ -3,12 +3,12 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #4e494b;
+        fill: #f5b5d1;
         stroke-width: 0px;
       }
     </style>
   </defs>
-  <g id="Lager_3" data-name="Lager 3">
+  <g id="Lager_4" data-name="Lager 4">
     <g id="Lager_6" data-name="Lager 6">
       <path class="cls-1" d="M11.84,21.48L2.19,11.84C-4.37,5.28,5.28-4.37,11.84,2.19c6.55-6.55,16.2,3.09,9.65,9.65l-9.65,9.65h0Z"/>
     </g>

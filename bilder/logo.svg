@@ -1,45 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 851.79 456.64">
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51.4 26.65">
   <defs>
     <style>
       .cls-1 {
-        fill: #f7ab0c;
-      }
-
-      .cls-1, .cls-2, .cls-3 {
-        stroke: #1d1d1b;
-        stroke-miterlimit: 10;
-        stroke-width: 3px;
+        fill: #1e1e1c;
+        font-family: YoungSerif-Regular, 'Young Serif';
+        font-size: 24.27px;
       }
 
       .cls-2 {
-        fill: #e6292b;
-      }
-
-      .cls-4 {
-        fill: #4d494a;
-        font-family: Etna-Semibold, Etna;
-        font-size: 404.11px;
-        font-weight: 600;
-      }
-
-      .cls-3 {
-        fill: #00a49d;
+        fill: #f5b3ce;
+        stroke-width: 0px;
       }
     </style>
   </defs>
   <g id="Lager_1-2" data-name="Lager 1">
-    <text class="cls-4" transform="translate(0 343.49)"><tspan x="0" y="0">L</tspan></text>
-    <text class="cls-4" transform="translate(389.5 343.49)"><tspan x="0" y="0">nk</tspan></text>
     <g>
-      <rect class="cls-2" x="266.67" y="112.9" width="22.9" height="230.59"/>
-      <rect class="cls-1" x="289.57" y="112.9" width="22.9" height="230.59"/>
-      <rect class="cls-3" x="312.47" y="112.9" width="22.9" height="230.59"/>
-    </g>
-    <g>
-      <path class="cls-2" d="M289.57,36.74h0v60.97h0c-12.64,0-22.9-10.26-22.9-22.9v-15.17c0-12.64,10.26-22.9,22.9-22.9Z"/>
-      <rect class="cls-1" x="289.57" y="36.74" width="22.9" height="60.97"/>
-      <path class="cls-3" d="M312.47,36.74h0c12.64,0,22.9,10.26,22.9,22.9v15.17c0,12.64-10.26,22.9-22.9,22.9h0v-60.97h0Z"/>
+      <g>
+        <path class="cls-2" d="M18.96,20.14c-1.79,0-3.25-1.46-3.25-3.25v-5.42l.18.31c.24.42.56.78.94,1.07l.04.03v4.01c0,1.15.94,2.09,2.09,2.09s2.09-.94,2.09-2.09v-5.11c0-1.15-.94-2.09-2.09-2.09-.61,0-1.19.27-1.59.74l-.13.15-.04-.19c-.03-.12-.04-.24-.04-.37v-.95l.04-.03c.52-.34,1.13-.51,1.75-.51,1.79,0,3.25,1.46,3.25,3.25v5.11c0,1.79-1.46,3.25-3.25,3.25Z"/>
+        <path class="cls-2" d="M18.96,13.27c-1.79,0-3.25-1.46-3.25-3.25v-5.11c0-1.79,1.46-3.25,3.25-3.25s3.25,1.46,3.25,3.25v5.42l-.18-.31c-.24-.42-.56-.78-.94-1.07l-.04-.03v-4.01c0-1.15-.94-2.09-2.09-2.09s-2.09.94-2.09,2.09v5.11c0,1.15.94,2.09,2.09,2.09.61,0,1.19-.27,1.59-.74l.13-.15.04.19c.03.12.04.24.04.37v.95l-.04.03c-.52.34-1.13.51-1.75.51Z"/>
+      </g>
+      <text class="cls-1" transform="translate(0 20.14)"><tspan x="0" y="0">L</tspan></text>
+      <text class="cls-1" transform="translate(23.39 20.14)"><tspan x="0" y="0">nk</tspan></text>
     </g>
   </g>
 </svg>

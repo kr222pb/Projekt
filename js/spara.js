@@ -127,7 +127,7 @@ function createMiniboxForActivities(activities, date, container) {
 
     //Skapar bilden med pilen 
     const pil = document.createElement("img");
-    pil.src = "bilder/pil2.svg";
+    pil.src = "bilder/pils.svg";
     pil.className = "pil";
     pil.alt = "Pil";
     headerDiv.appendChild(pil);
@@ -183,8 +183,6 @@ function openList() {
             if (activitiesDiv.style.display === "none") {
                 img.classList.add("rotated");
                 activitiesDiv.style.display = "block";
-                minibox.style.borderRadius = '20px';
-                minibox.style.padding = "10px";
             } else {
                 activitiesDiv.style.display = "none";
                 img.classList.remove("rotated");

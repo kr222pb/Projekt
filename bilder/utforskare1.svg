@@ -3,39 +3,41 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #585857;
+        fill: #f5b4d0;
       }
 
-      .cls-1, .cls-2, .cls-3 {
+      .cls-1, .cls-2, .cls-3, .cls-4 {
         stroke-width: 0px;
       }
 
       .cls-2 {
-        fill: #4e494b;
+        fill: #f5b3cf;
       }
 
       .cls-3 {
-        fill: #726c6e;
+        fill: #736d6f;
+      }
+
+      .cls-4 {
+        fill: #f0a4c8;
       }
     </style>
   </defs>
   <g id="Lager_4" data-name="Lager 4">
     <g>
-      <g id="rutor">
-        <rect class="cls-2" width="11.54" height="7.34"/>
-        <rect class="cls-2" y="7.94" width="11.54" height="7.34"/>
-        <rect class="cls-2" x="12.55" width="11.54" height="7.34"/>
-      </g>
+      <rect class="cls-1" width="11.54" height="7.34"/>
+      <rect class="cls-2" y="7.94" width="11.54" height="7.34"/>
+      <rect class="cls-2" x="12.55" width="11.54" height="7.34"/>
       <g id="streck">
-        <rect class="cls-1" x="1.09" y="3.63" width="9.37" height=".71"/>
-        <rect class="cls-1" x="1.09" y="2.04" width="9.37" height=".71"/>
-        <rect class="cls-1" x="1.09" y="5.22" width="9.37" height=".71"/>
-        <rect class="cls-1" x="1.09" y="11.57" width="9.37" height=".71"/>
-        <rect class="cls-1" x="1.09" y="9.99" width="9.37" height=".71"/>
-        <rect class="cls-1" x="1.09" y="13.16" width="9.37" height=".71"/>
-        <rect class="cls-1" x="13.63" y="3.63" width="9.37" height=".71"/>
-        <rect class="cls-1" x="13.63" y="2.04" width="9.37" height=".71"/>
-        <rect class="cls-1" x="13.63" y="5.22" width="9.37" height=".71"/>
+        <rect class="cls-4" x="1.09" y="3.63" width="9.37" height=".71"/>
+        <rect class="cls-4" x="1.09" y="2.04" width="9.37" height=".71"/>
+        <rect class="cls-4" x="1.09" y="5.22" width="9.37" height=".71"/>
+        <rect class="cls-4" x="1.09" y="11.57" width="9.37" height=".71"/>
+        <rect class="cls-4" x="1.09" y="9.99" width="9.37" height=".71"/>
+        <rect class="cls-4" x="1.09" y="13.16" width="9.37" height=".71"/>
+        <rect class="cls-4" x="13.63" y="3.63" width="9.37" height=".71"/>
+        <rect class="cls-4" x="13.63" y="2.04" width="9.37" height=".71"/>
+        <rect class="cls-4" x="13.63" y="5.22" width="9.37" height=".71"/>
       </g>
       <g id="glas">
         <rect class="cls-3" x="14.18" y="10.07" width="1.69" height="5.01" rx=".84" ry=".84" transform="translate(-4.43 10.26) rotate(-33.14)"/>

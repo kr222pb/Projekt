@@ -50,7 +50,7 @@ function showEndMessage() {
     container.classList.add("hidden");
     options.classList.add("hidden");
 
-    message.innerHTML = '<a href="profil.html"><img src="bilder/hjarta.svg" alt="Hjärta" class="pulse-heart"></a>';
+    message.innerHTML = '<a href="sparade_aktiviteter.html"><img src="bilder/hjarta.svg" alt="Hjärta" class="pulse-heart"></a>';
     message.classList.add("end-message");
     document.body.appendChild(message);
 }

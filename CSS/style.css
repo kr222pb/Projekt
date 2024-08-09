@@ -31,6 +31,8 @@ header {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    max-width: 100%;
+    background-color: #fff;
 }
 
 .logo {
@@ -611,14 +613,15 @@ h2 {
     color: #000;
 
     padding: 20px;
-    margin: 200px;
     width: 80%;
+    
 }
 
 .minibox {
-    background-color: #f5b1cc;
+    background-color: #f5b2cd;
     border-radius: 50px;
     padding: 10px;
+    margin: 10px;
 }
 
 .minibox img {
@@ -910,8 +913,7 @@ header .header-arrow .filter-arrow .arrow2 {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    background-color: #F1A7B1;
-    border: 1px solid #888;
+    background-color: #f5b2cc;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 30px;
@@ -982,7 +984,7 @@ header .header-arrow .filter-arrow .arrow2 {
     cursor: pointer;
     width: 40px; 
     height: 40px; 
-    background: linear-gradient(145deg, #FFD700, #E6B800, #CC9900, #B38000, #996600);
+    background-color: #ffee8b;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1042,7 +1044,7 @@ header .header-arrow .filter-arrow .arrow2 {
 
 .show-more-button:hover,
 .hide-reviews-button:hover {
-    background-color: #F1A7B1;
+    background-color: #f5b1cc;
 }
 /*Profil*/
 #soptunna {
@@ -1154,7 +1156,7 @@ header .header-arrow .filter-arrow .arrow2 {
     font-size: 140%;
 }
 div button {
-    background-color: #6c4a61;
+    background-color: #f5b1cc;
     height: 50px;
     margin: 10px;
     padding: 10px;
@@ -1174,34 +1176,26 @@ div button {
 /*Popupruta för att ta bort aktiviteter*/
 .confirm-box {
     width: 80%;
-    background-color: #F1A7B1;
+    background-color: #f5b1cc;
     max-width: 400px;
     padding: 20px;
-    border: 1px solid #888;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 30px;
+    border: none;
 }
 
 .confirm-btn {
     margin: 10px;
     padding: 10px 20px;
     font-size: 1.5rem;
-    font-weight: 500;
-    background: linear-gradient(145deg, #FFD700, #E6B800, #CC9900, #B38000, #996600);
+    font-weight: 400;
+    background: #ffee8b;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
 }
 .confirm-btn{
-    color: #000;
-  background-image: -webkit-repeating-linear-gradient(left, rgba(255, 238, 170, 0) 0%, rgba(255, 238, 170, 0) 3%, rgba(255, 238, 170, .1) 3.75%),
-     -webkit-repeating-linear-gradient(left, rgba(170, 153, 85, 0) 0%, rgba(170, 153, 85, 0) 2%, rgba(170, 153, 85, .03) 2.25%),
-     -webkit-repeating-linear-gradient(left, rgba(255, 238, 170, 0) 0%, rgba(255, 238, 170, 0) .6%, rgba(255, 238, 170, .15) 1.2%),
-     
-     linear-gradient(180deg, #a95 0%, 
-     #fea 47%, 
-     #dc8 53%,
-     #fea 100%);
+  color: #000;
+  background-color: #ffee8b;
    
  }
 

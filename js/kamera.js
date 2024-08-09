@@ -18,7 +18,7 @@ function init() {
             options.classList.remove("hidden");
             headerContent.classList.remove("hidden");
 
-        }, 2000); //Samma längd ssom animationen
+        }, 2000); //Samma längd som animationen
     });
 }
 
