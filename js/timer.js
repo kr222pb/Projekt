@@ -5,7 +5,6 @@ function initTimer() {
     let startBtn = document.getElementById("bock");
     startBtn.addEventListener("click", startTimer); //Starttimern startas nu via bocken
 }
-
 window.addEventListener("load", initTimer);
 
 function startTimer() {
@@ -20,6 +19,7 @@ function startTimer() {
     }
 
     timerActive = true; //Förhindrar nya timers att köra
+    timeSelect.disabled = true;
     let time = parseInt(selectedValue);
     document.getElementById("timerDisplay").innerHTML = time;
 
@@ -29,6 +29,7 @@ function startTimer() {
             clearInterval(countdown);
             document.getElementById("timerDisplay").innerHTML = "Tiden är ute!";
             timerActive = false; //Återställer timerrn
+            timeSelect.disabled = false;
             showEndMessage();
         } else {
             document.getElementById("timerDisplay").innerHTML = time;
