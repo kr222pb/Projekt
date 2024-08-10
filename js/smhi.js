@@ -27,7 +27,6 @@ async function fetchWeatherData(lat, lng) {
         updateWeatherInfoText(weatherInfo.temperature);
         updateWeatherIcon(`bilder/${weatherInfo.weatherIcon}.svg`);
     } catch (error) {
-        console.error("Error fetching weather data:", error);
         updateWeatherInfoText("Ingen väderdata tillgänglig.");
     }
 }
@@ -81,8 +80,6 @@ function updateWeatherInfoText(infoText) {
     const weatherInfoElement = document.getElementById("weather-info");
     if (weatherInfoElement) {
         weatherInfoElement.textContent = infoText;
-    } else {
-        console.error("kan inte visa väder");
     }
 }
 
@@ -91,7 +88,5 @@ function updateWeatherIcon(iconPath) {
     const weatherIconElement = document.getElementById("weather-icon");
     if (weatherIconElement) {
         weatherIconElement.src = iconPath;
-    } else {
-        console.error("fel med visningen utav väderikonen");
     }
 }

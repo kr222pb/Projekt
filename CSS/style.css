@@ -221,62 +221,10 @@ img {
     flex: 5;
     width: 80%;
 }
-/* Kamera */
-.cameraState {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: -60%;
-}
-
-.cameraState p {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-
-#kamera {
-    width: 300px;
-    animation: cameraMove 2s infinite;
-    cursor: pointer;
-}
-
-@keyframes cameraMove {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes cameraRotateAndShrink {
-    0% {
-        transform: rotate(0deg) scale(1);
-    }
-
-    100% {
-        transform: rotate(720deg) scale(0.5);
-    }
-}
-
-#kamera.camera-rotate {
-    animation: cameraRotateAndShrink 2s cubic-bezier(0.4, 0, 1, 1) forwards;
-}
-
 
 .hidden {
     display: none !important;
 }
-
 .end-message {
     text-align: center;
     font-size: 24px;
@@ -382,6 +330,7 @@ img {
 
 .footer a img {
     object-fit: contain;
+    width: 45px;
 }
 
 h2 {

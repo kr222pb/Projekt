@@ -1,23 +1,50 @@
 // globala variabler för swipefunktionen
 let startX, moved = false;
 const minSwipe = 124;
+let isCitySelected = false;
 
 function initSwipe() {
     let swipeImage = document.querySelector(".container");
     let swipeTextH2 = document.querySelector("h2");
     let swipeTextH3 = document.querySelector("h3");
+    let optionsDiv = document.querySelector(".options");
+
+    optionsDiv.classList.add("hidden");
 
     swipeImage.addEventListener("touchstart", handleTouchStart, false);
     swipeImage.addEventListener("touchmove", (e) => handleTouchMove(e, swipeTextH2, swipeTextH3), false);
     swipeImage.addEventListener("touchend", handleTouchEnd, false);
+
+    document.querySelectorAll('.nav-link').forEach(item => {
+        item.addEventListener('click', function(event) {
+            this.classList.toggle("selected");
+            updateCitySelection();
+        });
+    });
+}
+window.addEventListener("load", initSwipe);
+
+function updateCitySelection() { //om användaren väljer en stad och sedan tar bort den laddas sidan om
+    const selectedCities = document.querySelectorAll('.nav-link.selected');
+    const optionsDiv = document.querySelector(".options");
+
+    if (selectedCities.length > 0) {
+        isCitySelected = true;
+        optionsDiv.classList.remove("hidden");
+    } else {
+    
+        location.reload();
+    }
 }
 
-window.addEventListener("load", initSwipe);
 
 function handleTouchStart(e) {
     let infoPanel = document.getElementById("infoPanel");
     if (infoPanel.style.transform === "translateY(0%)") {
         //om inforutan är uppe så går det inte att swipa
+        return;
+    }
+    if (!isCitySelected) {
         return;
     }
 
@@ -30,6 +57,9 @@ function handleTouchEnd(e) {
     let infoPanel = document.getElementById("infoPanel");
     if (infoPanel.style.transform === "translateY(0%)") {
         //om inforutan är uppe så går det inte att swipa
+        return;
+    }
+    if (!isCitySelected) {
         return;
     }
 
@@ -110,6 +140,9 @@ function showFeedback(direction) {
 }
 
 function swipeRight() {
+    if (!isCitySelected) {
+        return;
+    }
     animateSwipe('right', () => {
         document.getElementById("bock").click();
     });
@@ -117,6 +150,9 @@ function swipeRight() {
 }
 
 function swipeLeft() {
+    if (!isCitySelected) {
+        return;
+    }
     animateSwipe('left', () => {
         document.getElementById("kryss").click();
     });
