@@ -15,6 +15,8 @@ function init() {
     localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
 
     console.log("Loaded saved activities:", savedActivities);
+    
+    setupFadeEffect(); //fade för textinfo
 }
 
 window.addEventListener("load", init);
@@ -265,4 +267,24 @@ function makeMap(lat, lng) {
     marker = L.marker([lat, lng], { icon: icon }).addTo(map);
 }
 
-window.addEventListener("load", init);
+function setupFadeEffect() { //Faden för texten på infokortet
+    const textContent = document.querySelector('.item__body');
+
+    if (textContent) {
+        textContent.addEventListener('scroll', function() {
+            const scrollTop = textContent.scrollTop;
+            const scrollHeight = textContent.scrollHeight;
+            const offsetHeight = textContent.offsetHeight;
+
+            const isAtBottom = scrollTop + offsetHeight >= scrollHeight - 1;
+
+            const overlay = document.querySelector('.item__overlay');
+
+            if (isAtBottom) {
+                overlay.classList.add('scrolled-to-bottom');
+            } else {
+                overlay.classList.remove('scrolled-to-bottom');
+            }
+        });
+    }
+}

@@ -13,13 +13,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centrerar innehållet vertikalt */
     justify-content: center;
-    /* Centrerar innehållet horisontellt */
     min-height: 100vh;
-    /* Full höjd på viewporten */
     margin: 0;
     font-family: main, 'Times New Roman', Times, serif;
+    max-width: 550px;
 }
 
 header {
@@ -39,14 +37,12 @@ header {
     position: absolute;
     top: 20px;
     left: 10px;
-    /* Flytta logotypen till vänster */
 }
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Säkerställer att innehållet är centrerat */
     width: 100%;
 }
 
@@ -58,7 +54,6 @@ header {
 
 .header-content .filter-trigger .arrow {
     margin-top: 30px;
-    /* Justera detta värde för att flytta ner pilen */
 }
 
 .arrow {
@@ -158,7 +153,24 @@ img {
     padding: 10px;
     box-sizing: border-box;
     z-index: 2;
+    height: 100%;
+    overflow-y: auto;
+}
 
+.item__overlay::after { /*för textinfon vid swipen, så den visar att det grå att scrolla*/
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background: linear-gradient(to bottom, transparent, #fff 70%);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+.item__overlay.scrolled-to-bottom::after {
+    opacity: 0;
 }
 
 .item__overlay p {
@@ -194,7 +206,7 @@ img {
 
 .item__body {
     max-height: 70px;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 #weather-container{
     flex: 0.5px;
@@ -279,7 +291,6 @@ img {
     justify-content: space-around;
     width: 60%;
     margin: 0 auto 20px auto;
-    /* Centrerar options och ger utrymme nedanför */
     padding: 10px 0;
     background-color: #fefeff;
     border-radius: 15px;
@@ -342,18 +353,14 @@ h2 {
     margin: 5px auto;
     border-radius: 4px;
     overflow: hidden;
-    /*  gömmer  innehållet */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top: 100%;
-    /* Positionerar dropdown precis under triggern*/
     display: none;
     width: 95%;
     max-height: 0;
-    /* Används för att dölja eller visa med en övergång */
     transition: all 0.3s ease;
-    /* Ger en mjuk övergång för dropdown-effekten */
     z-index: 20;
 }
 
@@ -361,9 +368,7 @@ h2 {
     display: block;
     max-height: 200px;
     overflow-x: auto;
-    /* Tillåter horisontell scrollning inuti */
     overflow-y: hidden;
-    /* Förhindrar vertikal scrollning */
 }
 
 .nav-menu {
@@ -377,7 +382,6 @@ h2 {
     scrollbar-width: none;
     flex-grow: 1;
     mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent);
-    /* Maskerar kanterna */
 }
 
 
@@ -428,7 +432,6 @@ h2 {
     z-index: 30;
     width: 24px;
     height: 24px;
-    /* Enhetsstorlek för båda pilarna */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -447,7 +450,6 @@ h2 {
     right: 10px;
 }
 
-/* Styling när musen hovrar över pilarna */
 .scrollable-tabs-container .left-arrow:hover,
 .scrollable-tabs-container .right-arrow:hover {
     background-color: rgba(248, 242, 242, 0.7);
@@ -456,7 +458,6 @@ h2 {
 .nav-item a.active {
     background-color: #f4b0cb;
     color: #000;
-    /* Säkerställer att texten är läsbar */
 }
 
 
@@ -465,7 +466,6 @@ h2 {
     transition: transform 0.3s ease;
 }
 
-/* Rotationseffekt när menyn är aktiv */
 .filter-trigger.active .arrow {
     transform: rotate(180deg);
 }
@@ -801,7 +801,6 @@ header .header-arrow .filter-arrow .arrow2 {
     background-color: #d3d3d3;
     color: #000;
     border: 2px solid #000;
-    /* Borderfärg */
 }
 
 
