@@ -356,8 +356,12 @@ function updateImageContainer(item) {
         imageContainer.appendChild(newImgElement);
     }
     
-    document.getElementById("activity-type").textContent = ` ${item.name || "Ej angiven"}`;
-    document.getElementById("activity-city").textContent = `Stad: ${item.city || item.province || "Ej angiven"}`;
+    document.getElementById("activity-city").innerHTML = `
+    <div class="location-container">
+        <img src="bilder/plats.svg" alt="Platsikon" class="location-icon">
+        ${item.city || item.province || "Ej angiven"}
+    </div>
+`;
 
     const priceLevelContainer = document.getElementById("activity-price");
     priceLevelContainer.innerHTML = '';
@@ -380,7 +384,13 @@ function updateImageContainer(item) {
     ratingImgElement.alt = "Rating";
     ratingContainer.appendChild(ratingImgElement);
 
-    document.getElementById("activity-abstract").textContent = `Beskrivning: ${item.abstract || "Ingen beskrivning tillgänglig."}`;
+    document.getElementById("activity-abstract").innerHTML = `
+    <div class="information-container">
+        <img src="bilder/information.svg" alt="Information" class="information-icon">
+        ${item.abstract || "Ingen beskrivning tillgänglig."}
+    </div>
+`;
+
 
     const websiteElement = document.getElementById("website");
     if (item.website) {
