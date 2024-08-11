@@ -282,7 +282,6 @@ function getData() {
     savedActivity = JSON.parse(localStorage.getItem("savedActivity")) || [];
 }
 
-window.addEventListener("DOMContentLoaded", init);
 
 function chooseImg(description) {
     let g = ["Restaurang", "Bistro"]
