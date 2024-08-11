@@ -85,7 +85,13 @@ function openModal(activity) {
         </div>
         `;
 
-        document.getElementById("activity-abstract").textContent = `Beskrivning: ${activity.abstract || "Ingen beskrivning tillgänglig."}`;
+        const abstractContainer = document.getElementById("activity-abstract");
+        abstractContainer.innerHTML = `
+            <div class="information-container">
+                <img src="bilder/information.svg" alt="Informationsikon" class="information-icon">
+                ${activity.abstract || "Ingen beskrivning tillgänglig."}
+            </div>
+        `;
 
         const websiteElement = document.getElementById("website");
         if (activity.website) {
