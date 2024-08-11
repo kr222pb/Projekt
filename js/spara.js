@@ -77,7 +77,14 @@ function openModal(activity) {
         updateImageContainer(activity);
 
         document.getElementById("activity-type").textContent = ` ${activity.name || "Ej angiven"}`;
-        document.getElementById("activity-city").textContent = `Plats: ${activity.city || activity.province || "Ej angiven"}`;
+        
+        const cityElement = document.getElementById("activity-city");
+        cityElement.innerHTML = `
+        <div class="location-container">
+        <img src="bilder/plats.svg" alt="Platsikon" class="location-icon"> ${activity.city || activity.province || "Ej angiven"}
+        </div>
+        `;
+
         document.getElementById("activity-abstract").textContent = `Beskrivning: ${activity.abstract || "Ingen beskrivning tillgänglig."}`;
 
         const websiteElement = document.getElementById("website");

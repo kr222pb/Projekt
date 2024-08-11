@@ -1,39 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.41 24.3">
+<svg id="Lager_2" data-name="Lager 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.66 24.79">
   <defs>
     <style>
       .cls-1 {
         fill: #f5b1cc;
-        stroke-width: 0px;
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+        stroke-width: .25px;
       }
     </style>
   </defs>
   <g id="Lager_1-2" data-name="Lager 1">
     <g>
-      <g>
-        <path class="cls-1" d="M6.2,24.3L.09,7.26v-.04s-.02-.09-.03-.13v-.02c-.04-.28-.06-.57-.06-.85C0,2.78,2.78,0,6.21,0s6.2,2.78,6.2,6.2c0,.29-.02.57-.06.85,0,.05-.02.1-.02.15v.04s-.72,1.99-.72,1.99l-5.4,15.05ZM1.1,6.99l5.1,14.21,5.1-14.21s0-.05.01-.08c.03-.23.05-.47.05-.71,0-2.85-2.31-5.16-5.16-5.16S1.05,3.36,1.05,6.2c0,.24.02.48.05.71,0,.03,0,.05.01.07Z"/>
-        <path class="cls-1" d="M6.21,9c-1.83,0-3.31-1.48-3.31-3.31s1.48-3.31,3.31-3.31,3.31,1.48,3.31,3.31-1.48,3.31-3.31,3.31ZM6.21,3.42c-1.25,0-2.26,1.02-2.26,2.26s1.02,2.26,2.26,2.26,2.26-1.02,2.26-2.26-1.02-2.26-2.26-2.26Z"/>
-      </g>
-      <rect class="cls-1" x="1.83" y="9" width="8.38" height="3.15"/>
-      <rect class="cls-1" x="2.96" y="12.15" width="6.56" height="2.56"/>
-      <rect class="cls-1" x="3.87" y="14.7" width="4.6" height="1.98"/>
-      <rect class="cls-1" x="4.58" y="16.68" width="3.45" height="2.53"/>
-      <rect class="cls-1" x="5.49" y="19.21" width="1.56" height="2"/>
-      <rect class="cls-1" x="6.59" y="8.5" width="4.23" height="1.67"/>
-      <rect class="cls-1" x="1.26" y="8.5" width="4.23" height="1.67"/>
-      <rect class="cls-1" x=".96" y="5.69" width="2.82" height="3.31"/>
-      <rect class="cls-1" x="3.38" y="8.5" width="3.83" height="1.67"/>
-      <rect class="cls-1" x="3.38" y="7.69" width="1.04" height="1.3"/>
-      <rect class="cls-1" x=".96" y="4.16" width="2.29" height="1.76"/>
-      <rect class="cls-1" x="1.39" y="2.7" width="2.39" height="1.46"/>
-      <rect class="cls-1" x="4.42" y="1.05" width="4.75" height="2.08"/>
-      <rect class="cls-1" x="8.89" y="6.55" width="2.36" height="2.09"/>
-      <rect class="cls-1" x="8.03" y="7.69" width="1.48" height="2.03"/>
-      <rect class="cls-1" x="8.7" y="3.13" width="2.66" height="4.46"/>
-      <rect class="cls-1" x="8.03" y="2.09" width="2.49" height="1.72"/>
-      <rect class="cls-1" x="8.77" y="1.61" width=".77" height=".77"/>
-      <rect class="cls-1" x="2.25" y="2" width="2.93" height="1.13"/>
-      <rect class="cls-1" x="2.9" y="1.42" width="2.59" height="2"/>
+      <polygon class="cls-1" points="1.98 12.27 1.96 12.27 1.96 12.22 1.98 12.27"/>
+      <path class="cls-1" d="M6.33.12C2.91.12.12,2.91.12,6.33c0,.29.02.57.06.86H.19c.01.06.02.1.02.15v.04s1.75,4.84,1.75,4.84l.02.05,4.36,12.15,1.82-5.09,3.58-9.96.71-1.99v-.04s.03-.1.03-.15c.04-.29.06-.57.06-.86C12.54,2.91,9.76.12,6.33.12ZM6.33,8.08c-1.25,0-2.27-1.02-2.27-2.26s1.02-2.27,2.27-2.27,2.26,1.02,2.26,2.27-1.02,2.26-2.26,2.26Z"/>
     </g>
   </g>
 </svg>
