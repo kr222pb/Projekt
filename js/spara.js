@@ -62,7 +62,7 @@ function ConNewDiv(activity, activityIndex, date) {
     div.appendChild(trash);
 
     div.addEventListener("click", function (event) {
-        if (event.target !== trash ) {
+        if (event.target !== trash && !activity.Title) {
             openModal(activity);
         }
     });

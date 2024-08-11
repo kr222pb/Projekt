@@ -132,7 +132,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 website: item.website || "Ingen websida är tillgänglig.",
                 id: item.id,
                 lat: item.lat,
-                lng: item.lng
+                lng: item.lng,
+                Title: item.Title
             };
             favorites.push(savedItem);
             heartIcon.classList.add('favorited');
