@@ -933,7 +933,7 @@ header .header-arrow .filter-arrow .arrow2 {
 .information-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .information-icon {
