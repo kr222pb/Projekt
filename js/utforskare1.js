@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
     localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
 
-    console.log("Loaded saved activities:", savedActivities);
 });
 
 let combinedData = []; // För att lagra all hämtad data
@@ -22,7 +21,6 @@ async function fetchAllEstablishmentData() {
         combinedData = jsonData.payload;
 
     } catch (error) {
-        console.error("Fel vid hämtning:", error);
         document.getElementById("messageDisplay").textContent = "Kunde inte ladda data.";
     }
 }
@@ -231,7 +229,6 @@ async function updateEstablishmentDetails(establishmentId) {
         displayReviews(reviews);
 
     } catch (error) {
-        console.error("Fel vid uppdatering av etableringsdetaljer:", error);
         document.getElementById("messageDisplay").textContent = "Kunde inte uppdatera detaljer.";
     }
 }
@@ -307,7 +304,6 @@ function displayReviews(reviews) {
             hideReviewsButton.style.display = "none";
             reviewsContainer.appendChild(showMoreButton);
 
-            console.log("Endast de två första recensionerna visade, Visa fler recensioner-knappen synlig");
         });
 
         reviewsContainer.appendChild(showMoreButton);

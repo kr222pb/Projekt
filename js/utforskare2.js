@@ -11,22 +11,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     const listUtf = document.getElementById('listUtf');
     const messageDisplay = document.getElementById('messageDisplay');
     let allItemsActivated = false;
-    let combinedData = [];
-    let streamingData = {};
-    let selectedActivities = new Set();
-    let selectedFoods = new Set();
-    let selectedAttractions = new Set();
-    let selectedLocations = new Set();
-    let selectedStreamingServices = new Set();
+    let combinedData = []; //lagra data 
+    let streamingData = {}; //objekt för att lagra streamigtjänster
+    let selectedActivities = new Set();// En Set för att lagra unika valda aktiviteter utan dubbletter
+    let selectedFoods = new Set(); // En Set för att lagra unika valda mat utan dubbletter
+    let selectedAttractions = new Set(); // En Set för att lagra unika valda attraktion utan dubbletter
+    let selectedLocations = new Set(); //plats utan dubblering
+    let selectedStreamingServices = new Set(); //unik streamingtjänst
     let map;
     let marker;
     let lat;
     let lng;
     const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
     localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
-
-    console.log("Loaded saved activities:", savedActivities);
-
+// Hämta alla etableringsdata
     async function fetchAllEstablishmentData() {
         const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getall`;
         try {
@@ -39,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             messageDisplay.textContent = "Kunde inte ladda data.";
         }
     }
-
+//hämta alla filmer
     async function fetchStreamingData() {
         const url = 'data/movie.json'; 
         try {
@@ -47,7 +45,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             if (!response.ok) throw new Error("Fel vid hämtning av data");
             streamingData = await response.json();
         } catch (error) {
-            console.error("Fel vid hämtning:", error);
             messageDisplay.textContent = "Kunde inte ladda data.";
         }
     }
@@ -60,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             modal.style.display = 'none';
         }
     }
-    
+    // öppna popupruta
     function openModal() {
         const modal = document.getElementById('modal');
         if (modal.style.display !== 'block') {
@@ -68,6 +65,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             closeAllDropdowns(); 
         }
     }
+    //stänga den öppna dropdown meny
     function closeAllDropdowns() {
         const dropdowns = document.querySelectorAll('.dropdown-menu');
         dropdowns.forEach(dropdown => {
@@ -114,6 +112,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     }
+    // spara aktiviteter 
     function toggleFavorite(item, heartIcon) {
         let favorites = JSON.parse(localStorage.getItem("savedActivity")) || [];
         const index = favorites.findIndex(fav => fav.name === (item.name || item.Title));
@@ -178,7 +177,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         allItemsActivated ? activateAllItems() : deactivateAllItems();
         displayAllItems();
     });
-
+//Fyll i options i dropdown meny med val baserat på typ
     function populateDropdownMenu(menu, type, selectedSet) {
         menu.innerHTML = ''; 
         const includedDescriptions = [ "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
@@ -404,7 +403,6 @@ document.addEventListener('DOMContentLoaded', async function() {
                 return;
             }
     
-            console.log("Totalt antal recensioner:", reviews.length);
     
             // Visa de två första recensionerna
             const initialReviews = reviews.slice(0, 2);

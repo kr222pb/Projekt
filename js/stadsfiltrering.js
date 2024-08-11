@@ -66,18 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle("active"); 
         });
     });
-});
 
-function toggleInfo() {
-    var infoPanel = document.getElementById("infoPanel");
-    if (infoPanel.style.transform === "translateY(0%)") {
-        infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
-    } else {
-        infoPanel.style.transform = "translateY(0%)"; // Visa panelen
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
     const infoButton = document.getElementById("info");
     // Initiera dold informationspanel vid laddning
     const infoPanel = document.getElementById("infoPanel");
@@ -86,3 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Eventlyssnare för att visa/dölja informationspanelen
     infoButton.addEventListener('click', toggleInfo);
 });
+
+function toggleInfo() {
+    const infoPanel = document.getElementById("infoPanel");
+    if (infoPanel.style.transform === "translateY(0%)") {
+        infoPanel.style.transform = "translateY(100%)"; // Dölj panelen
+    } else {
+        infoPanel.style.transform = "translateY(0%)"; // Visa panelen
+    }
+}
