@@ -919,15 +919,27 @@ header .header-arrow .filter-arrow .arrow2 {
 .location-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centrerar innehållet horisontellt */
-    text-align: center; /* Säkerställer att texten centreras inom sin container */
-    width: 100%; /* Se till att behållaren tar upp hela bredden */
+    justify-content: center;
+    text-align: center;
+    width: 100%;
 }
 
 .location-icon {
     width: 26px;
     height: 26px;
-    margin-right: 3px; /* Justera detta värde för att ändra avståndet mellan ikonen och texten */
+    margin-right: 3px;
+}
+
+.information-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.information-icon {
+    width: 26px;
+    height: 26px;
+    margin-top: -25px;
 }
 
 .imgb {
