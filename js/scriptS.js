@@ -253,7 +253,7 @@ function makeMap(lat, lng) {
     });
 
     if (!map) {
-        map = L.map('map').setView([lat, lng], 10);
+        map = L.map('map').setView([lat, lng], 14);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
