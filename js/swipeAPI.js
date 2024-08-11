@@ -13,8 +13,6 @@ function init() {
 
     const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
     localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
-
-    console.log("Loaded saved activities:", savedActivities);
     
     setupFadeEffect(); //fade för textinfo
 }
@@ -79,7 +77,7 @@ function filterAndShow() {
 
         return (isCitySelected || isProvinceSelected) && isTypeAllowed && isDescriptionIncluded;
     });
-    console.log("Filtered data:", filteredData);
+   
 
     shuffleArray(filteredData);
 
