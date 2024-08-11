@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     function populateDropdownMenu(menu, type, selectedSet) {
         menu.innerHTML = ''; 
-        const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
+        const includedDescriptions = [ "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
         
         const uniqueItems = new Set();
 

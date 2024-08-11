@@ -13,8 +13,6 @@ function init() {
 
     const savedActivities = JSON.parse(localStorage.getItem("savedActivity")) || [];
     localStorage.setItem("savedActivity", JSON.stringify(savedActivities));
-
-    console.log("Loaded saved activities:", savedActivities);
     
     setupFadeEffect(); //fade för textinfo
 }
@@ -63,7 +61,7 @@ function setupEventListeners() {
 
 function filterAndShow() {
     const allowedTypes = ["activity", "food", "attraction"];
-    const includedDescriptions = [ "Sevärdhet", "Fornlämning",  "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter",  "Museum", "Slott"];
+    const includedDescriptions = [ "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter",  "Museum", "Slott"];
 
     // Samla alla aktiva städer
     const activeCities = [...document.querySelectorAll(".nav-menu a.active[data-stad]")].map(link => link.getAttribute("data-stad"));
@@ -79,7 +77,7 @@ function filterAndShow() {
 
         return (isCitySelected || isProvinceSelected) && isTypeAllowed && isDescriptionIncluded;
     });
-    console.log("Filtered data:", filteredData);
+   
 
     shuffleArray(filteredData);
 
@@ -94,26 +92,15 @@ function shuffleArray(array) {
     }
 }
 function chooseImg(description) {
-    let c = ["Sevärdhet", "Fornlämning"];
-    let d = ["Temapark"]
-    let f = ["Konstgalleri", "Konsthall"];
     let g = ["Restaurang", "Bistro"]
     let k = ["Biograf"]
     let l = ["Cafe"]
     let m = ["Naturreservat"]
-    let n = ["Paintballcenter"]
-    let o = ["Nattklubb", "Bowlinghall", "Nöjescenter"]
-    let q = ["Hembygdspark"]
+    let o = ["Bowlinghall", "Nöjescenter"]
     let r = ["Museum", "Slott"]
 
     let category;
-    if (c.includes(description)) {
-        category = "C";
-    } else if (d.includes(description)) {
-        category = "D";
-    } else if (f.includes(description)) {
-        category = "F";
-    } else if (g.includes(description)) {
+    if (g.includes(description)) {
         category = "G";
     } else if (k.includes(description)) {
         category = "K";
@@ -121,12 +108,8 @@ function chooseImg(description) {
         category = "L";
     } else if (m.includes(description)) {
         category = "M";
-    } else if (n.includes(description)) {
-        category = "N";
     } else if (o.includes(description)) {
         category = "O";
-    } else if (q.includes(description)) {
-        category = "Q";
     } else if (r.includes(description)) {
         category = "R";
     } else {
@@ -135,12 +118,6 @@ function chooseImg(description) {
 
 
     switch (category) {
-        case "C":
-            return "Foto/runsten.jpg";
-        case "D":
-            return "Foto/Djur.jpg";
-        case "F":
-            return "Foto/tavla.jpg";
         case "G":
             return "Foto/mat.jpg";
         case "K":
@@ -149,12 +126,8 @@ function chooseImg(description) {
             return "Foto/bulle.jpg";
         case "M":
             return "Foto/stig.jpg";
-        case "N":
-            return "Foto/paintball.jpg";
         case "O":
             return "Foto/disco.jpg";
-        case "Q":
-            return "Foto/hus.jpg";
         case "R":
             return "Foto/slott.jpg";
         default:
