@@ -335,59 +335,55 @@ function updateImageContainer(item) {
         imageContainer.appendChild(newImgElement);
     }
     
+    // Uppdatera textinnehåll
     document.getElementById("activity-type").textContent = `Typ av aktivitet: ${item.type || "Ej angiven"}`;
     document.getElementById("activity-city").textContent = `Stad: ${item.city || item.province || "Ej angiven"}`;
-
-    const priceLevelContainer = document.getElementById("activity-price");
-    priceLevelContainer.innerHTML = '';
-    const priceLevelText = document.createTextNode(`Prisnivå: `); 
-    priceLevelContainer.appendChild(priceLevelText);
-    const priceImgElement = new Image(10, 20); 
-    priceImgElement.src = getPriceImage(item.price_range || ""); 
-    priceLevelContainer.appendChild(priceImgElement); 
-
-    // Hantera rating med ikon
-    const ratingContainer = document.getElementById("activity-rating");
-    ratingContainer.innerHTML = '';  // Rensa befintligt innehåll
-
-    const ratingText = document.createTextNode('Rating: ');
-    ratingContainer.appendChild(ratingText);
-
-    // stjärn ikon för rating
-    const ratingImgElement = new Image(300, 20); 
-    ratingImgElement.src = getRatingImage(item.rating || 0);
-    ratingImgElement.alt = "Rating";
-    ratingContainer.appendChild(ratingImgElement);
-
     document.getElementById("activity-abstract").textContent = `Beskrivning: ${item.abstract || "Ingen beskrivning tillgänglig."}`;
 
+    //  prisnivåbild
+    updateImage("activity-price", 'Prisnivå: ', getPriceImage(item.price_range || ""));
+
+    //  betygsbild
+    updateImage("activity-rating", 'Rating: ', getRatingImage(item.rating || 0));
+
+    //  webbplatslänk
     const websiteElement = document.getElementById("website");
     if (item.website) {
         websiteElement.innerHTML = `Websida: <a href="${item.website}" target="_blank">${item.website}</a>`;
     } else {
         websiteElement.textContent = "Ingen websida är tillgänglig.";
     }
+
     updateMap(item.lat, item.lng);
 
     fetchReviews(item.id).then(reviews => displayReviews(reviews)); 
 }
 
-function getPriceImage(priceRange) {
-    const price = extractPrice(priceRange);
+//  uppdatera pris- och betygsbilder
+function updateImage(containerId, textContent, imgSrc) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
 
-    if (price >= 0 && price <= 25) {
-        return "bilder/pris1.svg";
-    } else if (price > 25 && price <= 100) {
-        return "bilder/pris1.svg";
-    } else if (price > 100 && price <= 250) {
-        return "bilder/pris2.svg";
-    } else if (price > 250 && price <= 500) {
-        return "bilder/pris2.svg";
+    const textNode = document.createTextNode(textContent);
+    container.appendChild(textNode);
+
+    const imgElement = new Image(10, 20);
+    imgElement.src = imgSrc;
+    container.appendChild(imgElement);
+}
+
+function getPriceImage(priceRange) {
+    let price = extractPrice(priceRange);
+
+    if (price <= 100) {
+        return "bilder/pris1.svg"; 
+    } else if (price <= 500) {
+        return "bilder/pris2.svg"; 
     } else if (price > 500) {
-        return "bilder/pris3.svg";
+        return "bilder/pris3.svg"; 
     }
 
-    return "bilder/logo.svg";  
+    return "bilder/logo.svg"; 
 }
 
 function extractPrice(priceRange) {

@@ -291,19 +291,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     function getPriceImage(priceRange) {
         let price = extractPrice(priceRange);
     
-        if (price >= 0 && price <= 25) {
-            return "bilder/pris1.svg";
-        } else if (price > 25 && price <= 100) {
-            return "bilder/pris1.svg";
-        } else if (price > 100 && price <= 250) {
-            return "bilder/pris2.svg";
-        } else if (price > 250 && price <= 500) {
-            return "bilder/pris2.svg";
+        if (price <= 100) {
+            return "bilder/pris1.svg"; 
+        } else if (price <= 500) {
+            return "bilder/pris2.svg"; 
         } else if (price > 500) {
-            return "bilder/pris3.svg";
+            return "bilder/pris3.svg"; 
         }
     
-        return "bilder/logo.svg";  
+        return "bilder/logo.svg"; 
     }
     
     function extractPrice(priceRange) {
@@ -317,7 +313,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     function updateListDisplay() {
         console.log("Updating the list display...");
-        const includedDescriptions = ["Sevärdhet", "Fornlämning", "Temapark", "Konstgalleri", "Konsthall", "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
+        const includedDescriptions = [ "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
         
         const hasCategorySelected = selectedActivities.size > 0 || selectedFoods.size > 0 || selectedAttractions.size > 0 || selectedStreamingServices.size > 0;
         const hasLocationSelected = selectedLocations.size > 0;
