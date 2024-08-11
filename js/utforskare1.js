@@ -53,10 +53,10 @@ function setupEventListeners() {
         });
     }
 
-    const modalClose = document.getElementById("modalClose");
+    const modalClose = document.querySelector(".close");
     if (modalClose) {
         modalClose.addEventListener("click", function() {
-            document.getElementById("modal").style.display = "none";
+            document.querySelector(".modal").style.display = "none";
         });
     }
 
@@ -407,7 +407,7 @@ function getRatingImage(rating) {
 }
 
 function openModal() {
-    const modal = document.getElementById("modal");
+    const modal = document.querySelector(".modal");
     if (modal) {
         modal.style.display = "block";
     }

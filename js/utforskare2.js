@@ -52,14 +52,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     await fetchAllEstablishmentData();
     await fetchStreamingData();
     function closeModal() {
-        const modal = document.getElementById('modal');
+        const modal = document.querySelector(".modal");
         if (modal.style.display === 'block') {
             modal.style.display = 'none';
         }
     }
     // öppna popupruta
     function openModal() {
-        const modal = document.getElementById('modal');
+        const modal = document.querySelector(".modal");
         if (modal.style.display !== 'block') {
             modal.style.display = 'block';
             closeAllDropdowns(); 
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             dropdown.classList.remove('active');
         });
     }
-    const modalCloseButton = document.getElementById('modalClose');
+    const modalCloseButton = document.querySelector(".close");
     if (modalCloseButton) {
         modalCloseButton.addEventListener('click', closeModal);
     }

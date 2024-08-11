@@ -70,7 +70,7 @@ function ConNewDiv(activity, activityIndex, date) {
     return div;
 }
 function openModal(activity) {
-    const modal = document.getElementById("modal");
+    const modal = document.querySelector(".modal");
     if (modal) {
         modal.style.display = "block"; // Visa modal
 
@@ -111,10 +111,10 @@ function openModal(activity) {
 }
 //Stänga modal
 function setupModalClose() {
-    const modalClose = document.getElementById("modalClose");
+    const modalClose = document.querySelector(".close");
     if (modalClose) {
         modalClose.addEventListener("click", function () {
-            const modal = document.getElementById("modal");
+            const modal = document.querySelector(".modal");
             if (modal) {
                 modal.style.display = "none"; 
             }
