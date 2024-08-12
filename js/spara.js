@@ -497,6 +497,12 @@ function createReviewElement(review) {
     return reviewElement;
 }
 function updateMap(lat, lng) {
+    const mapContainer = document.querySelector('.map-container'); 
+    if (!mapContainer) {
+        console.error('Map container not found');
+        return;
+    }
+
     const icon = L.icon({
         iconUrl: 'bilder/plats.svg',
         iconSize: [38, 95],
@@ -505,7 +511,7 @@ function updateMap(lat, lng) {
     });
 
     if (!map) {
-        map = L.map('map').setView([lat, lng], 10);
+        map = L.map(mapContainer).setView([lat, lng], 10);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);

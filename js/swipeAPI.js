@@ -7,7 +7,6 @@ let lat, lng, map, marker;
 let img
 
 function init() {
-    console.time("Data Fetch Time");
     fetchAllEstablishmentData();
     setupEventListeners();
 
@@ -29,7 +28,6 @@ async function fetchAllEstablishmentData() {
 
         const jsonData = await response.json();
         combinedData = jsonData.payload;
-        console.timeEnd("Data Fetch Time");
         for (const item of combinedData) {
             if (item.city) {
                 cityD.push(item);
@@ -216,8 +214,12 @@ function updateUI(obj) {
     checkForLocationUpdate();
 }
 
-
 function makeMap(lat, lng) {
+    const mapContainer = document.querySelector('.map-container'); 
+    if (!mapContainer) {
+        console.error('Map container not found');
+        return;
+    }
     const icon = L.icon({
         iconUrl: 'bilder/plats.svg',
         iconSize: [38, 95],
@@ -226,7 +228,7 @@ function makeMap(lat, lng) {
     });
 
     if (!map) {
-        map = L.map('map').setView([lat, lng], 15);
+        map = L.map(mapContainer).setView([lat, lng], 10);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
