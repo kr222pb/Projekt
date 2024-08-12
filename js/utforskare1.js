@@ -248,7 +248,7 @@ async function fetchReviews(establishmentId) {
 }
 
 function displayReviews(reviews) {
-    const reviewsContainer = document.getElementById("activity-reviews");
+    const reviewsContainer = document.querySelector(".activity-reviews");
     reviewsContainer.innerHTML = ''; // Rensa befintligt innehåll
 
     if (reviews.length === 0) {
@@ -352,14 +352,14 @@ function updateImageContainer(item) {
         imageContainer.appendChild(newImgElement);
     }
     
-    document.getElementById("activity-city").innerHTML = `
+    document.querySelector(".activity-city").innerHTML = `
     <div class="location-container">
         <img src="bilder/plats.svg" alt="Platsikon" class="location-icon">
         ${item.city || item.province || "Ej angiven"}
     </div>
 `;
 
-    const priceLevelContainer = document.getElementById("activity-price");
+    const priceLevelContainer = document.querySelector(".activity-price");
     priceLevelContainer.innerHTML = '';
     const priceLevelText = document.createTextNode(`Prisnivå: `); 
     priceLevelContainer.appendChild(priceLevelText);
@@ -368,7 +368,7 @@ function updateImageContainer(item) {
     priceLevelContainer.appendChild(priceImgElement); 
 
     // Hantera rating med ikon
-    const ratingContainer = document.getElementById("activity-rating");
+    const ratingContainer = document.querySelector(".activity-rating");
     ratingContainer.innerHTML = '';  // Rensa befintligt innehåll
 
     const ratingText = document.createTextNode('Rating: ');
@@ -380,7 +380,7 @@ function updateImageContainer(item) {
     ratingImgElement.alt = "Rating";
     ratingContainer.appendChild(ratingImgElement);
 
-    document.getElementById("activity-abstract").innerHTML = `
+    document.querySelector(".activity-abstract").innerHTML = `
     <div class="information-container">
         <img src="bilder/information.svg" alt="Information" class="information-icon">
         ${item.abstract || "Ingen beskrivning tillgänglig."}
@@ -388,7 +388,7 @@ function updateImageContainer(item) {
 `;
 
 
-    const websiteElement = document.getElementById("website");
+    const websiteElement = document.querySelector(".website");
     if (item.website) {
         websiteElement.innerHTML = `Websida: <a href="${item.website}" target="_blank">${item.website}</a>`;
     } else {

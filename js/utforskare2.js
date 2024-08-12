@@ -312,7 +312,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         return NaN; 
     }
     function updateListDisplay() {
-        console.log("Updating the list display...");
         const includedDescriptions = [ "Restaurang", "Bistro", "Biograf", "Cafe", "Naturreservat", "Bowlinghall", "Nöjescenter", "Museum", "Slott"];
         
         const hasCategorySelected = selectedActivities.size > 0 || selectedFoods.size > 0 || selectedAttractions.size > 0 || selectedStreamingServices.size > 0;
@@ -387,7 +386,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function updateReviews(establishmentId) {
-        const reviewsContainer = document.getElementById("activity-reviews");
+        const reviewsContainer = document.querySelector(".activity-reviews");
         reviewsContainer.innerHTML = ""; // Tömmer tidigare recensioner
     
         const url = `https://smapi.lnu.se/api/?api_key=61fTJHBb&controller=establishment&method=getreviews&id=${establishmentId}`;

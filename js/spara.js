@@ -74,31 +74,7 @@ function openModal(activity) {
     if (modal) {
         modal.style.display = "block"; // Visa modal
 
-        updateImageContainer(activity);
-
-        document.getElementById("activity-type").textContent = ` ${activity.name || "Ej angiven"}`;
-        
-        const cityElement = document.getElementById("activity-city");
-        cityElement.innerHTML = `
-        <div class="location-container">
-        <img src="bilder/plats.svg" alt="Platsikon" class="location-icon"> ${activity.city || activity.province || "Ej angiven"}
-        </div>
-        `;
-
-        const abstractContainer = document.getElementById("activity-abstract");
-        abstractContainer.innerHTML = `
-            <div class="information-container">
-                <img src="bilder/information.svg" alt="Informationsikon" class="information-icon">
-                ${activity.abstract || "Ingen beskrivning tillgänglig."}
-            </div>
-        `;
-
-        const websiteElement = document.getElementById("website");
-        if (activity.website) {
-            websiteElement.innerHTML = `Websida: <a href="${activity.website}" target="_blank">${activity.website}</a>`;
-        } else {
-            websiteElement.textContent = "Ingen websida är tillgänglig.";
-        }
+        updateModalContent(activity);
 
         if (activity.lat !== undefined && activity.lng !== undefined) {
             updateMap(activity.lat, activity.lng); 
@@ -106,7 +82,7 @@ function openModal(activity) {
             console.error('Lat or Lng is undefined:', activity);
         }
 
-        displayReviews(activity.reviews || []); 
+        fetchReviews(activity.id).then(reviews => displayReviews(reviews));
     }
 }
 //Stänga modal
@@ -333,10 +309,12 @@ function chooseImg(description) {
     }
 }
 
-function updateImageContainer(item) {
+
+function updateModalContent(item) {
     const imageContainer = document.querySelector(".image-container");
     const imgSrc = chooseImg(item.description);
     const imgElement = imageContainer.querySelector("img");
+
     if (imgElement) {
         imgElement.src = imgSrc;
         imgElement.alt = item.description;
@@ -346,34 +324,34 @@ function updateImageContainer(item) {
         newImgElement.alt = item.description;
         imageContainer.appendChild(newImgElement);
     }
-    
-    // Uppdatera textinnehåll
-    document.getElementById("activity-type").textContent = `Typ av aktivitet: ${item.type || "Ej angiven"}`;
-    document.getElementById("activity-city").textContent = `Stad: ${item.city || item.province || "Ej angiven"}`;
-    document.getElementById("activity-abstract").textContent = `Beskrivning: ${item.abstract || "Ingen beskrivning tillgänglig."}`;
 
-    //  prisnivåbild
-    updateImage("activity-price", 'Prisnivå: ', getPriceImage(item.price_range || ""));
+    document.querySelector(".activity-city").innerHTML = `
+        <div class="location-container">
+            <img src="bilder/plats.svg" alt="Platsikon" class="location-icon">
+            ${item.city || item.province || "Ej angiven"}
+        </div>
+    `;
 
-    //  betygsbild
-    updateImage("activity-rating", 'Rating: ', getRatingImage(item.rating || 0));
+    updateImage(".activity-price", 'Prisnivå: ', getPriceImage(item.price_range || ""));
+    updateImage(".activity-rating", 'Rating: ', getRatingImage(item.rating || 0));
 
-    //  webbplatslänk
-    const websiteElement = document.getElementById("website");
+    document.querySelector(".activity-abstract").innerHTML = `
+        <div class="information-container">
+            <img src="bilder/information.svg" alt="Information" class="information-icon">
+            ${item.abstract || "Ingen beskrivning tillgänglig."}
+        </div>
+    `;
+
+    const websiteElement = document.querySelector(".website");
     if (item.website) {
         websiteElement.innerHTML = `Websida: <a href="${item.website}" target="_blank">${item.website}</a>`;
     } else {
         websiteElement.textContent = "Ingen websida är tillgänglig.";
     }
-
-    updateMap(item.lat, item.lng);
-
-    fetchReviews(item.id).then(reviews => displayReviews(reviews)); 
 }
 
-//  uppdatera pris- och betygsbilder
-function updateImage(containerId, textContent, imgSrc) {
-    const container = document.getElementById(containerId);
+function updateImage(containerSelector, textContent, imgSrc) {
+    const container = document.querySelector(containerSelector);
     container.innerHTML = '';
 
     const textNode = document.createTextNode(textContent);
@@ -433,7 +411,7 @@ async function fetchReviews(establishmentId) {
 }
 
 function displayReviews(reviews) {
-    const reviewsContainer = document.getElementById("activity-reviews");
+    const reviewsContainer = document.querySelector(".activity-reviews");
     reviewsContainer.innerHTML = ''; 
 
     if (reviews.length === 0) {
